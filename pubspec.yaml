@@ -10,6 +10,13 @@ dependencies:
   get: 4.6.6
   flutter: 
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+
+  
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/sample logo.jpg"
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
