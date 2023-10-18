@@ -65,7 +65,7 @@ class CreateAccountView extends GetView<CreateAccountController> {
                       textColor: Colors.white,
                       text: 'Create Account',
                       onTap: () {
-                        Get.toNamed(Routes.HOME);
+                       Get.offAllNamed(Routes.BOTTOMNAVIGATIONBAR);
                       },
                     ),
                     Constants.buttonAndLoginTextVerticalSpace,

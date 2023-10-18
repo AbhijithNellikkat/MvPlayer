@@ -3,6 +3,7 @@ import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:get/get.dart';
 import 'package:mv_player/app/routes/app_pages.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
+import 'package:mv_player/app/utils/constants/images.dart';
 import 'package:mv_player/app/utils/styles/text_styles.dart';
 
 import '../controllers/onbording_controller.dart';
@@ -15,28 +16,28 @@ class OnbordingView extends GetView<OnbordingController> {
       child: OnBoardingSlider(
         centerBackground: true,
         headerBackgroundColor: Colors.white,
-        finishButtonTextStyle: TextStyle(
+        finishButtonTextStyle: const TextStyle(
           fontSize: 13,
         ),
         onFinish: () {
           Get.offAndToNamed(Routes.OPENNING);
         },
         finishButtonText: 'explore the app',
-        finishButtonStyle: FinishButtonStyle(
+        finishButtonStyle: const FinishButtonStyle(
             backgroundColor: Colors.black,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(50)))),
-        skipTextButton: Text('Skip'),
+        skipTextButton: const Text('Skip'),
         background: [
-          Image.asset('assets/images/music_onbording.jpg'),
-          Image.asset('assets/images/video_onbording.jpg'),
-          Image.asset('assets/images/authentication_onbording.jpg'),
+          Image.asset(ConstantsImages.musicOnbordingImage),
+          Image.asset(ConstantsImages.videoOnbordingImage),
+          Image.asset(ConstantsImages.authenticationOnboringImage),
         ],
         totalPage: 3,
         speed: 1.8,
         pageBodies: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Column(
               children: <Widget>[
                 const SizedBox(
@@ -46,13 +47,13 @@ class OnbordingView extends GetView<OnbordingController> {
                   Constants.musicsOnbordingHeading,
                   style: onbordingHeading,
                 ),
-                Text('Build playlists tailored to your mood'),
+                const Text('Build playlists tailored to your mood'),
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: const Column(
               children: <Widget>[
                 SizedBox(
                   height: 480,
@@ -62,8 +63,8 @@ class OnbordingView extends GetView<OnbordingController> {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 40),
-            child: Column(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: const Column(
               children: <Widget>[
                 SizedBox(
                   height: 480,

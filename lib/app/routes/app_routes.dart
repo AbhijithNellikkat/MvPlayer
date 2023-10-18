@@ -8,13 +8,18 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
 
   static const SPLASH = _Paths.SPLASH;
-
   static const ONBORDING = _Paths.ONBORDING;
-
   static const OPENNING = _Paths.OPENNING;
-
   static const CREATE_ACCOUNT = _Paths.CREATE_ACCOUNT;
   static const LOGIN = _Paths.LOGIN;
+
+  static const BOTTOMNAVIGATIONBAR = _Paths.BOTTOMNAVIGATIONBAR;
+
+  static const MUSICS = _Paths.MUSICS;
+  static const VIDEOS = _Paths.VIDEOS;
+  static const PROFILE = _Paths.PROFILE;
+
+  static const FOLDERINSIDE =_Paths.FOLDERINSIDE ;
 }
 
 abstract class _Paths {
@@ -22,11 +27,16 @@ abstract class _Paths {
   static const HOME = '/home';
 
   static const SPLASH = '/splash';
-
   static const ONBORDING = '/onbording';
-
   static const OPENNING = '/openning';
-
   static const CREATE_ACCOUNT = '/create-account';
   static const LOGIN = '/login';
+
+  static const BOTTOMNAVIGATIONBAR = '/bottomnavigationbar';
+
+  static const MUSICS = '/musics';
+  static const VIDEOS = '/videos';
+  static const PROFILE = '/profile';
+
+  static const FOLDERINSIDE = '/folderinside';
 }

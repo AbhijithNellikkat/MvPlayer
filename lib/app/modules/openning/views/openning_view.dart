@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mv_player/app/routes/app_pages.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
+import 'package:mv_player/app/utils/constants/images.dart';
 import 'package:mv_player/widgets/custom_button_widget.dart';
 
 import '../controllers/openning_controller.dart';
@@ -21,7 +22,7 @@ class OpenningView extends GetView<OpenningController> {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/images/openning_bg_image.jpg"),
+                  image: AssetImage(ConstantsImages.openningBgImage),
                 ),
               ),
             ),

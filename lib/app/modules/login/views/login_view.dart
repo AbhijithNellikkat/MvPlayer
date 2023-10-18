@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../../widgets/custom_button_widget.dart';
 import '../../../../widgets/custom_textFormField.dart';
 import '../../../routes/app_pages.dart';
@@ -63,7 +64,9 @@ class LoginView extends GetView<LoginController> {
                           bgColor: Colors.black,
                           textColor: Colors.white,
                           text: 'Log in ',
-                          onTap: () {},
+                          onTap: () {
+                            Get.offAllNamed(Routes.BOTTOMNAVIGATIONBAR);
+                          },
                         ),
                       ],
                     ),
