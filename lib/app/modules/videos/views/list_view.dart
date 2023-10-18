@@ -18,8 +18,14 @@ class ListViewWidget extends StatelessWidget {
                 size: 50,
                 color: Colors.black,
               ),
-              title: Text('202118'),
-              subtitle: Text('197 media files'),
+              title: Text(
+                '202118',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                '197 media files',
+                style: TextStyle(fontSize: 11),
+              ),
               trailing: Icon(Icons.more_vert),
             ),
           );

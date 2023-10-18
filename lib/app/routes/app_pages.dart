@@ -80,10 +80,6 @@ class AppPages {
       page: () => BottomNavbarView(),
       binding: HomeBinding(),
     ),
-    GetPage(
-      name: _Paths.FOLDERINSIDE,
-      page: () => BottomNavbarView(),
-      binding: VideosBinding(),
-    ),
+    
   ];
 }
