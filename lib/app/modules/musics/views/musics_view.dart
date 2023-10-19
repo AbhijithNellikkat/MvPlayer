@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mv_player/app/modules/musics/views/playlists_view.dart';
 import 'package:mv_player/app/modules/musics/views/tracks_view.dart';
 
 import '../controllers/musics_controller.dart';
@@ -36,13 +37,8 @@ class MusicsView extends GetView<MusicsController> {
               ],
             ),
           ),
-          body: const TabBarView(
-            children: [
-              TracksView(),
-              Center(
-                child: Text("Playlists"),
-              ),
-            ],
+          body: TabBarView(
+            children: [TracksView(), PlaylistsView()],
           ),
         ),
       ),

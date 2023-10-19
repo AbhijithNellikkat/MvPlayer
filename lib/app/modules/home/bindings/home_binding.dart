@@ -8,8 +8,6 @@ class HomeBinding extends Bindings {
   @override
   void dependencies() {
     Get.put<NavBarController>(NavBarController());
-    Get.lazyPut<HomeController>(
-      () => HomeController(),
-    );
+    Get.put<HomeController>(HomeController());
   }
 }
