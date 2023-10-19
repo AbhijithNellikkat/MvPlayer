@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/home/views/bottom_navbar_view.dart';
-
+import 'package:mv_player/app/modules/musics/views/music_player_view.dart';
+import 'package:mv_player/app/modules/profile/views/update_profile_view.dart';
 import '../modules/createAccount/bindings/create_account_binding.dart';
 import '../modules/createAccount/views/create_account_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -79,6 +80,16 @@ class AppPages {
       name: _Paths.BOTTOMNAVIGATIONBAR,
       page: () => BottomNavbarView(),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.MUSICPLAYER,
+      page: () => MusicPlayerView(),
+      binding: MusicsBinding(),
+    ),
+     GetPage(
+      name: _Paths.UPDATEPROFILE,
+      page: () => UpdateProfileView(),
+      binding: ProfileBinding(),
     ),
     
   ];

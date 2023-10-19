@@ -19,7 +19,9 @@ abstract class Routes {
   static const VIDEOS = _Paths.VIDEOS;
   static const PROFILE = _Paths.PROFILE;
 
-  static const FOLDERINSIDE =_Paths.FOLDERINSIDE ;
+  static const FOLDERINSIDE = _Paths.FOLDERINSIDE;
+  static const MUSICPLAYER = _Paths.MUSICPLAYER;
+  static const UPDATEPROFILE = _Paths.UPDATEPROFILE;
 }
 
 abstract class _Paths {
@@ -39,4 +41,6 @@ abstract class _Paths {
   static const PROFILE = '/profile';
 
   static const FOLDERINSIDE = '/folderinside';
+  static const MUSICPLAYER = "/musicplayer";
+  static const UPDATEPROFILE = '/updateprofile';
 }

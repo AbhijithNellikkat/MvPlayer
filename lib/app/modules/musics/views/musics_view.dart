@@ -12,6 +12,7 @@ class MusicsView extends GetView<MusicsController> {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
             title: const Text(

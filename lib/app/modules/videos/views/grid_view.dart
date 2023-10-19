@@ -6,7 +6,7 @@ class GridViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 30),
+      padding: const EdgeInsets.only(left: 40),
       child: GridView.count(
         crossAxisCount: 3,
         crossAxisSpacing: 1,

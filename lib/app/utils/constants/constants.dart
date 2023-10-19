@@ -19,6 +19,9 @@ class Constants {
   // ======================= Login =======================
   static const loginHeading = 'Hi, Welcome 👋';
 
+  // ======================= Splash screen  =======================
+  static const appSplashAnimation = "assets/animations/app_splash.json";
+
   static const passwordTffAndForgotPassVerticalSpace = SizedBox(height: 20);
 
   static double getScreenWidth(BuildContext context) {

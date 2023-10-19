@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mv_player/app/routes/app_pages.dart';
 
 class ListViewWidget extends StatelessWidget {
   const ListViewWidget({super.key});
@@ -10,7 +12,7 @@ class ListViewWidget extends StatelessWidget {
       child: ListView.builder(
         itemCount: 30,
         itemBuilder: (context, index) {
-          return GestureDetector(
+          return InkWell(
             onTap: () {},
             child: const ListTile(
               leading: Icon(
@@ -26,7 +28,6 @@ class ListViewWidget extends StatelessWidget {
                 '197 media files',
                 style: TextStyle(fontSize: 11),
               ),
-              trailing: Icon(Icons.more_vert),
             ),
           );
         },
