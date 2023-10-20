@@ -1,6 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mv_player/app/modules/musics/views/widgets/my_favourties_widget.dart';
+
+import '../../recentlyPlayed/views/recently_played_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -28,23 +31,13 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 20),
-              //   child: AnimSearchBar(
-              //     rtl: true,
-              //     onSubmitted: (p0) {},
-              //     width: 400,
-              //     textController: textController,
-              //     onSuffixTap: () {},
-              //   ),
-              // ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+                padding: const EdgeInsets.only(
+                    right: 20, left: 30, top: 60, bottom: 20),
                 child: Text(
                   'Welcome Abhijith',
                   style: GoogleFonts.poppins(
-                    fontSize: 22,
+                    fontSize: 23,
                     fontWeight: FontWeight.w200,
                   ),
                 ),
@@ -56,31 +49,40 @@ class _HomeViewState extends State<HomeView> {
                     child: CarouselSlider(
                       items: [
                         Container(
-                          height: 50,
-                          width: 300,
-                          color: Colors.black,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.black,
+                          ),
+                          width: 310,
                         ),
                         Container(
-                          height: 50,
-                          width: 300,
-                          color: Colors.black,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.black,
+                          ),
+                          width: 310,
                         ),
                         Container(
-                          height: 50,
-                          width: 300,
-                          color: Colors.black,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.black,
+                          ),
+                          width: 310,
                         ),
                         Container(
-                          height: 50,
-                          width: 300,
-                          color: Colors.black,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.black,
+                          ),
+                          width: 310,
                         ),
                       ],
                       carouselController: carouselController,
                       options: CarouselOptions(
                         scrollPhysics: const BouncingScrollPhysics(),
                         autoPlay: true,
-                        aspectRatio: 1,
+                        height: 170,
+                        aspectRatio: 16 / 9,
                         viewportFraction: 1,
                         onPageChanged: (index, reason) {
                           setState(() {
@@ -89,9 +91,14 @@ class _HomeViewState extends State<HomeView> {
                         },
                       ),
                     ),
-                  )
+                  ),
                 ],
-              )
+              ),
+              const SizedBox(height: 10),
+              MyFavouritesWidget(),
+              const SizedBox(height: 10),
+              RecentlyPlayedView(),
+              const SizedBox(height: 20),
             ],
           ),
         ),

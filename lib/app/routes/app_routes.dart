@@ -23,6 +23,7 @@ abstract class Routes {
   static const MUSICPLAYER = _Paths.MUSICPLAYER;
   static const UPDATEPROFILE = _Paths.UPDATEPROFILE;
   static const FAVOURITES = _Paths.FAVOURITES;
+  static const RECENTLY_PLAYED = _Paths.RECENTLY_PLAYED;
 }
 
 abstract class _Paths {
@@ -45,4 +46,5 @@ abstract class _Paths {
   static const MUSICPLAYER = "/musicplayer";
   static const UPDATEPROFILE = '/updateprofile';
   static const FAVOURITES = '/favourties';
+  static const RECENTLY_PLAYED = '/recently-played';
 }
