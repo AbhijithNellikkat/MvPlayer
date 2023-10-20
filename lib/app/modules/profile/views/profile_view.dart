@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/routes/app_pages.dart';
+
 import '../../../utils/constants/constants.dart';
 import '../controllers/profile_controller.dart';
 
@@ -38,7 +39,11 @@ class ProfileView extends GetView<ProfileController> {
             const CircleAvatar(
               backgroundColor: Constants.black,
               maxRadius: 65,
-              child: Icon(Constants.user, size: 60),
+              child: Icon(
+                Constants.user,
+                size: 60,
+                color: Constants.white,
+              ),
             ),
             const SizedBox(height: 20),
             Text(

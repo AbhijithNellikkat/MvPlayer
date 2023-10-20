@@ -7,6 +7,7 @@ import 'package:mv_player/app/modules/musics/views/tracks_view.dart';
 
 import '../controllers/musics_controller.dart';
 
+// ignore: must_be_immutable
 class MusicsView extends GetView<MusicsController> {
   MusicsView({Key? key}) : super(key: key);
   TextEditingController textController = TextEditingController();
@@ -39,6 +40,7 @@ class MusicsView extends GetView<MusicsController> {
               ),
             ],
             bottom: const TabBar(
+              dividerColor: Colors.black,
               tabs: [
                 Tab(
                   child: Text(
@@ -62,7 +64,12 @@ class MusicsView extends GetView<MusicsController> {
             ),
           ),
           body: TabBarView(
-            children: [TracksView(), PlaylistsView(), FavouritesView()],
+            children: [
+              // LoadingWidget(),
+              const TracksView(),
+              PlaylistsView(),
+              const FavouritesView(),
+            ],
           ),
         ),
       ),

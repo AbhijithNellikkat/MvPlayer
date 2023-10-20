@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../utils/constants/constants.dart';
+
 void playlistAddBottmSheet(BuildContext context, TextEditingController playlistController) {
     showModalBottomSheet(
       context: context,
@@ -50,7 +52,7 @@ void playlistAddBottmSheet(BuildContext context, TextEditingController playlistC
                   onPressed: () {},
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Text('Create'),
+                    child: Text('Create',style: TextStyle(color: Constants.white),),
                   ))
             ],
           ),

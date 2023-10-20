@@ -21,12 +21,19 @@ class OnbordingView extends GetView<OnbordingController> {
             Get.offAndToNamed(Routes.OPENNING);
           },
           finishButtonText: 'explore the app',
-          skipIcon: const Icon(Icons.arrow_forward),
+          skipIcon: const Icon(
+            Constants.rightArrow,
+            color: Constants.white,
+          ),
           finishButtonStyle: const FinishButtonStyle(
               backgroundColor: Constants.black,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(50)))),
-          skipTextButton: const Text('Skip'),
+          skipTextButton: const Text(
+            'Skip',
+            style:
+                TextStyle(color: Constants.black, fontWeight: FontWeight.bold),
+          ),
           controllerColor: Constants.black,
           pageBackgroundColor: Constants.white,
           background: [

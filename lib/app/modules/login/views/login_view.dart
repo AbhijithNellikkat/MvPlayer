@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../widgets/custom_button_widget.dart';
-import '../../../../widgets/custom_textFormField.dart';
+
+import '../../../common/widgets/custom_button_widget.dart';
+import '../../../common/widgets/custom_textFormField.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/constants/constants.dart';
 import '../../../utils/styles/text_styles.dart';
@@ -12,6 +13,7 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Constants.scaffoldBgColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 23),

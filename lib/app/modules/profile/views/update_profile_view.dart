@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../../../utils/constants/constants.dart';
 
 class UpdateProfileView extends GetView {
@@ -38,7 +39,11 @@ class UpdateProfileView extends GetView {
           const CircleAvatar(
             backgroundColor: Constants.black,
             maxRadius: 65,
-            child: Icon(Constants.user, size: 60),
+            child: Icon(
+              Constants.user,
+              size: 60,
+              color: Constants.white,
+            ),
           ),
           TextButton(
             style: ButtonStyle(
@@ -63,7 +68,10 @@ class UpdateProfileView extends GetView {
               onPressed: () {},
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 60, vertical: 13),
-                child: Text('save'),
+                child: Text(
+                  'save',
+                  style: TextStyle(color: Constants.white),
+                ),
               ))
         ],
       )),

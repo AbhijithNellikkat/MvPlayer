@@ -17,6 +17,8 @@ dependencies:
   lottie: ^2.6.0
   carousel_slider: ^4.2.1
   anim_search_bar: ^2.0.3
+  # image_picker: ^1.0.4
+  shimmer: ^3.0.0
   # rxdart: ^0.27.7
   # just_audio: ^0.9.35
   # audio_video_progress_bar: ^2.0.1

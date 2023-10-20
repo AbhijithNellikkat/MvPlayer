@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mv_player/app/modules/musics/views/widgets/my_favourties_widget.dart';
+import 'package:mv_player/app/utils/constants/constants.dart';
 
 import 'widgets/playlist_add_bottmSheet.dart';
 
@@ -17,8 +17,6 @@ class PlaylistsView extends GetView {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: [
-          
-           
             const SizedBox(height: 20),
             ListTile(
               leading: const CircleAvatar(
@@ -26,7 +24,7 @@ class PlaylistsView extends GetView {
                 backgroundColor: Colors.black,
                 child: Icon(
                   Icons.music_note_sharp,
-                  color: Colors.white,
+                  color: Constants.white,
                 ),
               ),
               title: const Text('Malayalam songs'),
@@ -42,7 +40,7 @@ class PlaylistsView extends GetView {
                 backgroundColor: Colors.black,
                 child: Icon(
                   Icons.music_note_sharp,
-                  color: Colors.white,
+                  color: Constants.white,
                 ),
               ),
               title: const Text('English songs'),
@@ -60,7 +58,10 @@ class PlaylistsView extends GetView {
           onPressed: () {
             playlistAddBottmSheet(context, playlistController);
           },
-          label: const Text('New playlist')),
+          label: const Text(
+            'New playlist',
+            style: TextStyle(color: Constants.white),
+          )),
     );
   }
 }

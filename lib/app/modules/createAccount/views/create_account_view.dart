@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:mv_player/app/routes/app_pages.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:mv_player/app/utils/styles/text_styles.dart';
-import 'package:mv_player/widgets/custom_button_widget.dart';
-import 'package:mv_player/widgets/custom_textFormField.dart';
+import 'package:mv_player/app/common/widgets/custom_button_widget.dart';
+import 'package:mv_player/app/common/widgets/custom_textFormField.dart';
 
 import '../controllers/create_account_controller.dart';
 
