@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/icons.dart';
+import '../../../utils/constants/constants.dart';
 
 class UpdateProfileView extends GetView {
   UpdateProfileView({Key? key}) : super(key: key);
@@ -38,9 +36,9 @@ class UpdateProfileView extends GetView {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const CircleAvatar(
-            backgroundColor: ConstantColors.BLACK,
+            backgroundColor: Constants.black,
             maxRadius: 65,
-            child: Icon(ConstantIcons.USER, size: 60),
+            child: Icon(Constants.user, size: 60),
           ),
           TextButton(
             style: ButtonStyle(

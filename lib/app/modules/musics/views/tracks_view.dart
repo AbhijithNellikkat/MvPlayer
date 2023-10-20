@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mv_player/app/routes/app_pages.dart';
-import 'package:mv_player/app/utils/constants/icons.dart';
-import 'package:mv_player/app/utils/constants/images.dart';
+
+import '../../../utils/constants/constants.dart';
+
 
 class TracksView extends GetView {
   const TracksView({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class TracksView extends GetView {
               leading: CircleAvatar(
                 maxRadius: 25,
                 backgroundColor: Colors.black,
-                backgroundImage: AssetImage(ConstantsImages.musicsImage),
+                backgroundImage: AssetImage(Constants.musicsImage),
               ),
               title: Text(
                 'Starboy',
@@ -31,7 +32,7 @@ class TracksView extends GetView {
                 'Starboy Studio album by The Weeknd',
                 style: TextStyle(fontSize: 11),
               ),
-              trailing: Icon(ConstantIcons.MORE_VERT),
+              trailing: Icon(Constants.moreVert),
             ),
           ),
         );

@@ -13,6 +13,7 @@ class CreateAccountView extends GetView<CreateAccountController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Constants.scaffoldBgColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 23),
@@ -61,11 +62,11 @@ class CreateAccountView extends GetView<CreateAccountController> {
                     Constants.textFormFieldAndButtonVerticalSpace,
                     CustomButtonWidget(
                       borderWidth: 0,
-                      bgColor: Colors.black,
-                      textColor: Colors.white,
-                      text: 'Create Account',
+                      bgColor: Constants.black,
+                      textColor: Constants.white,
+                      text: Constants.createAccountHeading,
                       onTap: () {
-                       Get.offAllNamed(Routes.BOTTOMNAVIGATIONBAR);
+                        Get.offAllNamed(Routes.BOTTOMNAVIGATIONBAR);
                       },
                     ),
                     Constants.buttonAndLoginTextVerticalSpace,
@@ -73,7 +74,7 @@ class CreateAccountView extends GetView<CreateAccountController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         const Text(
-                          'Already have an account ?',
+                          Constants.alreadyAccount,
                           style: TextStyle(fontWeight: FontWeight.w400),
                         ),
                         TextButton(

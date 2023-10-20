@@ -1,13 +1,43 @@
 import 'package:flutter/material.dart';
 
 class Constants {
-  // ======================= Onbording =======================
-  static const musicsOnbordingHeading = 'Enjoy Your Music Anywhere,Anytime ';
+  // ======================= Onbording Screens =======================
+  static const musicsOnbordingHeading = 'Enjoy Your Music Anytime ';
   static const musicOnbordingDescription =
       'Build playlists tailored to your mood,activities,and preferences.';
 
+  static const videoOnbordingHeading = 'Create Your Own Playlists';
+  static const videoOnbordingDescription =
+      'Organize your favorite videos into custom playlists for easy access..';
+
+  static const authenticaionOnbordingHeading =
+      'Unlock a World of Possibilities';
+  static const authenticationOnbordingDescription =
+      "Secure your account to access exclusive features, playlists, and more. Let's ensure your journey is both safe and exciting!";
+
+  // ====================== Openning Screen =======================
+  static const openningScreenHeading = 'Explore the App';
+
   // ======================= Create Account =======================
   static const createAccountHeading = 'Create Account';
+  static const alreadyAccount = 'Already have an account ?';
+
+  // ======================= Login =======================
+  static const loginHeading = 'Hi, Welcome 👋';
+  static const noAccount = "Don't have an account ? ";
+  static const forgotPassword = 'Forgot Password ? ';
+
+  // ======================= Images  =======================
+  static const appSplashAnimation = "assets/animations/app_splash.json";
+  static const emptyBoxAnimation = 'assets/animations/emptyBox.json';
+  static const musicOnbordingImage = 'assets/images/music_onbording.jpg';
+  static const videoOnbordingImage = 'assets/images/video_onbording.jpg';
+  static const authenticationOnboringImage =
+      'assets/images/authentication_onbording.jpg';
+  static const openningBgImage = 'assets/images/openning_bg_image.jpg';
+  static const musicsImage = 'assets/images/musics.jpg';
+  static const profileImage = 'assets/images/profile.gif';
+  static const splashImage = 'assets/icons/sample logo.jpg';
 
   // ------------------- Vertical Spaces -------------------
   static const formTextFormFieldVerticalSpace = SizedBox(height: 18);
@@ -15,21 +45,14 @@ class Constants {
   static const textFormFieldAndButtonVerticalSpace = SizedBox(height: 35);
   static const formInputFieldAndLabelVerticalSpace = SizedBox(height: 10);
   static const buttonAndLoginTextVerticalSpace = SizedBox(height: 50);
-
-  // ======================= Login =======================
-  static const loginHeading = 'Hi, Welcome 👋';
-
-  // ======================= Splash screen  =======================
-  static const appSplashAnimation = "assets/animations/app_splash.json";
-  static const emptyBoxAnimation = 'assets/animations/emptyBox.json';
-
   static const passwordTffAndForgotPassVerticalSpace = SizedBox(height: 20);
 
-  static double getScreenWidth(BuildContext context) {
-    return MediaQuery.of(context).size.width;
-  }
+  // ===================== Colors =====================
+  static const Color black = Colors.black;
+  static const Color white = Colors.white;
+  static const Color scaffoldBgColor = Colors.white;
 
-  static double getScreenHeight(BuildContext context) {
-    return MediaQuery.of(context).size.height;
-  }
+  // ===================== Icons =====================
+  static const IconData moreVert = Icons.more_vert;
+  static const IconData user = Icons.person_pin_circle_rounded;
 }

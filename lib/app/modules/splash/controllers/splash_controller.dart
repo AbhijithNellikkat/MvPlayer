@@ -6,7 +6,7 @@ class SplashController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    Future.delayed(const Duration(seconds: 3),
-        () => Get.offAndToNamed(Routes.ONBORDING));
+    Future.delayed(
+        const Duration(seconds: 2), () => Get.offAndToNamed(Routes.ONBORDING));
   }
 }

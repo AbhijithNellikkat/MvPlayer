@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mv_player/app/routes/app_pages.dart';
 
 class ListViewWidget extends StatelessWidget {
   const ListViewWidget({super.key});

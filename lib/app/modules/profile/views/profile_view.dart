@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/routes/app_pages.dart';
-import 'package:mv_player/app/utils/constants/colors.dart';
-import 'package:mv_player/app/utils/constants/icons.dart';
-
+import '../../../utils/constants/constants.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
@@ -38,9 +36,9 @@ class ProfileView extends GetView<ProfileController> {
           children: [
             const SizedBox(height: 30),
             const CircleAvatar(
-              backgroundColor: ConstantColors.BLACK,
+              backgroundColor: Constants.black,
               maxRadius: 65,
-              child: Icon(ConstantIcons.USER, size: 60),
+              child: Icon(Constants.user, size: 60),
             ),
             const SizedBox(height: 20),
             Text(
@@ -52,6 +50,13 @@ class ProfileView extends GetView<ProfileController> {
               'abhijithnellikkat@gmail.com',
               style: GoogleFonts.poppins(fontSize: 13, color: Colors.grey),
             ),
+            TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Logout',
+                  style: GoogleFonts.poppins(
+                      color: Colors.red, fontWeight: FontWeight.w600),
+                ))
           ],
         ),
       )),

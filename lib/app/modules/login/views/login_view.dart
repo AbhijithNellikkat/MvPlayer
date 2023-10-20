@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../widgets/custom_button_widget.dart';
 import '../../../../widgets/custom_textFormField.dart';
 import '../../../routes/app_pages.dart';
@@ -54,7 +53,7 @@ class LoginView extends GetView<LoginController> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
                         const Text(
-                          'Forgot Password ? ',
+                          Constants.forgotPassword,
                           style: TextStyle(
                               fontWeight: FontWeight.w400, fontSize: 13),
                         ),
@@ -75,7 +74,7 @@ class LoginView extends GetView<LoginController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         const Text(
-                          "Don't have an account ? ",
+                          Constants.noAccount,
                           style: TextStyle(fontWeight: FontWeight.w400),
                         ),
                         TextButton(
