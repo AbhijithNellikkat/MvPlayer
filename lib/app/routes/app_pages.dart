@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/home/views/bottom_navbar_view.dart';
+import 'package:mv_player/app/modules/musics/views/favourites_view.dart';
 import 'package:mv_player/app/modules/musics/views/music_player_view.dart';
 import 'package:mv_player/app/modules/profile/views/update_profile_view.dart';
+
 import '../modules/createAccount/bindings/create_account_binding.dart';
 import '../modules/createAccount/views/create_account_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -63,12 +65,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.MUSICS,
-      page: () => const MusicsView(),
+      page: () => MusicsView(),
       binding: MusicsBinding(),
     ),
     GetPage(
       name: _Paths.VIDEOS,
-      page: () =>  VideosView(),
+      page: () => VideosView(),
       binding: VideosBinding(),
     ),
     GetPage(
@@ -86,11 +88,15 @@ class AppPages {
       page: () => MusicPlayerView(),
       binding: MusicsBinding(),
     ),
-     GetPage(
+    GetPage(
+      name: _Paths.FAVOURITES,
+      page: () => FavouritesView(),
+      binding: MusicsBinding(),
+    ),
+    GetPage(
       name: _Paths.UPDATEPROFILE,
       page: () => UpdateProfileView(),
       binding: ProfileBinding(),
     ),
-    
   ];
 }

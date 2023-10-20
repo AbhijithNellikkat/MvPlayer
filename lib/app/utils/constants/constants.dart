@@ -21,6 +21,7 @@ class Constants {
 
   // ======================= Splash screen  =======================
   static const appSplashAnimation = "assets/animations/app_splash.json";
+  static const emptyBoxAnimation = 'assets/animations/emptyBox.json';
 
   static const passwordTffAndForgotPassVerticalSpace = SizedBox(height: 20);
 

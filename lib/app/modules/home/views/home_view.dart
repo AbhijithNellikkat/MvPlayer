@@ -1,4 +1,3 @@
-import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +18,7 @@ class _HomeViewState extends State<HomeView> {
 
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
-  TextEditingController textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,16 +28,16 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: AnimSearchBar(
-                  rtl: true,
-                  onSubmitted: (p0) {},
-                  width: 400,
-                  textController: textController,
-                  onSuffixTap: () {},
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 20),
+              //   child: AnimSearchBar(
+              //     rtl: true,
+              //     onSubmitted: (p0) {},
+              //     width: 400,
+              //     textController: textController,
+              //     onSuffixTap: () {},
+              //   ),
+              // ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 50),

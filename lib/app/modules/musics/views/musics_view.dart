@@ -1,17 +1,20 @@
+import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mv_player/app/modules/musics/views/favourites_view.dart';
 import 'package:mv_player/app/modules/musics/views/playlists_view.dart';
 import 'package:mv_player/app/modules/musics/views/tracks_view.dart';
 
 import '../controllers/musics_controller.dart';
 
 class MusicsView extends GetView<MusicsController> {
-  const MusicsView({Key? key}) : super(key: key);
+  MusicsView({Key? key}) : super(key: key);
+  TextEditingController textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -20,6 +23,21 @@ class MusicsView extends GetView<MusicsController> {
               'Music',
               style: TextStyle(color: Colors.black),
             ),
+            actions: [
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                ),
+                child: AnimSearchBar(
+                  rtl: true,
+                  onSubmitted: (p0) {},
+                  width: 300,
+                  textController: textController,
+                  onSuffixTap: () {},
+                ),
+              ),
+            ],
             bottom: const TabBar(
               tabs: [
                 Tab(
@@ -33,12 +51,18 @@ class MusicsView extends GetView<MusicsController> {
                     'Playlists',
                     style: TextStyle(color: Colors.black),
                   ),
+                ),
+                Tab(
+                  child: Text(
+                    'Favourties',
+                    style: TextStyle(color: Colors.black),
+                  ),
                 )
               ],
             ),
           ),
           body: TabBarView(
-            children: [TracksView(), PlaylistsView()],
+            children: [TracksView(), PlaylistsView(), FavouritesView()],
           ),
         ),
       ),

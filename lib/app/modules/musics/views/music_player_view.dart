@@ -10,14 +10,13 @@ class MusicPlayerView extends GetView {
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.black,
-          ),
-        ),
+            onPressed: () {
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.black,
+            )),
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
       ),

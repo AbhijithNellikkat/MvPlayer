@@ -22,6 +22,7 @@ abstract class Routes {
   static const FOLDERINSIDE = _Paths.FOLDERINSIDE;
   static const MUSICPLAYER = _Paths.MUSICPLAYER;
   static const UPDATEPROFILE = _Paths.UPDATEPROFILE;
+  static const FAVOURITES = _Paths.FAVOURITES;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const FOLDERINSIDE = '/folderinside';
   static const MUSICPLAYER = "/musicplayer";
   static const UPDATEPROFILE = '/updateprofile';
+  static const FAVOURITES = '/favourties';
 }
