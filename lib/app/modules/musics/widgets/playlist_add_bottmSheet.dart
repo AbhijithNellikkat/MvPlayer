@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../utils/constants/constants.dart';
+import '../../../utils/constants/constants.dart';
 
 void playlistAddBottmSheet(BuildContext context, TextEditingController playlistController) {
     showModalBottomSheet(

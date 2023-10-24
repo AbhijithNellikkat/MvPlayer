@@ -56,4 +56,5 @@ class Constants {
   static const IconData moreVert = Icons.more_vert;
   static const IconData user = Icons.person_pin_circle_rounded;
   static const IconData rightArrow = Icons.arrow_forward;
+  static const IconData playArrow = Icons.play_arrow;
 }

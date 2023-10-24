@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-
+import 'package:mv_player/app/modules/musics/widgets/loading_widget.dart';
 import '../modules/createAccount/bindings/create_account_binding.dart';
 import '../modules/createAccount/views/create_account_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -35,6 +35,7 @@ class AppPages {
   static const INITIAL = Routes.SPLASH;
 
   static final routes = [
+ 
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),

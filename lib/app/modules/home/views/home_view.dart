@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mv_player/app/modules/musics/views/widgets/my_favourties_widget.dart';
+import 'package:mv_player/app/modules/musics/widgets/my_favourties_widget.dart';
 
 import '../../recentlyPlayed/views/recently_played_view.dart';
 

@@ -29,3 +29,9 @@ TextStyle loginHeading = GoogleFonts.poppins(
   fontSize: 24,
   fontWeight: FontWeight.w500,
 );
+
+// ================= Musics Name  ================
+TextStyle musicsName = GoogleFonts.poppins(
+  fontSize: 12,
+  fontWeight: FontWeight.w600,
+);

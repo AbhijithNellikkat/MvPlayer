@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 
-import 'widgets/playlist_add_bottmSheet.dart';
+import '../widgets/playlist_add_bottmSheet.dart';
 
 class PlaylistsView extends GetView {
   PlaylistsView({Key? key}) : super(key: key);

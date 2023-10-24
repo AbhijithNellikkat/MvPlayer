@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mv_player/app/modules/musics/views/widgets/my_favourties_widget.dart';
+import 'package:mv_player/app/modules/musics/widgets/my_favourties_widget.dart';
 
 import '../../../utils/constants/constants.dart';
 
