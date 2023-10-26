@@ -18,7 +18,7 @@ class OnbordingView extends GetView<OnbordingController> {
           headerBackgroundColor: Constants.white,
           finishButtonTextStyle: const TextStyle(fontSize: 13),
           onFinish: () {
-            Get.offAndToNamed(Routes.OPENNING);
+            Get.toNamed(Routes.BOTTOMNAVIGATIONBAR);
           },
           finishButtonText: 'explore the app',
           skipIcon: const Icon(
@@ -28,7 +28,7 @@ class OnbordingView extends GetView<OnbordingController> {
           finishButtonStyle: const FinishButtonStyle(
               backgroundColor: Constants.black,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(50)))),
+                  borderRadius: BorderRadius.all(Radius.circular(10)))),
           skipTextButton: const Text(
             'Skip',
             style:
@@ -83,25 +83,38 @@ class OnbordingView extends GetView<OnbordingController> {
                 ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: <Widget>[
+            Scaffold(
+              backgroundColor: Constants.scaffoldBgColor,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    height: 370,
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(Constants.openningBgImage),
+                      ),
+                    ),
+                  ),
+                  Text(Constants.openningScreenHeading,
+                      style: openningScreenHeading),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Text(Constants.musicOnbordingDescription,
+                        style: openningScreenDescription),
+                  ),
                   const SizedBox(
-                    height: 480,
-                  ),
-                  Text(
-                    Constants.authenticaionOnbordingHeading,
-                    style: onbordingHeading,
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    Constants.authenticationOnbordingDescription,
-                    style: onbordingDescription,
-                  ),
+                    height: 140,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [],
+                    ),
+                  )
                 ],
               ),
-            ),
+            )
           ],
         ),
       ),

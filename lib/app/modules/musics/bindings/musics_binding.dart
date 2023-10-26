@@ -6,7 +6,6 @@ import '../controllers/musics_controller.dart';
 class MusicsBinding extends Bindings {
   @override
   void dependencies() {
-    
     Get.put<MusicsController>(MusicsController());
     Get.put<AllMusicsPlayerController>(AllMusicsPlayerController());
   }
