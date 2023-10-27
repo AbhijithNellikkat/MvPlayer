@@ -6,7 +6,6 @@ import 'package:mv_player/app/modules/musics/views/favourites_view.dart';
 import 'package:mv_player/app/modules/musics/views/playlists_view.dart';
 import 'package:mv_player/app/modules/musics/views/tracks_view.dart';
 
-
 // ignore: must_be_immutable
 class MusicsView extends GetView<MusicsController> {
   MusicsView({Key? key}) : super(key: key);

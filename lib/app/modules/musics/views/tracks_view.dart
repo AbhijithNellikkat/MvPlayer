@@ -12,13 +12,13 @@ class TracksView extends StatelessWidget {
   final AllMusicsPlayerController allMusicsPlayerController = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: songsListView(controller: allMusicsPlayerController),
+    return const Scaffold(
+      body: Center(child: Text("Tracks"),)
     );
   }
 }
 
-Widget songsListView({required controller}) {
+Widget songsListView({required AllMusicsPlayerController controller}) {
   return FutureBuilder<List<SongModel>>(
     future: controller.audioQuery.querySongs(
         ignoreCase: true,

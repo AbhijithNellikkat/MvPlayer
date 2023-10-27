@@ -18,7 +18,7 @@ class OnbordingView extends GetView<OnbordingController> {
           headerBackgroundColor: Constants.white,
           finishButtonTextStyle: const TextStyle(fontSize: 13),
           onFinish: () {
-            Get.toNamed(Routes.BOTTOMNAVIGATIONBAR);
+            Get.offAndToNamed(Routes.BOTTOMNAVIGATIONBAR);
           },
           finishButtonText: 'explore the app',
           skipIcon: const Icon(
