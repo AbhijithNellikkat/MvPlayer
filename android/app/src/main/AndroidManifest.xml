@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-  <!-- Android 12 or below  -->
+   <!-- Android 12 or below  -->
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
@@ -11,6 +11,7 @@
         android:label="mv_player"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+       
         <activity
             android:name=".MainActivity"
             android:exported="true"

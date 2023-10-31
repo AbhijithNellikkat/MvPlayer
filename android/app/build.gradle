@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "net.MvPlayer.mv_player"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 33
     ndkVersion flutter.ndkVersion
 
     compileOptions {

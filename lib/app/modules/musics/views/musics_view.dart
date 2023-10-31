@@ -2,6 +2,7 @@ import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/musics/controllers/musics_controller.dart';
+
 import 'package:mv_player/app/modules/musics/views/favourites_view.dart';
 import 'package:mv_player/app/modules/musics/views/playlists_view.dart';
 import 'package:mv_player/app/modules/musics/views/tracks_view.dart';
@@ -11,6 +12,7 @@ class MusicsView extends GetView<MusicsController> {
   MusicsView({Key? key}) : super(key: key);
 
   TextEditingController textController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(

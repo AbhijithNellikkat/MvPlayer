@@ -15,6 +15,7 @@ class BottomNavbarView extends StatelessWidget {
 
   GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
 
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<NavBarController>(

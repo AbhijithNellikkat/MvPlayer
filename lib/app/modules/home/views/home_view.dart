@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/home/controllers/home_controller.dart';
+import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:mv_player/app/modules/musics/widgets/my_favourties_widget.dart';
+
 
 import '../../recentlyPlayed/views/recently_played_view.dart';
 
@@ -23,6 +25,7 @@ class _HomeViewState extends State<HomeView> {
 
   final CarouselController carouselController = CarouselController();
   final HomeController homeController = Get.find();
+  final TracksController tracksController = Get.find();
 
   int currentIndex = 0;
 
