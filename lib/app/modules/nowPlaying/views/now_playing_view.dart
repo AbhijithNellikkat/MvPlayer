@@ -7,26 +7,14 @@ import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart'
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
-class NowPlayingView extends StatefulWidget {
+class NowPlayingView extends StatelessWidget {
   NowPlayingView({required this.songModel, required this.index, Key? key})
       : super(key: key);
 
-  final SongModel songModel;
+  final List<SongModel> songModel;
   final int index;
 
-  @override
-  State<NowPlayingView> createState() => _NowPlayingViewState();
-}
-
-class _NowPlayingViewState extends State<NowPlayingView> {
   final AudioPlayer audioPlayer = AudioPlayer();
-
-  @override
-  void initState() {
-    super.initState();
-
-    // playSong(uri: '${widget.songModel.uri}');
-  }
 
   final TracksController tracksController = Get.find();
 
@@ -53,7 +41,7 @@ class _NowPlayingViewState extends State<NowPlayingView> {
           children: [
             const SizedBox(height: 30),
             QueryArtworkWidget(
-                id: widget.songModel.id,
+                id: songModel[tracksController.playIndex.value].id,
                 artworkHeight: 350,
                 artworkWidth: 320,
                 artworkBorder: const BorderRadius.all(Radius.circular(15)),
@@ -74,7 +62,7 @@ class _NowPlayingViewState extends State<NowPlayingView> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 22),
               child: Text(
-                widget.songModel.displayNameWOExt,
+                songModel[tracksController.playIndex.value].displayNameWOExt,
                 overflow: TextOverflow.fade,
                 maxLines: 1,
                 style: GoogleFonts.poppins(
@@ -83,9 +71,10 @@ class _NowPlayingViewState extends State<NowPlayingView> {
             ),
             const SizedBox(height: 10),
             Text(
-              '${widget.songModel.artist}' == "<unknown>"
+              '${songModel[tracksController.playIndex.value].artist}' ==
+                      "<unknown>"
                   ? "Unknown Artist"
-                  : '${widget.songModel.artist}',
+                  : '${songModel[tracksController.playIndex.value].artist}',
               overflow: TextOverflow.fade,
               maxLines: 1,
               style: GoogleFonts.poppins(
@@ -93,21 +82,28 @@ class _NowPlayingViewState extends State<NowPlayingView> {
             ),
             const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 23),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('0.0'),
-                  Expanded(
-                    child: Slider(
-                      value: 0.0,
-                      onChanged: (value) {},
-                    ),
+                padding: const EdgeInsets.symmetric(horizontal: 23),
+                child: Obx(
+                  () => Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(tracksController.position.value),
+                      Expanded(
+                        child: Slider(
+                          min: const Duration(seconds: 0).inSeconds.toDouble(),
+                          max: tracksController.max.value,
+                          value: tracksController.value.value,
+                          onChanged: (newValue) {
+                            tracksController
+                                .changeDurationToSeconds(newValue.toInt());
+                            newValue = newValue;
+                          },
+                        ),
+                      ),
+                      Text(tracksController.duration.value),
+                    ],
                   ),
-                  Text('0.0'),
-                ],
-              ),
-            ),
+                )),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 33),
               child: Row(

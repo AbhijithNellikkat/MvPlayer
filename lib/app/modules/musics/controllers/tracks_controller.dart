@@ -10,6 +10,28 @@ class TracksController extends GetxController {
   var playIndex = 0.obs;
   var isPlaying = false.obs;
 
+  var duration = ''.obs;
+  var position = ''.obs;
+
+  var max = 0.0.obs;
+  var value = 0.0.obs;
+
+  updatePosition() {
+    audioPlayer.durationStream.listen((event) {
+      duration.value = event.toString().split('.')[0];
+      max.value = event!.inSeconds.toDouble();
+    });
+    audioPlayer.positionStream.listen((event) {
+      position.value = event.toString().split('.')[0];
+      value.value = event.inSeconds.toDouble();
+    });
+  }
+
+  changeDurationToSeconds(seconds) {
+    var duration = Duration(seconds: seconds);
+    audioPlayer.seek(duration);
+  }
+
   fetchAllSongs() {
     return audioQuery.querySongs(
       sortType: SongSortType.DISPLAY_NAME,
@@ -29,6 +51,7 @@ class TracksController extends GetxController {
       );
       audioPlayer.play();
       isPlaying(true);
+      updatePosition();
     } on Exception {
       log('Cannot parse song');
     } catch (e) {

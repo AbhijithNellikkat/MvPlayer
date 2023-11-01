@@ -85,7 +85,7 @@ class TracksView extends StatelessWidget {
                     transition: Transition.fade,
                     NowPlayingView(
                       index: index,
-                      songModel: songs.elementAt(index),
+                      songModel: songs,
                     ),
                   );
                   tracksController.playSong(
