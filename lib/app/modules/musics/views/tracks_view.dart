@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
+import 'package:mv_player/app/modules/nowPlaying/views/now_playing_view.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
 import '../../../utils/styles/text_styles.dart';
 
-
-class TracksView extends StatefulWidget {
+class TracksView extends StatelessWidget {
   TracksView({Key? key}) : super(key: key);
 
-  @override
-  State<TracksView> createState() => _TracksViewState();
-}
-
-class _TracksViewState extends State<TracksView> {
-
-
-  final OnAudioQuery _audioQuery = OnAudioQuery();
+  final TracksController tracksController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<List<SongModel>>(
-        future: _audioQuery.querySongs(
-            sortType: null,
-            orderType: OrderType.ASC_OR_SMALLER,
-            uriType: UriType.EXTERNAL,
-            ignoreCase: true),
+        future: tracksController.fetchAllSongs(),
         builder: (context, snapshot) {
           if (snapshot.data == null) {
             return const Center(
@@ -43,36 +34,46 @@ class _TracksViewState extends State<TracksView> {
             );
           }
           return ListView.separated(
-            separatorBuilder: (context, index) => const Divider(),
+            separatorBuilder: (context, index) =>
+                const Divider(color: Colors.transparent),
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2),
-                child: ListTile(
-                  onTap: () {},
-                  leading: QueryArtworkWidget(
-                    id: snapshot.data![index].id,
-                    type: ArtworkType.AUDIO,
-                    nullArtworkWidget: const Icon(
-                      Icons.music_note,
-                      color: Constants.black,
-                      size: 32,
-                    ),
-                  ),
-                  title: Text(
-                    snapshot.data![index].displayNameWOExt,
-                    style: musicsName,
-                  ),
-                  subtitle: Text(
-                    '${snapshot.data![index].artist}',
-                    style: const TextStyle(fontSize: 9),
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Constants.moreVert),
-                    color: Colors.black,
+              return ListTile(
+                leading: QueryArtworkWidget(
+                  id: snapshot.data![index].id,
+                  type: ArtworkType.AUDIO,
+                  nullArtworkWidget: const Icon(
+                    Constants.music,
+                    color: Constants.black,
+                    size: 32,
                   ),
                 ),
+                title: Text(
+                  snapshot.data![index].displayNameWOExt,
+                  style: musicListTitleStyle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                subtitle: Text(
+                  snapshot.data![index].artist! == "<unknown>"
+                      ? "Unknown Artist"
+                      : snapshot.data![index].artist!,
+                  style: musicArtistStyle,
+                ),
+                trailing: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Constants.moreVert),
+                  color: Colors.black,
+                ),
+                onTap: () {
+                  Get.to(
+                    transition: Transition.fade,
+                    NowPlayingView(
+                      
+                      songModel: snapshot.data![index],
+                    ),
+                  );
+                },
               );
             },
           );

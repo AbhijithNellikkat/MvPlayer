@@ -9,8 +9,9 @@ import 'app/routes/app_pages.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   try {
-    Future.delayed(const Duration(seconds: 4),
-        () async => await Permission.storage.request());
+    Future.delayed(const Duration(seconds: 4), () async {
+      await Permission.storage.request();
+    });
   } catch (e) {
     log('$e');
   }
@@ -21,6 +22,7 @@ void main() {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(                                               ),
     ),
   );
 }

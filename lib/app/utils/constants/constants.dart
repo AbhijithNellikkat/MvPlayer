@@ -38,7 +38,6 @@ class Constants {
   static const musicsImage = 'assets/images/musics.jpg';
   static const profileImage = 'assets/images/profile.gif';
   static const splashImage = 'assets/icons/sample logo.jpg';
-  
 
   // ------------------- Vertical Spaces -------------------
   static const formTextFormFieldVerticalSpace = SizedBox(height: 18);
@@ -48,16 +47,16 @@ class Constants {
   static const buttonAndLoginTextVerticalSpace = SizedBox(height: 50);
   static const passwordTffAndForgotPassVerticalSpace = SizedBox(height: 20);
 
-
   // ===================== Colors =====================
   static const Color black = Colors.black;
   static const Color white = Colors.white;
   static const Color scaffoldBgColor = Colors.white;
-
 
   // ===================== Icons =====================
   static const IconData moreVert = Icons.more_vert;
   static const IconData user = Icons.person_pin_circle_rounded;
   static const IconData rightArrow = Icons.arrow_forward;
   static const IconData playArrow = Icons.play_arrow;
+  static const IconData music = Icons.music_note_rounded;
+  static const IconData backArrow = Icons.arrow_back_ios;
 }

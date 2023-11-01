@@ -31,7 +31,11 @@ TextStyle loginHeading = GoogleFonts.poppins(
 );
 
 // ================= Musics Name  ================
-TextStyle musicsName = GoogleFonts.poppins(
-  fontSize: 12,
+TextStyle musicListTitleStyle = GoogleFonts.poppins(
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
+);
+TextStyle musicArtistStyle = GoogleFonts.poppins(
+  fontSize: 10,
   fontWeight: FontWeight.w600,
 );

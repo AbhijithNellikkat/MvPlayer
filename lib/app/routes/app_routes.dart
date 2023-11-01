@@ -10,8 +10,6 @@ abstract class Routes {
   static const SPLASH = _Paths.SPLASH;
   static const ONBORDING = _Paths.ONBORDING;
 
-
-
   static const BOTTOMNAVIGATIONBAR = _Paths.BOTTOMNAVIGATIONBAR;
 
   static const MUSICS = _Paths.MUSICS;
@@ -23,6 +21,7 @@ abstract class Routes {
   static const UPDATEPROFILE = _Paths.UPDATEPROFILE;
   static const FAVOURITES = _Paths.FAVOURITES;
   static const RECENTLY_PLAYED = _Paths.RECENTLY_PLAYED;
+
 }
 
 abstract class _Paths {
@@ -31,8 +30,6 @@ abstract class _Paths {
 
   static const SPLASH = '/splash';
   static const ONBORDING = '/onbording';
-
-
 
   static const BOTTOMNAVIGATIONBAR = '/bottomnavigationbar';
 
@@ -45,4 +42,5 @@ abstract class _Paths {
   static const UPDATEPROFILE = '/updateprofile';
   static const FAVOURITES = '/favourties';
   static const RECENTLY_PLAYED = '/recently-played';
+ 
 }
