@@ -14,7 +14,7 @@ dependencies:
   google_fonts: ^6.1.0
   flutter_onboarding_slider: ^1.0.11
   curved_navigation_bar: ^1.0.3
-  lottie: ^2.6.0
+  lottie: ^2.7.0
   carousel_slider: ^4.2.1
   anim_search_bar: ^2.0.3
   shimmer: ^3.0.0
@@ -24,6 +24,7 @@ dependencies:
   just_audio: ^0.9.35
   on_audio_query: ^2.9.0
   audio_video_progress_bar: ^2.0.1
+  rxdart: ^0.27.7
 
   
 

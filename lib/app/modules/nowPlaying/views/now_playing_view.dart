@@ -1,16 +1,18 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:lottie/lottie.dart';
+import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class NowPlayingView extends StatefulWidget {
-  NowPlayingView({required this.songModel, Key? key}) : super(key: key);
+  NowPlayingView({required this.songModel, required this.index, Key? key})
+      : super(key: key);
 
   final SongModel songModel;
+  final int index;
 
   @override
   State<NowPlayingView> createState() => _NowPlayingViewState();
@@ -18,29 +20,15 @@ class NowPlayingView extends StatefulWidget {
 
 class _NowPlayingViewState extends State<NowPlayingView> {
   final AudioPlayer audioPlayer = AudioPlayer();
-  bool isPlaying = false;
 
   @override
   void initState() {
     super.initState();
-    playSong(uri: '${widget.songModel.uri}');
+
+    // playSong(uri: '${widget.songModel.uri}');
   }
 
-  playSong({required String uri}) async {
-    try {
-      await audioPlayer.setAudioSource(
-        AudioSource.uri(
-          Uri.parse(uri),
-        ),
-      );
-      audioPlayer.play();
-      isPlaying = true;
-    } on Exception {
-      log('Cannot parse song');
-    } catch (e) {
-      log('$e');
-    }
-  }
+  final TracksController tracksController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -66,17 +54,21 @@ class _NowPlayingViewState extends State<NowPlayingView> {
             const SizedBox(height: 30),
             QueryArtworkWidget(
                 id: widget.songModel.id,
-                artworkHeight: 200,
-                artworkWidth: 200,
+                artworkHeight: 350,
+                artworkWidth: 320,
+                artworkBorder: const BorderRadius.all(Radius.circular(15)),
                 artworkFit: BoxFit.cover,
                 type: ArtworkType.AUDIO,
-                nullArtworkWidget: CircleAvatar(
-                  radius: 75,
-                  backgroundColor: Colors.black,
-                  child: const Icon(
-                    Constants.music,
-                    size: 38,
+                artworkQuality: FilterQuality.high,
+                nullArtworkWidget: Container(
+                  width: 320,
+                  height: 350,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    color: Constants.black,
                   ),
+                  child: Lottie.asset(Constants.nullArtworkWidget,
+                      fit: BoxFit.cover),
                 )),
             const SizedBox(height: 30),
             Padding(
@@ -128,20 +120,23 @@ class _NowPlayingViewState extends State<NowPlayingView> {
                       size: 35.0,
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        if (isPlaying) {
-                          audioPlayer.pause();
+                  Obx(
+                    () => IconButton(
+                      onPressed: () {
+                        if (tracksController.isPlaying.value) {
+                          tracksController.audioPlayer.pause();
+                          tracksController.isPlaying(false);
                         } else {
-                          audioPlayer.play();
+                          tracksController.audioPlayer.play();
+                          tracksController.isPlaying(true);
                         }
-                        isPlaying = !isPlaying;
-                      });
-                    },
-                    icon: Icon(
-                      isPlaying ? Icons.pause : Icons.play_arrow,
-                      size: 35.0,
+                      },
+                      icon: Icon(
+                        tracksController.isPlaying.value
+                            ? Icons.pause
+                            : Icons.play_arrow,
+                        size: 35.0,
+                      ),
                     ),
                   ),
                   IconButton(

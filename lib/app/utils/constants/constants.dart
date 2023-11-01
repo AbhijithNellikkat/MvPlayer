@@ -30,6 +30,7 @@ class Constants {
   // ======================= Images  =======================
   static const appSplashAnimation = "assets/animations/app_splash.json";
   static const emptyBoxAnimation = 'assets/animations/emptyBox.json';
+
   static const musicOnbordingImage = 'assets/images/music_onbording.jpg';
   static const videoOnbordingImage = 'assets/images/video_onbording.jpg';
   static const authenticationOnboringImage =
@@ -38,6 +39,9 @@ class Constants {
   static const musicsImage = 'assets/images/musics.jpg';
   static const profileImage = 'assets/images/profile.gif';
   static const splashImage = 'assets/icons/sample logo.jpg';
+
+  static const nullArtworkWidget =
+      'assets/animations/musicplayer_nullArtwork.json';
 
   // ------------------- Vertical Spaces -------------------
   static const formTextFormFieldVerticalSpace = SizedBox(height: 18);

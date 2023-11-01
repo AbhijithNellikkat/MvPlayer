@@ -33,31 +33,46 @@ class TracksView extends StatelessWidget {
               ),
             );
           }
+          List<SongModel> songs = snapshot.data!;
           return ListView.separated(
             separatorBuilder: (context, index) =>
                 const Divider(color: Colors.transparent),
-            itemCount: snapshot.data!.length,
+            itemCount: songs.length,
             itemBuilder: (context, index) {
               return ListTile(
                 leading: QueryArtworkWidget(
+                  artworkFit: BoxFit.cover,
+                  artworkQuality: FilterQuality.high,
+                  artworkBorder: const BorderRadius.all(Radius.circular(15)),
+                  artworkHeight: 130,
+                  artworkWidth: 60,
                   id: snapshot.data![index].id,
                   type: ArtworkType.AUDIO,
-                  nullArtworkWidget: const Icon(
-                    Constants.music,
-                    color: Constants.black,
-                    size: 32,
+                  nullArtworkWidget: Container(
+                    width: 60,
+                    height: 130,
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                    ),
+                    child: const Icon(
+                      Constants.music,
+                      color: Constants.white,
+                    ),
                   ),
                 ),
                 title: Text(
-                  snapshot.data![index].displayNameWOExt,
+                  songs.elementAt(index).displayNameWOExt,
                   style: musicListTitleStyle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 subtitle: Text(
-                  snapshot.data![index].artist! == "<unknown>"
+                  songs.elementAt(index).artist == "<unknown>"
                       ? "Unknown Artist"
-                      : snapshot.data![index].artist!,
+                      : '${songs.elementAt(index).artist}',
                   style: musicArtistStyle,
                 ),
                 trailing: IconButton(
@@ -69,10 +84,12 @@ class TracksView extends StatelessWidget {
                   Get.to(
                     transition: Transition.fade,
                     NowPlayingView(
-                      
-                      songModel: snapshot.data![index],
+                      index: index,
+                      songModel: songs.elementAt(index),
                     ),
                   );
+                  tracksController.playSong(
+                      index: index, uri: '${songs.elementAt(index).uri}');
                 },
               );
             },
