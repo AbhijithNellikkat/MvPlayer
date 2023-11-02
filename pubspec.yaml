@@ -25,6 +25,8 @@ dependencies:
   on_audio_query: ^2.9.0
   audio_video_progress_bar: ^2.0.1
   rxdart: ^0.27.7
+  video_player: ^2.8.1
+  just_audio_background: ^0.0.1-beta.10
 
   
 

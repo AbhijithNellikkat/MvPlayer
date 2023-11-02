@@ -9,7 +9,7 @@ import '../controllers/home_controller.dart';
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put<PermissionController>(PermissionController());
+  
     Get.put<NavBarController>(NavBarController());
     Get.put<HomeController>(HomeController());
     Get.lazyPut<TracksController>(

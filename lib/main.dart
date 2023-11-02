@@ -1,20 +1,16 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:mv_player/app/modules/home/bindings/home_binding.dart';
+import 'package:mv_player/app/modules/home/controllers/permission_controller.dart';
 
 import 'app/routes/app_pages.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    Future.delayed(const Duration(seconds: 4), () async {
-      await Permission.storage.request();
-    });
-  } catch (e) {
-    log('$e');
-  }
+  final PermissionController permissionController =
+      Get.put<PermissionController>(PermissionController());
+
+  permissionController.requestpermission();
 
   runApp(
     GetMaterialApp(
@@ -22,7 +18,7 @@ void main() {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(                                               ),
+      initialBinding: HomeBinding(),
     ),
   );
 }

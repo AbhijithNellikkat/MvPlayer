@@ -16,6 +16,23 @@ class TracksController extends GetxController {
   var max = 0.0.obs;
   var value = 0.0.obs;
 
+  var volume = 1.0.obs;
+  var playbackSpeed = 1.0.obs;
+  final List<double> availableSpeeds = [0.5, 1.0, 1.5, 2.0];
+  int speedIndex = 1;
+
+  void setVolume(double value) {
+    audioPlayer.setVolume(value);
+    volume.value = value;
+  }
+
+  void togglePlaybackSpeed() {
+    speedIndex = (speedIndex + 1) % availableSpeeds.length;
+    final newSpeed = availableSpeeds[speedIndex];
+    audioPlayer.setSpeed(newSpeed);
+    playbackSpeed.value = newSpeed;
+  }
+
   updatePosition() {
     audioPlayer.durationStream.listen((event) {
       duration.value = event.toString().split('.')[0];
@@ -41,7 +58,7 @@ class TracksController extends GetxController {
     );
   }
 
-  playSong({required String uri, required index}) async {
+  playSong({required uri, required index}) async {
     playIndex.value = index;
     try {
       await audioPlayer.setAudioSource(
