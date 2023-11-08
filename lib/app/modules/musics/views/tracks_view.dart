@@ -84,7 +84,6 @@ class TracksView extends StatelessWidget {
                   Get.to(
                     transition: Transition.fade,
                     NowPlayingView(
-                      index: index,
                       songModel: songs,
                     ),
                   );

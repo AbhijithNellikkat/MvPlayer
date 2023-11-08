@@ -1,26 +1,38 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionController extends GetxController {
-  final _audioQuery = OnAudioQuery();
-  void requestpermission() async {
-    try {
-      if (!kIsWeb) {
-        bool permissionStatus = await _audioQuery.permissionsStatus();
-        if (!permissionStatus) {
-          await _audioQuery.permissionsRequest();
+  Future<void> requestStoragePermission() async {
+    Future.delayed(
+      const Duration(seconds: 5),
+      () async {
+        try {
+          final PermissionStatus status = await Permission.storage.request();
+          log('=================================== $status ===================================');
+
+          if (status == PermissionStatus.granted) {
+            Get.snackbar(
+              'Granted',
+              'The Permission is Granted',
+              margin: const EdgeInsets.all(12),
+            );
+          }
+          if (status == PermissionStatus.denied) {
+            Get.snackbar(
+              'Required',
+              'The Permission is required !',
+              margin: const EdgeInsets.all(12),
+            );
+            // await Permission.storage.request();
+            Future.delayed(const Duration(seconds: 3), () => openAppSettings());
+          }
+        } on Exception catch (e) {
+          log('------------------------------------- $e -------------------------------------');
         }
-        update();
-      }
-      Future.delayed(const Duration(seconds: 4), () async {
-        await Permission.storage.request();
-      });
-    } catch (e) {
-      log('$e');
-    }
+      },
+    );
   }
 }

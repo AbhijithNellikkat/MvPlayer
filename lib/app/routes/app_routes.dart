@@ -42,5 +42,4 @@ abstract class _Paths {
   static const UPDATEPROFILE = '/updateprofile';
   static const FAVOURITES = '/favourties';
   static const RECENTLY_PLAYED = '/recently-played';
- 
 }

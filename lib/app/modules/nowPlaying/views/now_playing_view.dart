@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class NowPlayingView extends StatelessWidget {
-  NowPlayingView({required this.songModel, required this.index, Key? key})
+  NowPlayingView({required this.songModel, 
+   Key? key})
       : super(key: key);
 
   final List<SongModel> songModel;
-  final int index;
 
-  final AudioPlayer audioPlayer = AudioPlayer();
 
   final TracksController tracksController = Get.find();
 
@@ -42,23 +40,24 @@ class NowPlayingView extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               QueryArtworkWidget(
-                  id: songModel[tracksController.playIndex.value].id,
-                  artworkHeight: 350,
-                  artworkWidth: 320,
-                  artworkBorder: const BorderRadius.all(Radius.circular(15)),
-                  artworkFit: BoxFit.cover,
-                  type: ArtworkType.AUDIO,
-                  artworkQuality: FilterQuality.high,
-                  nullArtworkWidget: Container(
-                    width: 320,
-                    height: 350,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      color: Constants.black,
-                    ),
-                    child: Lottie.asset(Constants.nullArtworkWidget,
-                        fit: BoxFit.cover),
-                  )),
+                id: songModel[tracksController.playIndex.value].id,
+                artworkHeight: 350,
+                artworkWidth: 320,
+                artworkBorder: const BorderRadius.all(Radius.circular(15)),
+                artworkFit: BoxFit.cover,
+                type: ArtworkType.AUDIO,
+                artworkQuality: FilterQuality.high,
+                nullArtworkWidget: Container(
+                  width: 320,
+                  height: 350,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    color: Constants.black,
+                  ),
+                  child: Lottie.asset(Constants.nullArtworkWidget,
+                      fit: BoxFit.cover),
+                ),
+              ),
               const SizedBox(height: 30),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -115,11 +114,7 @@ class NowPlayingView extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        tracksController.playSong(
-                            uri: songModel[tracksController.playIndex.value - 1]
-                                .uri,
-                            index: songModel[
-                                tracksController.playIndex.value - 1]);
+                        
                       },
                       icon: const Icon(
                         Icons.skip_previous,
@@ -147,11 +142,7 @@ class NowPlayingView extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        tracksController.playSong(
-                            uri: songModel[tracksController.playIndex.value + 1]
-                                .uri,
-                            index: songModel[
-                                tracksController.playIndex.value + 1]);
+                       
                       },
                       icon: const Icon(
                         Icons.skip_next,
@@ -164,13 +155,14 @@ class NowPlayingView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Volume:"),
+                  const Text("Volume:"),
                   Slider(
                     activeColor: Constants.black,
                     value: tracksController.volume.value,
                     onChanged: tracksController.setVolume,
                     min: 0.0,
                     max: 1.0,
+
                   ),
                 ],
               ),

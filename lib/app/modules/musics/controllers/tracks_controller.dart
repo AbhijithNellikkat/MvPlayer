@@ -1,31 +1,41 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'dart:developer';
 
 class TracksController extends GetxController {
   final OnAudioQuery audioQuery = OnAudioQuery();
   final AudioPlayer audioPlayer = AudioPlayer();
 
-  var playIndex = 0.obs;
-  var isPlaying = false.obs;
+  var playIndex = 0.obs; // Index of the currently playing song
+  var isPlaying = false.obs; // Whether audio is currently playing
 
-  var duration = ''.obs;
-  var position = ''.obs;
+  var duration = ''.obs; // Current song duration
+  var position = ''.obs; // Current playback position
 
-  var max = 0.0.obs;
-  var value = 0.0.obs;
+  var max = 0.0.obs; // Maximum duration
+  var value = 0.0.obs; // Current position value
 
-  var volume = 1.0.obs;
-  var playbackSpeed = 1.0.obs;
-  final List<double> availableSpeeds = [0.5, 1.0, 1.5, 2.0];
-  int speedIndex = 1;
+  var volume = 1.0.obs; // Audio volume
+  var playbackSpeed = 1.0.obs; // Playback speed
 
+  final List<double> availableSpeeds = [
+    0.5,
+    1.0,
+    1.5,
+    2.0
+  ]; // Available playback speeds
+
+  int speedIndex = 1; // Current playback speed index
+
+  // Method to change the volume
   void setVolume(double value) {
     audioPlayer.setVolume(value);
     volume.value = value;
   }
 
+  // Method to toggle between available playback speeds
   void togglePlaybackSpeed() {
     speedIndex = (speedIndex + 1) % availableSpeeds.length;
     final newSpeed = availableSpeeds[speedIndex];
@@ -33,6 +43,7 @@ class TracksController extends GetxController {
     playbackSpeed.value = newSpeed;
   }
 
+  // Method to update the current position and duration
   updatePosition() {
     audioPlayer.durationStream.listen((event) {
       duration.value = event.toString().split('.')[0];
@@ -44,11 +55,13 @@ class TracksController extends GetxController {
     });
   }
 
+  // Method to change the playback position to a specified number of seconds
   changeDurationToSeconds(seconds) {
     var duration = Duration(seconds: seconds);
     audioPlayer.seek(duration);
   }
 
+  // Method to fetch all songs from the device
   fetchAllSongs() {
     return audioQuery.querySongs(
       sortType: SongSortType.DISPLAY_NAME,
@@ -58,6 +71,7 @@ class TracksController extends GetxController {
     );
   }
 
+  // Method to play a selected song
   playSong({required uri, required index}) async {
     playIndex.value = index;
     try {

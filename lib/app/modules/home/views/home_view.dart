@@ -27,9 +27,10 @@ class _HomeViewState extends State<HomeView> {
   final HomeController homeController = Get.find();
   final TracksController tracksController = Get.find();
 
+
   int currentIndex = 0;
 
- 
+
 
   @override
   Widget build(BuildContext context) {
@@ -104,9 +105,9 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
               const SizedBox(height: 10),
-              MyFavouritesWidget(),
+              const MyFavouritesWidget(),
               const SizedBox(height: 10),
-              RecentlyPlayedView(),
+              const RecentlyPlayedView(),
               const SizedBox(height: 20),
             ],
           ),
