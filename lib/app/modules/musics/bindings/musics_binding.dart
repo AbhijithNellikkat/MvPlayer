@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
-import '../controllers/musics_controller.dart';
+import 'package:mv_player/app/modules/musics/controllers/music_player_controller.dart';
 
 class MusicsBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put<MusicsController>(MusicsController());
-    Get.put<TracksController>(TracksController());
+    Get.put<MusicPlayerController>(MusicPlayerController());
+    // Get.put<MusicsController>(MusicsController());
+    // Get.put<TracksController>(TracksController());
   }
 }

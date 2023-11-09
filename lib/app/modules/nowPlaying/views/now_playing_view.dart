@@ -79,31 +79,31 @@ class NowPlayingView extends StatelessWidget {
                     fontWeight: FontWeight.w400, fontSize: 12.0),
               ),
               const SizedBox(height: 20),
-              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 23),
-                  child: Obx(
-                    () => Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(tracksController.position.value),
-                        Expanded(
-                          child: Slider(
-                            activeColor: Constants.black,
-                            min:
-                                const Duration(seconds: 0).inSeconds.toDouble(),
-                            max: tracksController.max.value,
-                            value: tracksController.value.value,
-                            onChanged: (newValue) {
-                              tracksController
-                                  .changeDurationToSeconds(newValue.toInt());
-                              newValue = newValue;
-                            },
-                          ),
-                        ),
-                        Text(tracksController.duration.value),
-                      ],
-                    ),
-                  )),
+              // Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 23),
+              //     child: Obx(
+              //       () => Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           Text(tracksController.position.value),
+              //           Expanded(
+              //             child: Slider(
+              //               activeColor: Constants.black,
+              //               min:
+              //                   const Duration(seconds: 0).inSeconds.toDouble(),
+              //               max: tracksController.max.value,
+              //               value: tracksController.value.value,
+              //               onChanged: (newValue) {
+              //                 tracksController
+              //                     .changeDurationToSeconds(newValue.toInt());
+              //                 newValue = newValue;
+              //               },
+              //             ),
+              //           ),
+              //           Text(tracksController.duration.value),
+              //         ],
+              //       ),
+              //     )),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 33),
                 child: Row(
@@ -149,33 +149,33 @@ class NowPlayingView extends StatelessWidget {
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Volume:"),
-                  Slider(
-                    activeColor: Constants.black,
-                    value: tracksController.volume.value,
-                    onChanged: tracksController.setVolume,
-                    min: 0.0,
-                    max: 1.0,
-                  ),
-                ],
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  tracksController.togglePlaybackSpeed();
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-                child: Obx(() {
-                  final speed = tracksController.playbackSpeed.value;
-                  return Text("${speed}x");
-                }),
-              )
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     const Text("Volume:"),
+              //     Slider(
+              //       activeColor: Constants.black,
+              //       value: tracksController.volume.value,
+              //       onChanged: tracksController.setVolume,
+              //       min: 0.0,
+              //       max: 1.0,
+              //     ),
+              //   ],
+              // ),
+              // OutlinedButton(
+              //   onPressed: () {
+              //     tracksController.togglePlaybackSpeed();
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(20.0),
+              //     ),
+              //   ),
+              //   child: Obx(() {
+              //     final speed = tracksController.playbackSpeed.value;
+              //     return Text("${speed}x");
+              //   }),
+              // )
             ],
           ),
         ),

@@ -91,8 +91,8 @@ class TracksView extends StatelessWidget {
                   //     songModel: songs,
                   //   ),
                   // );
-                  tracksController.playSong(
-                      index: index, uri: '${songs.elementAt(index).uri}');
+                  // tracksController.playSong(
+                  //     index: index, uri: '${songs.elementAt(index).uri}');
                 },
               );
             },

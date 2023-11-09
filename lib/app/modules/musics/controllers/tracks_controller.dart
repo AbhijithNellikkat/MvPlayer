@@ -29,6 +29,22 @@ class TracksController extends GetxController {
 
   int speedIndex = 1; // Current playback speed index
 
+  var currentlyPlaying;
+  int currentlyPlayingIndex = 0;
+
+  late ConcatenatingAudioSource currentQueue;
+  static List<SongModel> allSongs = [];
+  List<SongModel> currentPlaylist = [];
+
+  Duration positionn = Duration.zero;
+
+  TracksController() {
+    log('====================== TracksController ======================');
+    loadDuration();
+  }
+
+  loadDuration() async {}
+
   // Method to change the volume
   void setVolume(double value) {
     audioPlayer.setVolume(value);
@@ -61,18 +77,10 @@ class TracksController extends GetxController {
     audioPlayer.seek(duration);
   }
 
-  onNextPlay() async{
-    await audioPlayer.seekToNext();
-  }
-
-  onBackPlay() async {
-    await audioPlayer.seekToPrevious();
-  }
-
   // Method to fetch all songs from the device
   fetchAllSongs() {
     return audioQuery.querySongs(
-      sortType: SongSortType.DISPLAY_NAME,
+      sortType: null,
       orderType: OrderType.ASC_OR_SMALLER,
       uriType: UriType.EXTERNAL,
       ignoreCase: true,
@@ -80,21 +88,119 @@ class TracksController extends GetxController {
   }
 
   // Method to play a selected song
-  playSong({required uri, required index}) async {
-    playIndex.value = index;
+  // playSong({required uri, required index}) async {
+  //   // _index = index;
+  //   playIndex.value = index;
+  //   try {
+  //     await audioPlayer.setAudioSource(
+  //       AudioSource.uri(
+  //         Uri.parse(uri),
+  //       ),
+  //     );
+  //     audioPlayer.play();
+  //     isPlaying(true);
+  //     updatePosition();
+  //   } on Exception {
+  //     log('Cannot parse song');
+  //   } catch (e) {
+  //     log('$e');
+  //   }
+  // }
+
+  playSong({required List<SongModel> songmodel, required index}) {
+    // var uri = songmodel[index].uri;
     try {
-      await audioPlayer.setAudioSource(
-        AudioSource.uri(
-          Uri.parse(uri),
-        ),
-      );
-      audioPlayer.play();
-      isPlaying(true);
-      updatePosition();
+      // audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(uri!)));
+      audioPlayer.setAudioSource(createPlaylist(songmodel),
+          initialIndex: index);
+      playSongg(songmodel[index], index);
     } on Exception {
-      log('Cannot parse song');
+      log("error playing");
     } catch (e) {
-      log('$e');
+      log(e.toString());
+    }
+  }
+
+  loopSong() {
+    switch (audioPlayer.loopMode) {
+      case LoopMode.off:
+        audioPlayer.setLoopMode(LoopMode.off);
+        update();
+        break;
+      case LoopMode.one:
+        audioPlayer.setLoopMode(LoopMode.one);
+        update();
+        break;
+      case LoopMode.all:
+        audioPlayer.setLoopMode(LoopMode.all);
+        update();
+        break;
+    }
+  }
+
+  shuffleSong() {
+    audioPlayer.shuffleModeEnabled
+        ? audioPlayer.setShuffleModeEnabled(false)
+        : audioPlayer.setShuffleModeEnabled(true);
+    update();
+  }
+
+  playNextSong({required index}) {
+    // increaseIndex();
+    // int ind = _index!;
+    // var uri = _songmodel[ind].uri;
+    // audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(uri!)));
+    // audioPlayer.play();
+    audioPlayer.seekToNext();
+
+    update();
+  }
+
+  playPrevSong({required index}) {
+    // decreaseIndex();
+    // int ind = _index!;
+    // var uri = _songmodel[ind].uri;
+    // audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(uri!)));
+    // audioPlayer.play();
+    audioPlayer.seekToPrevious();
+    update();
+  }
+
+  ConcatenatingAudioSource createPlaylist(List<SongModel> songs) {
+    currentPlaylist.clear();
+    currentPlaylist = [...songs];
+    List<AudioSource> sources = [];
+    for (var song in songs) {
+      sources.add(AudioSource.uri(Uri.parse(song.uri!)));
+    }
+    currentQueue = ConcatenatingAudioSource(children: sources);
+    return ConcatenatingAudioSource(children: sources);
+  }
+
+  playSongg(song, index) {
+    currentlyPlayingIndex = index;
+    currentlyPlaying = song;
+    audioPlayer.play();
+  }
+
+  toggleSong({required String uri}) async {
+    try {
+      audioPlayer.playing ? await audioPlayer.pause() : audioPlayer.play();
+      update();
+    } on Exception {
+      log("error playing");
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  void updateCurrentPlayingDetails(int index) {
+    if (currentPlaylist.isNotEmpty) {
+      currentlyPlayingIndex = index;
+      currentlyPlaying = currentPlaylist[index];
+    } else {
+      currentlyPlaying = null;
+      audioPlayer.dispose();
     }
   }
 
