@@ -64,11 +64,7 @@ class AppPages {
       page: () => BottomNavbarView(),
       binding: HomeBinding(),
     ),
-    GetPage(
-      name: _Paths.MUSICPLAYER,
-      page: () => MusicPlayerView(),
-      binding: MusicsBinding(),
-    ),
+   
     GetPage(
       name: _Paths.FAVOURITES,
       page: () => FavouritesView(),

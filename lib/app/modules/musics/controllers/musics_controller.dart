@@ -1,4 +1,5 @@
+import 'package:get/get.dart';
 
-class MusicsController {
-  
+class MusicsController extends GetxController {
+ 
 }

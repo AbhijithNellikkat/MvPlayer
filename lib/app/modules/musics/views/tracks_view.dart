@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
-import 'package:mv_player/app/modules/nowPlaying/views/now_playing_view.dart';
+import 'package:mv_player/app/modules/musics/views/music_player_view.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -81,12 +81,16 @@ class TracksView extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
-                  Get.to(
-                    transition: Transition.fade,
-                    NowPlayingView(
-                      songModel: songs,
-                    ),
-                  );
+                  Get.to(MusicPlayerView(
+                    songs: songs,
+                    index: index,
+                  ));
+
+                  //   transition: Transition.fade,
+                  //   NowPlayingView(
+                  //     songModel: songs,
+                  //   ),
+                  // );
                   tracksController.playSong(
                       index: index, uri: '${songs.elementAt(index).uri}');
                 },

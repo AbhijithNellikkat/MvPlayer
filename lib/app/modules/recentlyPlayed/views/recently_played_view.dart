@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../controllers/recently_played_controller.dart';
 
 class RecentlyPlayedView extends GetView<RecentlyPlayedController> {
+  
   const RecentlyPlayedView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {

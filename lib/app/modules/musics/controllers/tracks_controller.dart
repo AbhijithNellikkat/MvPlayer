@@ -61,6 +61,14 @@ class TracksController extends GetxController {
     audioPlayer.seek(duration);
   }
 
+  onNextPlay() async{
+    await audioPlayer.seekToNext();
+  }
+
+  onBackPlay() async {
+    await audioPlayer.seekToPrevious();
+  }
+
   // Method to fetch all songs from the device
   fetchAllSongs() {
     return audioQuery.querySongs(
@@ -88,5 +96,11 @@ class TracksController extends GetxController {
     } catch (e) {
       log('$e');
     }
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    audioPlayer.dispose();
   }
 }

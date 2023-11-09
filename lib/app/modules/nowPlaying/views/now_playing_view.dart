@@ -7,12 +7,9 @@ import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class NowPlayingView extends StatelessWidget {
-  NowPlayingView({required this.songModel, 
-   Key? key})
-      : super(key: key);
+  NowPlayingView({required this.songModel, Key? key}) : super(key: key);
 
   final List<SongModel> songModel;
-
 
   final TracksController tracksController = Get.find();
 
@@ -111,10 +108,10 @@ class NowPlayingView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 33),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+                  children: [  
                     IconButton(
                       onPressed: () {
-                        
+                     
                       },
                       icon: const Icon(
                         Icons.skip_previous,
@@ -142,7 +139,7 @@ class NowPlayingView extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                       
+                        
                       },
                       icon: const Icon(
                         Icons.skip_next,
@@ -162,7 +159,6 @@ class NowPlayingView extends StatelessWidget {
                     onChanged: tracksController.setVolume,
                     min: 0.0,
                     max: 1.0,
-
                   ),
                 ],
               ),

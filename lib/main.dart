@@ -9,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final permission = Get.put(PermissionController());
   permission.requestStoragePermission();
-  
+
   runApp(
     GetMaterialApp(
       title: "Mv Player",
