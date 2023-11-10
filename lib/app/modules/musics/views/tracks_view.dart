@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:mv_player/app/modules/musics/views/music_player_view.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
 import '../../../utils/styles/text_styles.dart';
+import '../controllers/music_player_controller.dart';
 
 class TracksView extends StatelessWidget {
   TracksView({Key? key}) : super(key: key);
@@ -33,11 +35,12 @@ class TracksView extends StatelessWidget {
               ),
             );
           }
-          List<SongModel> songs = snapshot.data!;
+
+          
           return ListView.separated(
             separatorBuilder: (context, index) =>
                 const Divider(color: Colors.transparent),
-            itemCount: songs.length,
+            itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               return ListTile(
                 leading: QueryArtworkWidget(
@@ -64,35 +67,61 @@ class TracksView extends StatelessWidget {
                   ),
                 ),
                 title: Text(
-                  songs.elementAt(index).displayNameWOExt,
+                  snapshot.data![index].title,
                   style: musicListTitleStyle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 subtitle: Text(
-                  songs.elementAt(index).artist == "<unknown>"
+                  snapshot.data![index].artist == "<unknown>"
                       ? "Unknown Artist"
-                      : '${songs.elementAt(index).artist}',
+                      : '${snapshot.data![index].artist}',
                   style: musicArtistStyle,
                 ),
-                trailing: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Constants.moreVert),
-                  color: Colors.black,
+                trailing: PopupMenuButton(
+                  elevation: 1,
+                  itemBuilder: (context) {
+                    return [
+                      PopupMenuItem(
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Add to favorites",
+                              style: GoogleFonts.poppins(),
+                            )),
+                      ),
+                      PopupMenuItem(
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Add to Playlist",
+                              style: GoogleFonts.poppins(),
+                            )),
+                      ),
+                      PopupMenuItem(
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Delete from device",
+                              style: GoogleFonts.poppins(),
+                            )),
+                      ),
+                      PopupMenuItem(
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Rename",
+                              style: GoogleFonts.poppins(),
+                            )),
+                      ),
+                    ];
+                  },
                 ),
                 onTap: () {
                   Get.to(MusicPlayerView(
-                    songs: songs,
+                    songs: snapshot.data!,
                     index: index,
                   ));
-
-                  //   transition: Transition.fade,
-                  //   NowPlayingView(
-                  //     songModel: songs,
-                  //   ),
-                  // );
-                  // tracksController.playSong(
-                  //     index: index, uri: '${songs.elementAt(index).uri}');
                 },
               );
             },

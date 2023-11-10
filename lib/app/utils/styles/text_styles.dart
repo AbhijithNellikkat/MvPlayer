@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mv_player/app/utils/constants/constants.dart';
 
 // ================= onbording Heading  ================
 TextStyle onbordingHeading = GoogleFonts.poppins(
@@ -32,9 +33,7 @@ TextStyle loginHeading = GoogleFonts.poppins(
 
 // ================= Musics Name  ================
 TextStyle musicListTitleStyle = GoogleFonts.poppins(
-  fontSize: 14,
-  fontWeight: FontWeight.w600,
-);
+    fontSize: 14, fontWeight: FontWeight.w600, color: Constants.black);
 TextStyle musicArtistStyle = GoogleFonts.poppins(
   fontSize: 10,
   fontWeight: FontWeight.w600,

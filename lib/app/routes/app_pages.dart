@@ -5,7 +5,6 @@ import '../modules/home/views/bottom_navbar_view.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/musics/bindings/musics_binding.dart';
 import '../modules/musics/views/favourites_view.dart';
-import '../modules/musics/views/music_player_view.dart';
 import '../modules/musics/views/musics_view.dart';
 import '../modules/onbording/bindings/onbording_binding.dart';
 import '../modules/onbording/views/onbording_view.dart';

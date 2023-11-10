@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mv_player/app/modules/musics/controllers/music_player_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
-import '../controllers/tracks_controller.dart';
+import '../widgets/player_bottomsheet_widget.dart';
 
 class MusicPlayerView extends StatefulWidget {
   final List<SongModel> songs;
@@ -20,24 +21,22 @@ class MusicPlayerView extends StatefulWidget {
 }
 
 class _MusicPlayerViewState extends State<MusicPlayerView> {
-  late AudioPlayer audioPlayer;
-  late TracksController tracksController;
+  final MusicPlayerController musicPlayerController = Get.find();
 
   @override
   void initState() {
     super.initState();
-    tracksController = Get.find();
-    audioPlayer = AudioPlayer();
-    tracksController.playSong(songmodel: widget.songs, index: widget.index);
+    musicPlayerController.playTheSong(
+        songmodel: widget.songs, index: widget.index);
   }
 
   @override
   Widget build(BuildContext context) {
-    tracksController.audioPlayer.currentIndexStream.listen(
+    musicPlayerController.audioPlayer.currentIndexStream.listen(
       (index) {
         if (index != null) {
-          if (index != tracksController.currentlyPlayingIndex) {
-            tracksController.updateCurrentPlayingDetails(index);
+          if (index != musicPlayerController.currentlyPlayingIndex) {
+            musicPlayerController.updateCurrentPlayingDetails(index);
           }
         }
       },
@@ -54,6 +53,23 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
               Icons.arrow_back_ios_new,
               color: Colors.black,
             )),
+        actions: [
+          IconButton(
+            onPressed: () {
+              musicPlayerBottomSheet(
+                context: context,
+                index: widget.index,
+                songs: widget.songs,
+                musicPlayerController: musicPlayerController,
+              );
+            },
+            icon: const Icon(
+              Constants.moreVert,
+              color: Constants.black,
+            ),
+          ),
+          const SizedBox(width: 11),
+        ],
         automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
       ),
@@ -61,7 +77,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
         width: double.infinity,
         padding: const EdgeInsets.all(16),
         child: StreamBuilder(
-          stream: tracksController.audioPlayer.currentIndexStream,
+          stream: musicPlayerController.audioPlayer.currentIndexStream,
           builder: (context, snapshot) {
             return Column(
               children: [
@@ -85,13 +101,13 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                         artworkWidth: 350,
                         artworkBorder:
                             const BorderRadius.all(Radius.circular(15)),
-                        id: tracksController.currentlyPlaying.id,
+                        id: musicPlayerController.currentlyPlaying.id,
                         type: ArtworkType.AUDIO,
                         artworkFit: BoxFit.cover,
                       ),
                       const SizedBox(height: 30),
                       Text(
-                        tracksController.currentlyPlaying.title,
+                        musicPlayerController.currentlyPlaying.title,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                         textAlign: TextAlign.center,
@@ -101,7 +117,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                       Text(
                         widget.songs[widget.index].artist! == "<unknown>"
                             ? "Unknown Artist"
-                            : tracksController.currentlyPlaying.artist!,
+                            : musicPlayerController.currentlyPlaying.artist!,
                         overflow: TextOverflow.fade,
                         maxLines: 1,
                         style: GoogleFonts.poppins(fontSize: 12),
@@ -110,14 +126,15 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                       Padding(
                         padding: const EdgeInsets.all(18.0),
                         child: StreamBuilder(
-                          stream: tracksController.audioPlayer.positionStream,
+                          stream:
+                              musicPlayerController.audioPlayer.positionStream,
                           builder: (context, stream) {
                             return ProgressBar(
                               progress: stream.data ?? Duration.zero,
                               total: Duration(
-                                  milliseconds: tracksController
+                                  milliseconds: musicPlayerController
                                       .currentlyPlaying.duration!),
-                              onSeek: tracksController.audioPlayer.seek,
+                              onSeek: musicPlayerController.audioPlayer.seek,
                               thumbColor: Constants.black,
                               baseBarColor: Colors.grey,
                               progressBarColor: Constants.black,
@@ -128,7 +145,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                           },
                         ),
                       ),
-                      GetBuilder<TracksController>(
+                      GetBuilder<MusicPlayerController>(
                         builder: (controller) {
                           bool isPlaying = controller.audioPlayer.playing;
 
@@ -136,26 +153,17 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              switch (controller.audioPlayer.loopMode) {
-                                LoopMode.off => IconButton(
-                                    onPressed: () => controller.loopSong(),
-                                    icon: const Icon(
-                                      Icons.repeat_rounded,
-                                      size: 30,
-                                    )),
-                                LoopMode.one => IconButton(
-                                    onPressed: () => controller.loopSong(),
-                                    icon: const Icon(
-                                      Icons.repeat_one_on_rounded,
-                                      size: 30,
-                                    )),
-                                LoopMode.all => IconButton(
-                                    onPressed: () => controller.loopSong(),
-                                    icon: const Icon(
-                                      Icons.repeat_on_rounded,
-                                      size: 30,
-                                    )),
-                              },
+                              IconButton(
+                                onPressed: () => controller.shuffleSong(),
+                                icon: Icon(
+                                  controller.audioPlayer.shuffleModeEnabled
+                                      ? Icons.shuffle_on_rounded
+                                      : Icons.shuffle_rounded,
+                                  size: 25,
+                                  color: Constants.black,
+                                ),
+                              ),
+
                               IconButton(
                                   onPressed: () {
                                     controller.playPrevSong(
@@ -198,19 +206,52 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                 onPressed: () {
                                   controller.playNextSong(index: widget.index);
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.skip_next,
                                   size: 40,
                                 ),
                               ),
-                              IconButton(
-                                  onPressed: () => controller.shuffleSong(),
-                                  icon: Icon(
-                                    controller.audioPlayer.shuffleModeEnabled
-                                        ? Icons.shuffle_on_rounded
-                                        : Icons.shuffle_rounded,
-                                    size: 30,
-                                  ))
+                              // InkWell(
+                              //   onTap: () =>
+                              //       musicPlayerController.togglePlaybackSpeed(),
+                              //   child: Container(
+                              //     margin: const EdgeInsets.only(top: 9),
+                              //     decoration: BoxDecoration(
+                              //       border: Border.all(
+                              //           style: BorderStyle.solid,
+                              //           color: Colors.black),
+                              //       shape: BoxShape.circle,
+                              //     ),
+                              //     child: Obx(
+                              //       () => Padding(
+                              //         padding: const EdgeInsets.all(10.0),
+                              //         child: Text(
+                              //           '${musicPlayerController.playbackSpeed.value} x',
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
+                              switch (controller.audioPlayer.loopMode) {
+                                LoopMode.off => IconButton(
+                                    onPressed: () => controller.loopSong(),
+                                    icon: const Icon(
+                                      Icons.repeat_rounded,
+                                      size: 25,
+                                    )),
+                                LoopMode.one => IconButton(
+                                    onPressed: () => controller.loopSong(),
+                                    icon: const Icon(
+                                      Icons.repeat_one_on_rounded,
+                                      size: 25,
+                                    )),
+                                LoopMode.all => IconButton(
+                                    onPressed: () => controller.loopSong(),
+                                    icon: const Icon(
+                                      Icons.repeat_on_rounded,
+                                      size: 25,
+                                    )),
+                              },
                             ],
                           );
                         },
@@ -226,171 +267,3 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
     );
   }
 }
-
-// SafeArea(
-//         child: Center(
-//           child: Column(
-//             children: [
-//               const SizedBox(height: 20),
-//               StreamBuilder<int?>(
-//                 stream: tracksController.audioPlayer.currentIndexStream,
-//                 builder: (context, snapshot) {
-//                   final currentIndex = widget.index;
-//                   return QueryArtworkWidget(
-//                     id: widget.songs[currentIndex].id,
-//                     artworkHeight: 350,
-//                     artworkWidth: 320,
-//                     artworkBorder: const BorderRadius.all(Radius.circular(15)),
-//                     artworkFit: BoxFit.cover,
-//                     type: ArtworkType.AUDIO,
-//                     artworkQuality: FilterQuality.high,
-//                     nullArtworkWidget: Container(
-//                       width: 320,
-//                       height: 350,
-//                       decoration: const BoxDecoration(
-//                         borderRadius: BorderRadius.all(Radius.circular(15)),
-//                         color: Constants.black,
-//                       ),
-//                       child: Lottie.asset(Constants.nullArtworkWidget,
-//                           fit: BoxFit.cover),
-//                     ),
-//                   );
-//                 },
-//               ),
-//               const SizedBox(height: 30),
-//               SizedBox(
-//                 child: StreamBuilder(
-//                   stream: tracksController.audioPlayer.currentIndexStream,
-//                   builder: (context, snapshot) {
-//                     final currentIndex = widget.index;
-//                     return Column(
-//                       children: [
-//                         Padding(
-//                           padding: const EdgeInsets.symmetric(horizontal: 22),
-//                           child: Text(
-//                             widget.songs[currentIndex].displayNameWOExt,
-//                             overflow: TextOverflow.ellipsis,
-//                             maxLines: 1,
-//                             textAlign: TextAlign.center,
-//                             style: GoogleFonts.poppins(
-//                                 fontWeight: FontWeight.bold, fontSize: 15.0),
-//                           ),
-//                         ),
-//                         const SizedBox(height: 10),
-//                         Text(
-//                           '${widget.songs[currentIndex].artist}' == "<unknown>"
-//                               ? "Unknown Artist"
-//                               : '${widget.songs[currentIndex].artist}',
-//                           overflow: TextOverflow.fade,
-//                           maxLines: 1,
-//                           style: GoogleFonts.poppins(
-//                               fontWeight: FontWeight.w400, fontSize: 12.0),
-//                         ),
-//                       ],
-//                     );
-//                   },
-//                 ),
-//               ),
-//               const SizedBox(height: 30),
-//               Padding(
-//                 padding: const EdgeInsets.symmetric(horizontal: 23),
-//                 child: Obx(
-//                   () => Row(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       Text(tracksController.position.value),
-//                       Expanded(
-//                         child: Slider(
-//                           inactiveColor: Colors.grey,
-//                           activeColor: Constants.black,
-//                           min: const Duration(seconds: 0).inSeconds.toDouble(),
-//                           max: tracksController.max.value,
-//                           value: tracksController.value.value,
-//                           onChanged: (newValue) {
-//                             tracksController
-//                                 .changeDurationToSeconds(newValue.toInt());
-//                             newValue = newValue;
-//                           },
-//                         ),
-//                       ),
-//                       Text(tracksController.duration.value),
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                 children: [
-//                   IconButton(
-//                       onPressed: () {
-//                         // tracksController.playSong(
-//                         //   uri: songs[index].uri,
-//                         //   index: index - 1,
-//                         // );
-//                       },
-//                       icon: Icon(Icons.skip_previous)),
-//                   InkWell(
-//                     onTap: () {
-//                       if (tracksController.audioPlayer.playing) {
-//                         tracksController.audioPlayer.pause();
-//                       } else {
-//                         if (tracksController.audioPlayer.currentIndex != null) {
-//                           tracksController.audioPlayer.play();
-//                         }
-//                       }
-//                     },
-//                     child: Container(
-//                       padding: const EdgeInsets.all(20),
-//                       decoration: BoxDecoration(
-//                         border: Border.all(
-//                             style: BorderStyle.solid, color: Colors.black),
-//                         shape: BoxShape.circle,
-//                       ),
-//                       child: StreamBuilder<bool>(
-//                         stream: tracksController.audioPlayer.playingStream,
-//                         builder: (context, snapshot) {
-//                           bool? playingState = snapshot.data;
-//                           if (playingState != null && playingState) {
-//                             return const Icon(
-//                               Icons.pause,
-//                               size: 30,
-//                             );
-//                           }
-//                           return const Icon(
-//                             Icons.play_arrow,
-//                             size: 30,
-//                           );
-//                         },
-//                       ),
-//                     ),
-//                   ),
-//                   IconButton(
-//                     onPressed: () {},
-//                     icon: const Icon(Icons.skip_next),
-//                   ),
-//                   InkWell(
-//                     onTap: () {
-//                       tracksController.togglePlaybackSpeed();
-//                     },
-//                     child: Container(
-//                       padding: const EdgeInsets.all(15),
-//                       decoration: BoxDecoration(
-//                         shape: BoxShape.circle,
-//                         border: Border.all(
-//                             color: Colors.black, style: BorderStyle.solid),
-//                       ),
-//                       child: Obx(() {
-//                         final speed = tracksController.playbackSpeed.value;
-//                         return Text(
-//                           "${speed}x",
-//                           style: TextStyle(fontWeight: FontWeight.bold),
-//                         );
-//                       }),
-//                     ),
-//                   )
-//                 ],
-//               )
-//             ],
-//           ),
-//         ),
-//       ),

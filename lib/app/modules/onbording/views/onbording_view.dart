@@ -107,10 +107,6 @@ class OnbordingView extends GetView<OnbordingController> {
                   ),
                   const SizedBox(
                     height: 140,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [],
-                    ),
                   )
                 ],
               ),
