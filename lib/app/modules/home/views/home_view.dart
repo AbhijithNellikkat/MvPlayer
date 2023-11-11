@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/home/controllers/home_controller.dart';
-import 'package:mv_player/app/modules/home/controllers/permission_controller.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:mv_player/app/modules/musics/widgets/my_favourties_widget.dart';
 
+
 import '../../recentlyPlayed/views/recently_played_view.dart';
+import '../controllers/nav_bar_controller_controller.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -27,93 +28,95 @@ class _HomeViewState extends State<HomeView> {
   final HomeController homeController = Get.find();
   final TracksController tracksController = Get.find();
 
+  
 
   int currentIndex = 0;
 
-
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    right: 20, left: 30, top: 60, bottom: 20),
-                child: Text(
-                  'Welcome Abhijith',
-                  style: GoogleFonts.poppins(
-                    fontSize: 23,
-                    fontWeight: FontWeight.w200,
-                  ),
-                ),
-              ),
-              Stack(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: CarouselSlider(
-                      items: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.black,
-                          ),
-                          width: 310,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.black,
-                          ),
-                          width: 310,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.black,
-                          ),
-                          width: 310,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.black,
-                          ),
-                          width: 310,
-                        ),
-                      ],
-                      carouselController: carouselController,
-                      options: CarouselOptions(
-                        scrollPhysics: const BouncingScrollPhysics(),
-                        autoPlay: true,
-                        height: 170,
-                        aspectRatio: 16 / 9,
-                        viewportFraction: 1,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            currentIndex = index;
-                          });
-                        },
-                      ),
+    return GetBuilder<NavBarController>(builder: (controller) {
+      return Scaffold(
+        backgroundColor: Colors.white,
+   
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      right: 20, left: 30, top: 60, bottom: 20),
+                  child: Text(
+                    'Welcome Abhijith',
+                    style: GoogleFonts.poppins(
+                      fontSize: 23,
+                      fontWeight: FontWeight.w200,
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              const MyFavouritesWidget(),
-              const SizedBox(height: 10),
-              const RecentlyPlayedView(),
-              const SizedBox(height: 20),
-            ],
+                ),
+                Stack(
+                  children: [
+                    InkWell(
+                      onTap: () {},
+                      child: CarouselSlider(
+                        items: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.black,
+                            ),
+                            width: 310,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.black,
+                            ),
+                            width: 310,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.black,
+                            ),
+                            width: 310,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.black,
+                            ),
+                            width: 310,
+                          ),
+                        ],
+                        carouselController: carouselController,
+                        options: CarouselOptions(
+                          scrollPhysics: const BouncingScrollPhysics(),
+                          autoPlay: true,
+                          height: 170,
+                          aspectRatio: 16 / 9,
+                          viewportFraction: 1,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              currentIndex = index;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                const MyFavouritesWidget(),
+                const SizedBox(height: 10),
+                const RecentlyPlayedView(),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 

@@ -81,6 +81,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
           builder: (context, snapshot) {
             return Column(
               children: [
+                const SizedBox(height: 20),
                 Center(
                   child: Column(
                     children: [
@@ -105,7 +106,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                         type: ArtworkType.AUDIO,
                         artworkFit: BoxFit.cover,
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 60),
                       Text(
                         musicPlayerController.currentlyPlaying.title,
                         overflow: TextOverflow.ellipsis,
@@ -157,8 +158,8 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                 onPressed: () => controller.shuffleSong(),
                                 icon: Icon(
                                   controller.audioPlayer.shuffleModeEnabled
-                                      ? Icons.shuffle_on_rounded
-                                      : Icons.shuffle_rounded,
+                                      ? Icons.shuffle_on_sharp
+                                      : Icons.shuffle,
                                   size: 25,
                                   color: Constants.black,
                                 ),

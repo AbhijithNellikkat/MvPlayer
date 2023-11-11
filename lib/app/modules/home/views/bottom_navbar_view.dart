@@ -2,8 +2,9 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/home/views/home_view.dart';
+import 'package:mv_player/app/modules/profile/views/profile_view.dart';
+
 import '../../musics/views/musics_view.dart';
-import '../../profile/views/profile_view.dart';
 import '../../videos/views/videos_view.dart';
 import '../controllers/nav_bar_controller_controller.dart';
 
@@ -14,7 +15,6 @@ class BottomNavbarView extends StatelessWidget {
   final NavBarController navBarController = Get.find();
 
   GlobalKey<CurvedNavigationBarState> bottomNavigationKey = GlobalKey();
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class BottomNavbarView extends StatelessWidget {
               const HomeView(),
               MusicsView(),
               const VideosView(),
-              const ProfileView(),
+              ProfileView(),
             ],
           ),
           bottomNavigationBar: CurvedNavigationBar(

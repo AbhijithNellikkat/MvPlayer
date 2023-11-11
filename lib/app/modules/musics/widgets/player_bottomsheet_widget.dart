@@ -82,6 +82,7 @@ void musicPlayerBottomSheet({
         const Divider(color: Constants.white, thickness: 0),
         const SizedBox(height: 15),
         ListTile(
+          onTap: () {},
           leading: const Icon(
             Icons.playlist_add,
             size: 29,
@@ -104,6 +105,12 @@ void musicPlayerBottomSheet({
           ),
         ),
         ListTile(
+          onTap: () {
+            musicPlayerController.shareMusic(
+                title: songs[index].title,
+                artist: '${songs[index].artist}',
+                uri: '${songs[index].uri}');
+          },
           leading: const Icon(
             Icons.share,
             size: 29,
@@ -125,6 +132,7 @@ void musicPlayerBottomSheet({
               color: Constants.white,
             ),
             title: Slider(
+              inactiveColor: Colors.grey,
               activeColor: Constants.white,
               value: controller.volume.value,
               onChanged: (value) {

@@ -1,13 +1,15 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
-
 import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MusicPlayerController extends GetxController {
   final AudioPlayer audioPlayer = AudioPlayer();
+  final OnAudioQuery audioquery = OnAudioQuery();
 
   // Currently playing song information
   var currentlyPlaying;
@@ -37,7 +39,7 @@ class MusicPlayerController extends GetxController {
 
   var playbackSpeed = 1.0.obs;
 
-  var volume = 100.0.obs;
+  var volume = 1.0.obs;
 
   MusicPlayerController() {
     loadDuration();
@@ -57,8 +59,11 @@ class MusicPlayerController extends GetxController {
   // Method to play a specific song in the playlist
   playTheSong({required List<SongModel> songmodel, required index}) {
     try {
-      audioPlayer.setAudioSource(createPlaylist(songmodel),
-          initialIndex: index);
+      audioPlayer.setAudioSource(
+        createPlaylist(songmodel),
+        initialIndex: index,
+        preload: false,
+      );
       playSong(songmodel[index], index);
     } on Exception {
       log("error playing");
@@ -149,9 +154,27 @@ class MusicPlayerController extends GetxController {
     currentPlaylist = [...songs];
     List<AudioSource> sources = [];
     for (var song in songs) {
-      sources.add(AudioSource.uri(Uri.parse(song.uri!)));
+      sources.add(
+        AudioSource.uri(
+          Uri.parse(song.uri!),
+          tag: MediaItem(
+            id: '${song.id}',
+            title: song.title,
+            artUri: Uri.parse(song.uri!)
+          ),
+        ),
+      );
     }
     currentQueue = ConcatenatingAudioSource(children: sources);
     return ConcatenatingAudioSource(children: sources);
+  }
+
+  Future<void> shareMusic({
+    required String title,
+    required String artist,
+    required String uri,
+  }) async {
+    String message = 'Check out this music: \n$title  by $artist \n\n $uri';
+    Share.share(message);
   }
 }

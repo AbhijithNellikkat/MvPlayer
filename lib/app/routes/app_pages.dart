@@ -53,11 +53,11 @@ class AppPages {
       page: () => const VideosView(),
       binding: VideosBinding(),
     ),
-    GetPage(
-      name: _Paths.PROFILE,
-      page: () => const ProfileView(),
-      binding: ProfileBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.PROFILE,
+    //   page: () =>  ProfileView(),
+    //   binding: ProfileBinding(),
+    // ),
     GetPage(
       name: _Paths.BOTTOMNAVIGATIONBAR,
       page: () => BottomNavbarView(),

@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionController extends GetxController {
@@ -36,6 +35,4 @@ class PermissionController extends GetxController {
       },
     );
   }
-
-  
 }

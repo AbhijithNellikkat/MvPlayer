@@ -35,8 +35,7 @@ class TracksView extends StatelessWidget {
               ),
             );
           }
-
-          
+          MusicPlayerController.allSongs = [...snapshot.data!];
           return ListView.separated(
             separatorBuilder: (context, index) =>
                 const Divider(color: Colors.transparent),
