@@ -17,6 +17,7 @@ class TracksView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Constants.scaffoldBgColor,
       body: FutureBuilder<List<SongModel>>(
         future: tracksController.fetchAllSongs(),
         builder: (context, snapshot) {
@@ -54,7 +55,7 @@ class TracksView extends StatelessWidget {
                     width: 60,
                     height: 130,
                     decoration: const BoxDecoration(
-                      color: Colors.black,
+                      color: Constants.black,
                       borderRadius: BorderRadius.all(
                         Radius.circular(15),
                       ),

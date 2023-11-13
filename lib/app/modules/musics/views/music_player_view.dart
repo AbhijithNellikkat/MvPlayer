@@ -50,7 +50,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
               Get.back();
             },
             icon: const Icon(
-              Icons.arrow_back_ios_new,
+              Constants.backArrow,
               color: Colors.black,
             )),
         actions: [
@@ -71,7 +71,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
           const SizedBox(width: 11),
         ],
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Constants.scaffoldBgColor,
       ),
       body: Container(
         width: double.infinity,
@@ -158,8 +158,8 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                 onPressed: () => controller.shuffleSong(),
                                 icon: Icon(
                                   controller.audioPlayer.shuffleModeEnabled
-                                      ? Icons.shuffle_on_sharp
-                                      : Icons.shuffle,
+                                      ? Constants.shuffleOnsharp
+                                      : Constants.shuffle,
                                   size: 25,
                                   color: Constants.black,
                                 ),
@@ -171,7 +171,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                         index: widget.index);
                                   },
                                   icon: const Icon(
-                                    Icons.skip_previous,
+                                    Constants.skipPrevious,
                                     size: 40,
                                   )),
                               InkWell(
@@ -182,22 +182,23 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                        style: BorderStyle.solid,
-                                        color: Colors.black),
+                                      style: BorderStyle.solid,
+                                      color: Constants.black,
+                                    ),
                                     shape: BoxShape.circle,
                                   ),
                                   child: isPlaying
                                       ? const Padding(
                                           padding: EdgeInsets.all(15.0),
                                           child: Icon(
-                                            Icons.pause,
+                                            Constants.musicPause,
                                             size: 30,
                                           ),
                                         )
                                       : const Padding(
                                           padding: EdgeInsets.all(15.0),
                                           child: Icon(
-                                            Icons.play_arrow,
+                                            Constants.musicPlayArrow,
                                             size: 30,
                                           ),
                                         ),
@@ -208,7 +209,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                   controller.playNextSong(index: widget.index);
                                 },
                                 icon: const Icon(
-                                  Icons.skip_next,
+                                  Constants.skipNext,
                                   size: 40,
                                 ),
                               ),
@@ -237,19 +238,19 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                 LoopMode.off => IconButton(
                                     onPressed: () => controller.loopSong(),
                                     icon: const Icon(
-                                      Icons.repeat_rounded,
+                                      Constants.repeatRounded,
                                       size: 25,
                                     )),
                                 LoopMode.one => IconButton(
                                     onPressed: () => controller.loopSong(),
                                     icon: const Icon(
-                                      Icons.repeat_one_on_rounded,
+                                      Constants.repeatOneOnRounded,
                                       size: 25,
                                     )),
                                 LoopMode.all => IconButton(
                                     onPressed: () => controller.loopSong(),
                                     icon: const Icon(
-                                      Icons.repeat_on_rounded,
+                                      Constants.repeatOnRounded,
                                       size: 25,
                                     )),
                               },

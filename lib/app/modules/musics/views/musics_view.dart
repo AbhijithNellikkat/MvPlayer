@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/home/controllers/nav_bar_controller_controller.dart';
-import 'package:mv_player/app/modules/musics/controllers/musics_controller.dart';
 import 'package:mv_player/app/modules/musics/views/favourites_view.dart';
 import 'package:mv_player/app/modules/musics/views/playlists_view.dart';
 import 'package:mv_player/app/modules/musics/views/tracks_view.dart';
 
 // ignore: must_be_immutable
-class MusicsView extends GetView<MusicsController> {
+class MusicsView extends StatelessWidget {
   MusicsView({Key? key}) : super(key: key);
 
   TextEditingController textController = TextEditingController();

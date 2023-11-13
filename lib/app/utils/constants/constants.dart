@@ -60,7 +60,15 @@ class Constants {
   static const IconData moreVert = Icons.more_vert;
   static const IconData user = Icons.person_pin_circle_rounded;
   static const IconData rightArrow = Icons.arrow_forward;
-  static const IconData playArrow = Icons.play_arrow;
+  static const IconData musicPlayArrow = Icons.play_arrow;
+  static const IconData musicPause = Icons.pause;
   static const IconData music = Icons.music_note_rounded;
   static const IconData backArrow = Icons.arrow_back_ios;
+  static const IconData shuffle = Icons.shuffle;
+  static const IconData shuffleOnsharp = Icons.shuffle_on_sharp;
+  static const IconData skipPrevious = Icons.skip_previous;
+  static const IconData skipNext = Icons.skip_next;
+  static const IconData repeatRounded = Icons.repeat_rounded;
+  static const IconData repeatOneOnRounded = Icons.repeat_one_on_rounded;
+  static const IconData repeatOnRounded = Icons.repeat_on_rounded;
 }

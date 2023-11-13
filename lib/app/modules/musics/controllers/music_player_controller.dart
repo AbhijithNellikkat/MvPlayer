@@ -3,13 +3,21 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:just_audio_background/just_audio_background.dart';
+import 'package:mv_player/app/modules/musics/controllers/playlist_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MusicPlayerController extends GetxController {
   final AudioPlayer audioPlayer = AudioPlayer();
   final OnAudioQuery audioquery = OnAudioQuery();
+
+  late PlaylistController playlistController;
+
+  @override
+  void onInit() {
+    playlistController = Get.find();
+    super.onInit();
+  }
 
   // Currently playing song information
   var currentlyPlaying;
@@ -19,14 +27,8 @@ class MusicPlayerController extends GetxController {
   // ignore: unused_field
   int? _index;
 
-  // Audio queue for the current playlist
-  late ConcatenatingAudioSource currentQueue;
-
   // List to store all songs from the device
   static List<SongModel> allSongs = [];
-
-  // List to store the current playlist
-  List<SongModel> currentPlaylist = [];
 
   // Current playback position
   Duration position = Duration.zero;
@@ -60,15 +62,14 @@ class MusicPlayerController extends GetxController {
   playTheSong({required List<SongModel> songmodel, required index}) {
     try {
       audioPlayer.setAudioSource(
-        createPlaylist(songmodel),
+        playlistController.createPlaylist(songmodel),
         initialIndex: index,
-        preload: false,
       );
       playSong(songmodel[index], index);
     } on Exception {
       log("error playing");
     } catch (e) {
-      log(e.toString());
+      log('$e');
     }
   }
 
@@ -140,33 +141,13 @@ class MusicPlayerController extends GetxController {
   }
 
   void updateCurrentPlayingDetails(int index) {
-    if (currentPlaylist.isNotEmpty) {
+    if (playlistController.currentPlaylist.isNotEmpty) {
       currentlyPlayingIndex = index;
-      currentlyPlaying = currentPlaylist[index];
+      currentlyPlaying = playlistController.currentPlaylist[index];
     } else {
       currentlyPlaying = null;
       audioPlayer.dispose();
     }
-  }
-
-  ConcatenatingAudioSource createPlaylist(List<SongModel> songs) {
-    currentPlaylist.clear();
-    currentPlaylist = [...songs];
-    List<AudioSource> sources = [];
-    for (var song in songs) {
-      sources.add(
-        AudioSource.uri(
-          Uri.parse(song.uri!),
-          tag: MediaItem(
-            id: '${song.id}',
-            title: song.title,
-            artUri: Uri.parse(song.uri!)
-          ),
-        ),
-      );
-    }
-    currentQueue = ConcatenatingAudioSource(children: sources);
-    return ConcatenatingAudioSource(children: sources);
   }
 
   Future<void> shareMusic({

@@ -6,6 +6,9 @@ import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
 import '../controllers/music_player_controller.dart';
+import '../controllers/playlist_controller.dart';
+
+final PlaylistController playlistController = Get.find();
 
 void musicPlayerBottomSheet({
   required BuildContext context,
@@ -26,63 +29,70 @@ void musicPlayerBottomSheet({
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 17, left: 5),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 10, top: 15, right: 12, bottom: 10),
-                child: QueryArtworkWidget(
-                  nullArtworkWidget: Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      color: Constants.black,
+          child: StreamBuilder(
+              stream: musicPlayerController.audioPlayer.currentIndexStream,
+              builder: (context, snapshot) {
+                return Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: 10, top: 15, right: 12, bottom: 10),
+                      child: QueryArtworkWidget(
+                        nullArtworkWidget: Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            color: Constants.black,
+                          ),
+                          width: 50,
+                          height: 50,
+                          child: Lottie.asset(Constants.nullArtworkWidget,
+                              fit: BoxFit.cover),
+                        ),
+                        artworkQuality: FilterQuality.high,
+                        size: MediaQuery.sizeOf(context).width.toInt(),
+                        artworkHeight: 50,
+                        artworkWidth: 50,
+                        artworkBorder:
+                            const BorderRadius.all(Radius.circular(15)),
+                        id: musicPlayerController.currentlyPlaying.id,
+                        type: ArtworkType.AUDIO,
+                        artworkFit: BoxFit.cover,
+                      ),
                     ),
-                    width: 50,
-                    height: 50,
-                    child: Lottie.asset(Constants.nullArtworkWidget,
-                        fit: BoxFit.cover),
-                  ),
-                  artworkQuality: FilterQuality.high,
-                  size: MediaQuery.sizeOf(context).width.toInt(),
-                  artworkHeight: 50,
-                  artworkWidth: 50,
-                  artworkBorder: const BorderRadius.all(Radius.circular(15)),
-                  id: musicPlayerController.currentlyPlaying.id,
-                  type: ArtworkType.AUDIO,
-                  artworkFit: BoxFit.cover,
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    musicPlayerController.currentlyPlaying.title,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12.0,
-                        color: Constants.white),
-                  ),
-                  Text(
-                    songs[index].artist! == "<unknown>"
-                        ? "Unknown Artist"
-                        : '${musicPlayerController.currentlyPlaying.artist!}',
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: GoogleFonts.poppins(
-                        fontSize: 9, color: Constants.white),
-                  ),
-                ],
-              )
-            ],
-          ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          musicPlayerController.currentlyPlaying.title,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.0,
+                              color: Constants.white),
+                        ),
+                        Text(
+                          songs[index].artist! == "<unknown>"
+                              ? "Unknown Artist"
+                              : '${musicPlayerController.currentlyPlaying.artist!}',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: GoogleFonts.poppins(
+                              fontSize: 9, color: Constants.white),
+                        ),
+                      ],
+                    )
+                  ],
+                );
+              }),
         ),
         const Divider(color: Constants.white, thickness: 0),
         const SizedBox(height: 15),
         ListTile(
-          onTap: () {},
+          onTap: () {
+
+          },
           leading: const Icon(
             Icons.playlist_add,
             size: 29,

@@ -3,6 +3,7 @@ import 'package:mv_player/app/modules/home/controllers/nav_bar_controller_contro
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 
 import '../../musics/controllers/music_player_controller.dart';
+import '../../musics/controllers/playlist_controller.dart';
 import '../controllers/home_controller.dart';
 
 class HomeBinding extends Bindings {
@@ -13,6 +14,7 @@ class HomeBinding extends Bindings {
     Get.lazyPut<TracksController>(
       () => TracksController(),
     );
+    Get.put<PlaylistController>(PlaylistController());
     Get.put<MusicPlayerController>(MusicPlayerController());
   }
 }

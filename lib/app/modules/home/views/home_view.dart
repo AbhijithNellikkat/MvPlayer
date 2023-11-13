@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/home/controllers/home_controller.dart';
+import 'package:mv_player/app/modules/musics/controllers/music_player_controller.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:mv_player/app/modules/musics/widgets/my_favourties_widget.dart';
-
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../recentlyPlayed/views/recently_played_view.dart';
 import '../controllers/nav_bar_controller_controller.dart';
@@ -18,17 +19,10 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  List imageList = [
-    {"id": 1, "image_path": 'assets/images/music_onbording.jpg'},
-    {"id": 2, "image_path": 'assets/images/video_onbording.jpg'},
-    {"id": 3, "image_path": 'assets/images/authentication_onbording.jpg'},
-  ];
-
   final CarouselController carouselController = CarouselController();
   final HomeController homeController = Get.find();
   final TracksController tracksController = Get.find();
-
-  
+  final MusicPlayerController musicPlayerController = Get.find();
 
   int currentIndex = 0;
 
@@ -37,7 +31,6 @@ class _HomeViewState extends State<HomeView> {
     return GetBuilder<NavBarController>(builder: (controller) {
       return Scaffold(
         backgroundColor: Colors.white,
-   
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -58,51 +51,49 @@ class _HomeViewState extends State<HomeView> {
                   children: [
                     InkWell(
                       onTap: () {},
-                      child: CarouselSlider(
-                        items: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.black,
-                            ),
-                            width: 310,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.black,
-                            ),
-                            width: 310,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.black,
-                            ),
-                            width: 310,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.black,
-                            ),
-                            width: 310,
-                          ),
-                        ],
-                        carouselController: carouselController,
-                        options: CarouselOptions(
-                          scrollPhysics: const BouncingScrollPhysics(),
-                          autoPlay: true,
-                          height: 170,
-                          aspectRatio: 16 / 9,
-                          viewportFraction: 1,
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              currentIndex = index;
-                            });
-                          },
-                        ),
-                      ),
+                      child: FutureBuilder<List<SongModel>>(
+                          future: tracksController.fetchAllSongs(),
+                          builder: (context, snapshot) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 30),
+                              child: CarouselSlider(
+                                items: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 150,
+                                        width: 140,
+                                        decoration:
+                                            BoxDecoration(color: Colors.black),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Container(
+                                        height: 150,
+                                        width: 140,
+                                        decoration: BoxDecoration(
+                                            color: const Color.fromARGB(
+                                                255, 139, 13, 13)),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                                carouselController: carouselController,
+                                options: CarouselOptions(
+                                  scrollPhysics: const BouncingScrollPhysics(),
+                                  autoPlay: true,
+                                  height: 170,
+                                  aspectRatio: 16 / 9,
+                                  viewportFraction: 1,
+                                  onPageChanged: (index, reason) {
+                                    setState(() {
+                                      currentIndex = index;
+                                    });
+                                  },
+                                ),
+                              ),
+                            );
+                          }),
                     ),
                   ],
                 ),
