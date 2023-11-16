@@ -17,6 +17,23 @@ class PlaylistController extends GetxController {
     update();
   }
 
+  Future<void> removePlaylist({required int playlistId}) async {
+    await audioquery.removePlaylist(playlistId);
+    update();
+  }
+
+  Future<void> addSongToPlaylist(
+      {required int playlistId, required int songId}) async {
+    await audioquery.addToPlaylist(playlistId, songId);
+    update();
+  }
+
+  Future<void> renamePlaylist(
+      {required int playlistId, required String newName}) async {
+    await audioquery.renamePlaylist(playlistId, newName);
+    update();
+  }
+
   ConcatenatingAudioSource createPlaylist(List<SongModel> songs) {
     currentPlaylist.clear();
     currentPlaylist = [...songs];
@@ -40,11 +57,6 @@ class PlaylistController extends GetxController {
   loadPlaylistSongs({required PlaylistModel playlistId}) async {
     var path = playlistId.getMap.entries;
     return await audioquery.queryAudiosFrom(AudiosFromType.PLAYLIST, path);
-  }
-
-  Future<void> addSongToPlaylist(int playlistId, int songId) async {
-    await audioquery.addToPlaylist(playlistId, songId);
-    update();
   }
 
   Future<List<SongModel>> getPlaylistSongs(

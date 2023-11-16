@@ -50,6 +50,7 @@ void playlistAddBottmSheet(
                 onPressed: () {
                   playlistController.createNewPlaylist(
                       playlistname: playlistEditingController.text);
+                  playlistEditingController.clear();
                 },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),

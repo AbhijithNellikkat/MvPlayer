@@ -26,9 +26,15 @@ dependencies:
   just_audio_background: ^0.0.1-beta.10
   share_plus: ^7.2.1
 
+  # ------------------ video section ------------------
+  # video_player: ^2.8.1
+  # path_provider: ^2.1.1
+  # file_picker: ^6.1.1
+  # video_thumbnail: ^0.5.3
+  # photo_manager: ^2.8.1
+  shared_preferences: ^2.2.2
+
   
-  hive_flutter: ^1.1.0
-  path_provider: ^2.1.1
 
 
   

@@ -6,16 +6,13 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionController extends GetxController {
-
-
-    Future<void> justAudioBackgroundInit() async {
+  Future<void> justAudioBackgroundInit() async {
     await JustAudioBackground.init(
       androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
       androidNotificationChannelName: 'Audio playback',
       androidNotificationOngoing: true,
     );
   }
-
 
   Future<void> requestStoragePermission() async {
     Future.delayed(

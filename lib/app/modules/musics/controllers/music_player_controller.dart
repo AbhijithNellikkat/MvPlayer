@@ -44,7 +44,7 @@ class MusicPlayerController extends GetxController {
   var volume = 1.0.obs;
 
   MusicPlayerController() {
-    loadDuration();
+    // loadDuration();
   }
 
   @override
