@@ -1,10 +1,9 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:mv_player/app/routes/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../home/views/bottom_navbar_view.dart';
-import '../../onbording/views/onbording_view.dart';
 
 class SplashController extends GetxController {
   RxBool isFirstLaunch = true.obs;
@@ -22,8 +21,8 @@ class SplashController extends GetxController {
   Future<void> delayAndNavigate() async {
     await Future.delayed(const Duration(seconds: 2));
     log('Navigating to: ${isFirstLaunch.value ? 'OnbordingView' : 'BottomNavbarView'}'); // Add this line
-    Get.offAll(
-        () => isFirstLaunch.value ? OnbordingView() : BottomNavbarView());
+    Get.offAllNamed(
+        isFirstLaunch.value ? Routes.ONBORDING : Routes.BOTTOMNAVIGATIONBAR);
   }
 
   @override

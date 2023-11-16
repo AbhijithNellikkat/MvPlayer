@@ -36,7 +36,16 @@ class PermissionController extends GetxController {
               margin: const EdgeInsets.all(12),
             );
             // await Permission.storage.request();
-            Future.delayed(const Duration(seconds: 3), () => openAppSettings());
+            Future.delayed(const Duration(seconds: 2), () => openAppSettings());
+          }
+          if (status == PermissionStatus.permanentlyDenied) {
+            Get.snackbar(
+              'permanentlyDenied',
+              'The Permission is required !',
+              margin: const EdgeInsets.all(12),
+            );
+            // await Permission.storage.request();
+            Future.delayed(const Duration(seconds: 2), () => openAppSettings());
           }
         } on Exception catch (e) {
           log('------------------------------------- $e -------------------------------------');

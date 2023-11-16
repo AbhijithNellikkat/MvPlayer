@@ -47,11 +47,7 @@ void playlistAddBottmSheet(
             ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.black)),
-                onPressed: () {
-                  playlistController.createNewPlaylist(
-                      playlistname: playlistEditingController.text);
-                  playlistEditingController.clear();
-                },
+                onPressed: () {},
                 child: const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
                   child: Text(

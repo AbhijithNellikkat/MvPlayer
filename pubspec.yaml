@@ -18,7 +18,8 @@ dependencies:
   carousel_slider: ^4.2.1
   anim_search_bar: ^2.0.3
   shimmer: ^3.0.0
-  permission_handler: ^10.4.5
+  permission_handler: ^9.2.0
+  shared_preferences: ^2.2.2
   # ------------------ musics section ------------------
   just_audio: ^0.9.35
   on_audio_query: ^2.9.0
@@ -27,12 +28,14 @@ dependencies:
   share_plus: ^7.2.1
 
   # ------------------ video section ------------------
-  # video_player: ^2.8.1
-  # path_provider: ^2.1.1
-  # file_picker: ^6.1.1
-  # video_thumbnail: ^0.5.3
-  # photo_manager: ^2.8.1
-  shared_preferences: ^2.2.2
+  fetch_all_videos: ^1.0.5
+  file_picker: ^6.1.1
+  path_provider: ^2.1.1
+  video_player: ^2.8.1
+  photo_manager: ^2.8.1
+
+  
+
 
   
 
