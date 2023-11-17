@@ -7,6 +7,6 @@ class VideosBinding extends Bindings {
   void dependencies() {
 
     Get.put<VideosController>(VideosController());
-     Get.put<VideosPlayerController>(VideosPlayerController());
+   
   }
 }

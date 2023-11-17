@@ -1,58 +1,51 @@
+import 'dart:developer';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
+import 'package:chewie/chewie.dart';
 import 'package:get/get.dart';
+import 'package:mv_player/app/utils/constants/constants.dart';
+import 'package:photo_manager/photo_manager.dart';
 import 'package:video_player/video_player.dart';
 
 class VideosPlayerController extends GetxController {
   late VideoPlayerController videoPlayerController;
-  late Future<void> initializeVideoPlayerFuture;
-  bool isPlaying = false;
+  late ChewieController chewieController;
+  RxBool isPlaying = false.obs;
 
-
-    @override
-  void onInit()  {
-
-    initializeVideoPlayer();
-    super.onInit();
-  }
-
-
-   Future<void> initializeVideoPlayer() async {
-    final File? videoFile = await Get.arguments['video']?.file;
+  Future<void> initializeVideoPlayer(AssetEntity video) async {
+    final File? videoFile = await video.file;
 
     if (videoFile != null) {
       videoPlayerController = VideoPlayerController.file(videoFile);
-      initializeVideoPlayerFuture = videoPlayerController.initialize();
+      await videoPlayerController.initialize();
 
       videoPlayerController.addListener(() {
-        if (videoPlayerController.value.isPlaying) {
-          isPlaying = true;
-        } else {
-          isPlaying = false;
-        }
-        update();
+        isPlaying.value = videoPlayerController.value.isPlaying;
       });
-    } else {
-      Get.defaultDialog(
-        title: 'Error',
-        middleText: 'Unable to load the video.',
-        actions: [
-          TextButton(
-            onPressed: () {
-              Get.back();
-            },
-            child: const Text('OK'),
-          ),
-        ],
+
+      chewieController = ChewieController(
+        videoPlayerController: videoPlayerController,
+        autoPlay: false,
+        looping: false,
+        allowFullScreen: true,
+        allowMuting: true,
+        showControls: true,
+        autoInitialize: true,
+        materialProgressColors: ChewieProgressColors(
+          
+          playedColor: Constants.white,
+          handleColor: Constants.black,
+        ),
       );
+    } else {
+      log('Error: Video file is null.');
     }
   }
 
-
-    @override
+  @override
   void onClose() {
     videoPlayerController.dispose();
+    chewieController.dispose();
     super.onClose();
   }
 }

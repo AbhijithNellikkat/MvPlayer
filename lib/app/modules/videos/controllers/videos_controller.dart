@@ -10,7 +10,7 @@ class VideosController extends GetxController {
   @override
   void onInit() {
     fetchMediaFolders();
-
+    log('====================== VideosController  onInit ======================');
     super.onInit();
   }
 

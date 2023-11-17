@@ -27,6 +27,7 @@ class PermissionController extends GetxController {
               'Granted',
               'The Permission is Granted',
               margin: const EdgeInsets.all(12),
+              duration: const Duration(seconds: 2),
             );
           }
           if (status == PermissionStatus.denied) {
@@ -34,6 +35,7 @@ class PermissionController extends GetxController {
               'Required',
               'The Permission is required !',
               margin: const EdgeInsets.all(12),
+              duration: const Duration(seconds: 2),
             );
             // await Permission.storage.request();
             Future.delayed(const Duration(seconds: 2), () => openAppSettings());
@@ -43,6 +45,7 @@ class PermissionController extends GetxController {
               'permanentlyDenied',
               'The Permission is required !',
               margin: const EdgeInsets.all(12),
+              duration: const Duration(seconds: 2),
             );
             await Permission.storage.request();
           }
