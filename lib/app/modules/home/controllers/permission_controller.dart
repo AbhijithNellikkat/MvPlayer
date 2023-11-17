@@ -44,8 +44,7 @@ class PermissionController extends GetxController {
               'The Permission is required !',
               margin: const EdgeInsets.all(12),
             );
-            // await Permission.storage.request();
-            Future.delayed(const Duration(seconds: 2), () => openAppSettings());
+            await Permission.storage.request();
           }
         } on Exception catch (e) {
           log('------------------------------------- $e -------------------------------------');

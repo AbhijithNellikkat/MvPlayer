@@ -36,6 +36,6 @@ class _VideosViewState extends State<VideosView> {
             const SizedBox(width: 10),
           ],
         ),
-        body: gridView ? const GridViewWidget() :  ListViewWidget());
+        body: gridView ?  GridViewWidget() :  ListViewWidget());
   }
 }

@@ -1,57 +1,41 @@
 import 'dart:developer';
-
-// import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-
+import 'package:mv_player/app/modules/videos/views/videos_list_in_folder_view.dart';
 import 'package:photo_manager/photo_manager.dart';
 
-// import 'package:mv_player/app/modules/videos/controllers/video_model.dart';
-
 class VideosController extends GetxController {
-  // RxList<VideoModel> videos = <VideoModel>[].obs;
+  final RxList<AssetEntity> videos = <AssetEntity>[].obs;
+  final RxList<AssetPathEntity> folders = <AssetPathEntity>[].obs;
 
-  // Future<void> fetchAllVideos() async {
-  //   try {
-  //     FilePickerResult? result = await FilePicker.platform.pickFiles(
-  //       type: FileType.video,
-  //       allowMultiple: true,
-  //     );
+  @override
+  void onInit() {
+    fetchMediaFolders();
 
-  //     if (result != null) {
-  //       List<VideoModel> selectedVideos = result.paths.map((path) {
-  //         String name = path!.split('/').last;
-  //         return VideoModel(name: name, path: path);
-  //       }).toList();
+    super.onInit();
+  }
 
-  //       videos.assignAll(selectedVideos);
-  //     }
-  //   } catch (e) {
-  //     ('Error selecting videos: $e');
-  //   }
-  // }
-  Future<void> fetchMediaPaths() async {
+  Future<void> fetchMediaFolders() async {
     try {
-      final List<AssetPathEntity> paths = await PhotoManager.getAssetPathList();
+      final List<AssetPathEntity> paths =
+          await PhotoManager.getAssetPathList(type: RequestType.video);
 
-      for (var path in paths) {
-        log('Path Name: ${path.name}');
-        // ignore: deprecated_member_use
-        log('Number of Assets: ${path.assetCount}');
-
-        // Fetch and display videos associated with this path
-        // ignore: deprecated_member_use
-        final List<AssetEntity> videos =
-            // ignore: deprecated_member_use
-            await path.getAssetListRange(start: 0, end: path.assetCount);
-
-        for (var video in videos) {
-          log('Video Name: ${video.title}');
-          log('Video Path: ${video.relativePath}'); // You can use this path to display the video.
-          // Add your logic to display or process each video as needed.
-        }
-      }
+      folders.assignAll(paths);
     } catch (e) {
-      log('Error fetching media paths: $e');
+      log('Error fetching media folders: $e');
+    }
+  }
+
+  Future<void> navigateToVideosInFolder(AssetPathEntity folder) async {
+    try {
+      final List<AssetEntity> videos =
+          // ignore: deprecated_member_use
+          await folder.getAssetListRange(start: 0, end: folder.assetCount);
+      update();
+
+      this.videos.assignAll(videos);
+      Get.to(() => VideosListInFolderView(videos: videos));
+    } catch (e) {
+      log('Error navigating to videos: $e');
     }
   }
 }
