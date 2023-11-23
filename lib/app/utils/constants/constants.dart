@@ -36,7 +36,7 @@ class Constants {
   static const authenticationOnboringImage =
       'assets/images/authentication_onbording.jpg';
   static const openningBgImage = 'assets/images/openning_bg_image.jpg';
-  static const musicsImage = 'assets/images/musics.jpg';
+
   static const profileImage = 'assets/images/profile.gif';
   static const splashImage = 'assets/icons/sample logo.jpg';
 
@@ -71,4 +71,8 @@ class Constants {
   static const IconData repeatRounded = Icons.repeat_rounded;
   static const IconData repeatOneOnRounded = Icons.repeat_one_on_rounded;
   static const IconData repeatOnRounded = Icons.repeat_on_rounded;
+
+  // ===================== Database =====================
+  static const String boxName = 'musicsBox';
+  static const String favouritesKey = 'favourites';
 }

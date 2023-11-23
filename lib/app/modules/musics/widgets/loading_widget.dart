@@ -23,7 +23,7 @@ class LoadingWidget extends StatelessWidget {
                       leading: const CircleAvatar(
                         maxRadius: 25,
                         backgroundColor: Colors.black,
-                        backgroundImage: AssetImage(Constants.musicsImage),
+                        // backgroundImage: AssetImage(Constants.musicsImage),
                       ),
                       title: Container(
                         height: 21,

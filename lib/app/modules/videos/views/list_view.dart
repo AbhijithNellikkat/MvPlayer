@@ -20,6 +20,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
         () => ListView.builder(
           itemCount: videosController.folders.length,
           itemBuilder: (context, index) {
+            final foldersName = videosController.folders[index].name;
             return ListTile(
               leading: const Icon(
                 Icons.folder,
@@ -38,8 +39,10 @@ class _ListViewWidgetState extends State<ListViewWidget> {
                     fontSize: 12, fontWeight: FontWeight.w400),
               ),
               onTap: () {
-                videosController
-                    .navigateToVideosInFolder(videosController.folders[index]);
+                videosController.navigateToVideosInFolder(
+                  folder: videosController.folders[index],
+                  foldersName: foldersName,
+                );
               },
             );
           },

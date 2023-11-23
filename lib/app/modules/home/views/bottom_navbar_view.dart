@@ -2,7 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/home/views/home_view.dart';
-import 'package:mv_player/app/modules/profile/views/profile_view.dart';
+import 'package:mv_player/app/modules/settings/views/settings_view.dart';
 
 import '../../musics/views/musics_view.dart';
 import '../../videos/views/videos_view.dart';
@@ -27,7 +27,7 @@ class BottomNavbarView extends StatelessWidget {
               const HomeView(),
               MusicsView(),
               const VideosView(),
-              ProfileView(),
+              SettingsView(),
             ],
           ),
           bottomNavigationBar: CurvedNavigationBar(
@@ -52,7 +52,7 @@ class BottomNavbarView extends StatelessWidget {
                 color: Colors.white,
               ),
               Icon(
-                Icons.person,
+                Icons.settings,
                 size: 30,
                 color: Colors.white,
               ),

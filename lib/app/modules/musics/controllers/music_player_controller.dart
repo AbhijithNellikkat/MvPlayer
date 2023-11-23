@@ -5,13 +5,14 @@ import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mv_player/app/modules/musics/controllers/playlist_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:share_plus/share_plus.dart';
+
 
 class MusicPlayerController extends GetxController {
   final AudioPlayer audioPlayer = AudioPlayer();
   final OnAudioQuery audioquery = OnAudioQuery();
 
   late PlaylistController playlistController;
+  
 
   @override
   void onInit() {
@@ -27,8 +28,7 @@ class MusicPlayerController extends GetxController {
   // ignore: unused_field
   int? _index;
 
-  // List to store all songs from the device
-  static List<SongModel> allSongs = [];
+
 
   // Current playback position
   Duration position = Duration.zero;
@@ -62,7 +62,7 @@ class MusicPlayerController extends GetxController {
   playTheSong({required List<SongModel> songmodel, required index}) {
     try {
       audioPlayer.setAudioSource(
-        playlistController.createPlaylist(songmodel),
+        playlistController.playthesong(songs: songmodel),
         initialIndex: index,
       );
       playSong(songmodel[index], index);
@@ -79,6 +79,8 @@ class MusicPlayerController extends GetxController {
     currentlyPlaying = song;
     audioPlayer.play();
   }
+
+  
 
   // Method to toggle play/pause for the currently playing song
   toggleSong({required String uri}) async {
@@ -141,21 +143,14 @@ class MusicPlayerController extends GetxController {
   }
 
   void updateCurrentPlayingDetails(int index) {
-    if (playlistController.currentPlaylist.isNotEmpty) {
+    if (playlistController.allSongs.isNotEmpty) {
       currentlyPlayingIndex = index;
-      currentlyPlaying = playlistController.currentPlaylist[index];
+      currentlyPlaying = playlistController.allSongs[index];
     } else {
       currentlyPlaying = null;
       audioPlayer.dispose();
     }
   }
 
-  Future<void> shareMusic({
-    required String title,
-    required String artist,
-    required String uri,
-  }) async {
-    String message = 'Check out this music: \n$title  by $artist \n\n $uri';
-    Share.share(message);
-  }
+  
 }

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/home/controllers/home_controller.dart';
 import 'package:mv_player/app/modules/home/controllers/nav_bar_controller_controller.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 import 'package:mv_player/app/modules/videos/controllers/videos_controller.dart';
 import 'package:mv_player/app/modules/videos/controllers/videos_player_controller.dart';
 
@@ -17,6 +18,9 @@ class SplashBinding extends Bindings {
     Get.put<NavBarController>(NavBarController());
     Get.lazyPut<TracksController>(
       () => TracksController(),
+    );
+    Get.lazyPut<SettingsController>(
+      () => SettingsController(),
     );
 
     Get.put<VideosPlayerController>(VideosPlayerController());

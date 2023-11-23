@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mv_player/app/data/db_functions.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:mv_player/app/modules/musics/views/music_player_view.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
 import '../../../utils/styles/text_styles.dart';
-import '../controllers/music_player_controller.dart';
 
 class TracksView extends StatelessWidget {
   TracksView({Key? key}) : super(key: key);
 
   final TracksController tracksController = Get.find();
+  final DbFunctions dbFunctions = DbFunctions();
 
   @override
   Widget build(BuildContext context) {
@@ -26,22 +27,25 @@ class TracksView extends StatelessWidget {
               child: CircularProgressIndicator(color: Constants.black),
             );
           } else if (snapshot.data!.isEmpty) {
-            const Center(
+            Center(
               child: Text(
                 "No songs Found",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                    color: Colors.red),
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: Colors.red,
+                ),
               ),
             );
           }
-          MusicPlayerController.allSongs = [...snapshot.data!];
+
+          List<SongModel> songs = snapshot.data!;
           return ListView.separated(
             separatorBuilder: (context, index) =>
                 const Divider(color: Colors.transparent),
-            itemCount: snapshot.data!.length,
+            itemCount: songs.length,
             itemBuilder: (context, index) {
+              SongModel song = songs[index];
               return ListTile(
                 leading: QueryArtworkWidget(
                   artworkFit: BoxFit.cover,
@@ -49,7 +53,7 @@ class TracksView extends StatelessWidget {
                   artworkBorder: const BorderRadius.all(Radius.circular(15)),
                   artworkHeight: 130,
                   artworkWidth: 60,
-                  id: snapshot.data![index].id,
+                  id: song.id,
                   type: ArtworkType.AUDIO,
                   nullArtworkWidget: Container(
                     width: 60,
@@ -67,15 +71,15 @@ class TracksView extends StatelessWidget {
                   ),
                 ),
                 title: Text(
-                  snapshot.data![index].title,
+                  song.title,
                   style: musicListTitleStyle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 subtitle: Text(
-                  snapshot.data![index].artist == "<unknown>"
+                  song.artist == "<unknown>"
                       ? "Unknown Artist"
-                      : '${snapshot.data![index].artist}',
+                      : '${song.artist}',
                   style: musicArtistStyle,
                 ),
                 trailing: PopupMenuButton(

@@ -21,7 +21,7 @@ abstract class Routes {
   static const UPDATEPROFILE = _Paths.UPDATEPROFILE;
   static const FAVOURITES = _Paths.FAVOURITES;
   static const RECENTLY_PLAYED = _Paths.RECENTLY_PLAYED;
-
+  static const SETTINGS = _Paths.SETTINGS;
 }
 
 abstract class _Paths {
@@ -41,4 +41,5 @@ abstract class _Paths {
   static const UPDATEPROFILE = '/updateprofile';
   static const FAVOURITES = '/favourties';
   static const RECENTLY_PLAYED = '/recently-played';
+  static const SETTINGS = '/settings';
 }

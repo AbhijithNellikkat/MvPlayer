@@ -7,16 +7,14 @@ class PlaylistController extends GetxController {
   final OnAudioQuery audioquery = OnAudioQuery();
 
   // List to store the current playlist
-  List<SongModel> currentPlaylist = [];
+  List<SongModel> allSongs = [];
 
   // Audio queue for the current playlist
   late ConcatenatingAudioSource currentQueue;
 
-  
-
-  ConcatenatingAudioSource createPlaylist(List<SongModel> songs) {
-    currentPlaylist.clear();
-    currentPlaylist = [...songs];
+  ConcatenatingAudioSource playthesong({required List<SongModel> songs}) {
+    allSongs.clear();
+    allSongs = [...songs];
     List<AudioSource> sources = [];
     for (var song in songs) {
       sources.add(
@@ -34,5 +32,7 @@ class PlaylistController extends GetxController {
     return ConcatenatingAudioSource(children: sources);
   }
 
-  
+  Future<void> refreshTheApp() async {
+    update();
+  }
 }

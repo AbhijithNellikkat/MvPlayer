@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/videos/views/videos_list_in_folder_view.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -15,6 +16,7 @@ class VideosController extends GetxController {
   }
 
   Future<void> fetchMediaFolders() async {
+    log('--------------------------- Fetch Media Folders ---------------------------');
     try {
       final List<AssetPathEntity> paths =
           await PhotoManager.getAssetPathList(type: RequestType.video);
@@ -25,15 +27,18 @@ class VideosController extends GetxController {
     }
   }
 
-  Future<void> navigateToVideosInFolder(AssetPathEntity folder) async {
+  Future<void> navigateToVideosInFolder(
+      {required AssetPathEntity folder, required String foldersName}) async {
     try {
       final List<AssetEntity> videos =
           // ignore: deprecated_member_use
           await folder.getAssetListRange(start: 0, end: folder.assetCount);
-      update();
 
       this.videos.assignAll(videos);
-      Get.to(() => VideosListInFolderView(videos: videos));
+      Get.to(() => VideosListInFolderView(
+            videos: videos,
+            foldersName: foldersName,
+          ));
     } catch (e) {
       log('Error navigating to videos: $e');
     }
