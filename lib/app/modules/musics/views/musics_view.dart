@@ -69,7 +69,7 @@ class MusicsView extends StatelessWidget {
               children: [
                 TracksView(),
                 PlaylistsView(),
-                 FavouritesView(),
+                FavouritesView(),
               ],
             ),
           );

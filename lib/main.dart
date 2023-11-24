@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -9,7 +8,6 @@ import 'package:mv_player/app/data/models/songmodel_adapter.dart';
 import 'package:mv_player/app/modules/splash/bindings/splash_binding.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'app/modules/home/controllers/permission_controller.dart';
 import 'app/routes/app_pages.dart';
 

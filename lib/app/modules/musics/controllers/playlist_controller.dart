@@ -3,6 +3,8 @@ import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
+import '../../../data/db_functions.dart';
+
 class PlaylistController extends GetxController {
   final OnAudioQuery audioquery = OnAudioQuery();
 
@@ -11,6 +13,10 @@ class PlaylistController extends GetxController {
 
   // Audio queue for the current playlist
   late ConcatenatingAudioSource currentQueue;
+
+  final DbFunctions dbFunctions = DbFunctions();
+
+  final RxList<SongModel> playlist = <SongModel>[].obs;
 
   ConcatenatingAudioSource playthesong({required List<SongModel> songs}) {
     allSongs.clear();
@@ -34,5 +40,11 @@ class PlaylistController extends GetxController {
 
   Future<void> refreshTheApp() async {
     update();
+  }
+
+  Future<void> fetchAndSetPlaylist(String playlistName) async {
+    List<SongModel> fetchedPlaylist =
+        await dbFunctions.getPlaylist(playlistName);
+    playlist.assignAll(fetchedPlaylist);
   }
 }

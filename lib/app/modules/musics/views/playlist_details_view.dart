@@ -1,190 +1,5 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:lottie/lottie.dart';
-// import 'package:mv_player/app/data/db_functions.dart';
-// import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
-// import 'package:mv_player/app/modules/musics/views/music_player_view.dart';
-// import 'package:mv_player/app/modules/musics/widgets/player_bottomsheet_widget.dart';
-// import 'package:mv_player/app/utils/constants/constants.dart';
-// import 'package:on_audio_query/on_audio_query.dart';
-
-// class PlaylistDetailsView extends StatelessWidget {
-//   PlaylistDetailsView({
-//     Key? key,
-//     required this.playlistName,
-//     required this.dbFunctions,
-//   }) : super(key: key);
-
-//   final DbFunctions dbFunctions;
-//   final String playlistName;
-//   final TracksController tracksController = Get.find();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(playlistName),
-//       ),
-//       body: FutureBuilder<List<SongModel>>(
-//         future: dbFunctions.getPlaylist(playlistName),
-//         builder: (context, snapshot) {
-//           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return const Center(child: CircularProgressIndicator());
-//           } else if (snapshot.hasError) {
-//             return Center(child: Text('Error: ${snapshot.error}'));
-//           } else if (snapshot.data == null || snapshot.data!.isEmpty) {
-//             return Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 Center(
-//                   child: Lottie.asset(Constants.emptyBoxAnimation),
-//                 ),
-//                 Text(
-//                   'No songs in the playlist.',
-//                   style: GoogleFonts.poppins(fontSize: 11),
-//                 )
-//               ],
-//             );
-//           }
-
-//           List<SongModel> songs = snapshot.data!;
-
-//           return ListView.builder(
-//             itemCount: songs.length,
-//             itemBuilder: (context, index) {
-//               SongModel song = songs[index];
-//               return ListTile(
-//                 title: Text(song.title),
-//                 subtitle: Text(song.artist ?? 'Unknown Artist'),
-//                 onTap: () {
-//                   Get.to(MusicPlayerView(
-//                     songs: songs,
-//                     index: index,
-//                   ));
-//                 },
-//               );
-//             },
-//           );
-//         },
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         backgroundColor: Constants.black,
-//         onPressed: () {
-//           Get.bottomSheet(
-//             backgroundColor: Constants.black,
-//             SizedBox(
-//               width: double.maxFinite,
-//               height: 400,
-//               child: Padding(
-//                 padding: const EdgeInsets.all(0.0),
-//                 child: FutureBuilder<List<SongModel>>(
-//                   future: tracksController.fetchAllSongs(),
-//                   builder: (context, snapshot) {
-//                     if (snapshot.connectionState == ConnectionState.waiting) {
-//                       return const Center(child: CircularProgressIndicator());
-//                     } else if (snapshot.hasError) {
-//                       return Center(child: Text('Error: ${snapshot.error}'));
-//                     } else if (snapshot.data == null ||
-//                         snapshot.data!.isEmpty) {
-//                       return const Center(child: Text('No songs found.'));
-//                     }
-
-//                     List<SongModel> songs = snapshot.data!;
-
-//                     return Padding(
-//                       padding: const EdgeInsets.only(top: 20, left: 10),
-//                       child: ListView.builder(
-//                         itemCount: songs.length,
-//                         itemBuilder: (context, index) {
-//                           SongModel song = songs[index];
-//                           return ListTile(
-//                             leading: QueryArtworkWidget(
-//                               artworkFit: BoxFit.cover,
-//                               artworkQuality: FilterQuality.high,
-//                               artworkBorder:
-//                                   const BorderRadius.all(Radius.circular(15)),
-//                               artworkHeight: 130,
-//                               artworkWidth: 60,
-//                               id: song.id,
-//                               type: ArtworkType.AUDIO,
-//                               nullArtworkWidget: Container(
-//                                 width: 60,
-//                                 height: 130,
-//                                 decoration: const BoxDecoration(
-//                                   color: Constants.white,
-//                                   borderRadius: BorderRadius.all(
-//                                     Radius.circular(15),
-//                                   ),
-//                                 ),
-//                                 child: const Icon(
-//                                   Constants.music,
-//                                   color: Constants.black,
-//                                 ),
-//                               ),
-//                             ),
-//                             title: Text(
-//                               song.title,
-//                               style: GoogleFonts.poppins(
-//                                   fontSize: 13,
-//                                   fontWeight: FontWeight.w600,
-//                                   color: Constants.white),
-//                               maxLines: 1,
-//                               overflow: TextOverflow.ellipsis,
-//                             ),
-//                             subtitle: Text(
-//                               song.artist == "<unknown>"
-//                                   ? "Unknown Artist"
-//                                   : '${song.artist}',
-//                               style: GoogleFonts.poppins(
-//                                   fontSize: 9,
-//                                   fontWeight: FontWeight.w300,
-//                                   color: Constants.white),
-//                             ),
-//                             trailing: IconButton(
-//                               onPressed: () async {
-//                                 // Add the song to the playlist
-//                                 await dbFunctions.addSongToPlaylist(
-//                                   playlistName: playlistName,
-//                                   song: song,
-//                                 );
-
-//                                 // Fetch and update the playlist
-//                                 List<SongModel> updatedPlaylist =
-//                                     await dbFunctions.getPlaylist(playlistName);
-//                                 tracksController.setSongs(updatedPlaylist);
-
-//                                 playlistController.refreshTheApp();
-//                               },
-//                               icon: const Icon(Icons.add),
-//                             ),
-//                             onTap: () {
-//                               Get.to(MusicPlayerView(
-//                                 songs: snapshot.data!,
-//                                 index: index,
-//                               ));
-//                             },
-//                           );
-//                         },
-//                       ),
-//                     );
-//                   },
-//                 ),
-//               ),
-//             ),
-//           );
-//         },
-//         child: const Icon(
-//           Icons.add,
-//           color: Constants.white,
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -193,6 +8,9 @@ import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart'
 import 'package:mv_player/app/modules/musics/views/music_player_view.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+
+import '../../../common/widgets/toast_message_widget.dart';
+import '../../../utils/styles/text_styles.dart';
 
 class PlaylistDetailsView extends StatefulWidget {
   PlaylistDetailsView({
@@ -206,6 +24,7 @@ class PlaylistDetailsView extends StatefulWidget {
   final TracksController tracksController = Get.find();
 
   @override
+  // ignore: library_private_types_in_public_api
   _PlaylistDetailsViewState createState() => _PlaylistDetailsViewState();
 }
 
@@ -220,7 +39,8 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
   }
 
   Future<void> fetchAndSetPlaylist() async {
-    List<SongModel> playlist = await widget.dbFunctions.getPlaylist(widget.playlistName);
+    List<SongModel> playlist =
+        await widget.dbFunctions.getPlaylist(widget.playlistName);
     playlistNotifier.value = playlist;
   }
 
@@ -253,8 +73,78 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
             itemBuilder: (context, index) {
               SongModel song = playlist[index];
               return ListTile(
-                title: Text(song.title),
-                subtitle: Text(song.artist ?? 'Unknown Artist'),
+                leading: QueryArtworkWidget(
+                  artworkFit: BoxFit.cover,
+                  artworkQuality: FilterQuality.high,
+                  artworkBorder: const BorderRadius.all(Radius.circular(15)),
+                  artworkHeight: 130,
+                  artworkWidth: 60,
+                  id: song.id,
+                  type: ArtworkType.AUDIO,
+                  nullArtworkWidget: Container(
+                    width: 60,
+                    height: 130,
+                    decoration: const BoxDecoration(
+                      color: Constants.black,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                    ),
+                    child: const Icon(
+                      Constants.music,
+                      color: Constants.white,
+                    ),
+                  ),
+                ),
+                title: Text(
+                  song.title,
+                  style: musicListTitleStyle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                subtitle: Text(
+                  song.artist == "<unknown>"
+                      ? "Unknown Artist"
+                      : '${song.artist}',
+                  style: musicArtistStyle,
+                ),
+                trailing: PopupMenuButton(
+                  elevation: 1,
+                  itemBuilder: (context) {
+                    return [
+                      PopupMenuItem(
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Add to favorites",
+                              style: GoogleFonts.poppins(),
+                            )),
+                      ),
+                      PopupMenuItem(
+                        child: TextButton(
+                          onPressed: () async {
+                            // Delete the song from the playlist
+                            await widget.dbFunctions.deleteSongFromPlaylist(
+                              playlistName: widget.playlistName,
+                              song: song,
+                            );
+                            Get.back();
+                            // Fetch and update the playlist
+                            toastMessageWidget(
+                                message:
+                                    '${song.title} deleted from ${widget.playlistName}❗',
+                                gravity: ToastGravity.TOP);
+                            await fetchAndSetPlaylist();
+                          },
+                          child: Text(
+                            "Delete from this playlist",
+                            style: GoogleFonts.poppins(),
+                          ),
+                        ),
+                      ),
+                    ];
+                  },
+                ),
                 onTap: () {
                   Get.to(MusicPlayerView(
                     songs: playlist,
@@ -269,7 +159,8 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Constants.black,
         onPressed: () async {
-          List<SongModel> allSongs = await widget.tracksController.fetchAllSongs();
+          List<SongModel> allSongs =
+              await widget.tracksController.fetchAllSongs();
 
           Get.bottomSheet(
             backgroundColor: Constants.black,
@@ -277,7 +168,7 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
               width: double.maxFinite,
               height: 400,
               child: Padding(
-                padding: const EdgeInsets.all(0.0),
+                padding: const EdgeInsets.only(top: 25, left: 10),
                 child: ListView.builder(
                   itemCount: allSongs.length,
                   itemBuilder: (context, index) {
@@ -286,7 +177,8 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
                       leading: QueryArtworkWidget(
                         artworkFit: BoxFit.cover,
                         artworkQuality: FilterQuality.high,
-                        artworkBorder: const BorderRadius.all(Radius.circular(15)),
+                        artworkBorder:
+                            const BorderRadius.all(Radius.circular(15)),
                         artworkHeight: 130,
                         artworkWidth: 60,
                         id: song.id,

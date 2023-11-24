@@ -15,13 +15,36 @@ class DbFunctions {
   }) async {
     var data = MusicModel(playlist: {playlistName: songs}, favourties: []);
     log('$data');
-    await box.put(playlistName, data); 
+    await box.put(playlistName, data);
     log('songs : ${box.get(playlistName)}');
   }
 
   Future<void> deletePlaylist(String playlistName) async {
     await box.delete(playlistName);
     log("Deleting playlist: $playlistName");
+  }
+
+  Future<void> renamePlaylist({
+    required String oldPlaylistName,
+    required String newPlaylistName,
+  }) async {
+    var existingData = box.get(oldPlaylistName);
+
+    if (existingData != null) {
+      // Create a new playlist with the new name and copy the songs
+      var newData = MusicModel(
+        playlist: {newPlaylistName: existingData.playlist[oldPlaylistName]!},
+        favourties: existingData.favourties,
+      );
+
+      // Put the new playlist in the box
+      await box.put(newPlaylistName, newData);
+
+      // Delete the old playlist
+      await box.delete(oldPlaylistName);
+
+      log('Playlist renamed: $oldPlaylistName to $newPlaylistName');
+    }
   }
 
   Future<void> addSongToPlaylist({
@@ -69,5 +92,19 @@ class DbFunctions {
     }
 
     return playlistNames;
+  }
+
+  Future<void> deleteSongFromPlaylist({
+    required String playlistName,
+    required SongModel song,
+  }) async {
+    var existingData = box.get(playlistName);
+
+    if (existingData != null) {
+      existingData.playlist[playlistName]?.remove(song);
+
+      await box.put(playlistName, existingData);
+      log('Song deleted from playlist: ${song.title}');
+    }
   }
 }

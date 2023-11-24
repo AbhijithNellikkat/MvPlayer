@@ -38,6 +38,8 @@ dependencies:
   chewie: ^1.7.1
   babstrap_settings_screen: ^0.1.6
   path_provider: ^2.1.1
+  fluttertoast: ^8.2.4
+
 
 flutter_launcher_icons:
   android: "launcher_icon"

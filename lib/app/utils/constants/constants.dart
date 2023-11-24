@@ -18,14 +18,8 @@ class Constants {
   // ====================== Openning Screen =======================
   static const openningScreenHeading = 'Explore the App';
 
-  // ======================= Create Account =======================
-  static const createAccountHeading = 'Create Account';
-  static const alreadyAccount = 'Already have an account ?';
-
-  // ======================= Login =======================
-  static const loginHeading = 'Hi, Welcome 👋';
-  static const noAccount = "Don't have an account ? ";
-  static const forgotPassword = 'Forgot Password ? ';
+  // ====================== Playlist view  =======================
+  static const noPlaylist = 'No playlist here';
 
   // ======================= Images  =======================
   static const appSplashAnimation = "assets/animations/app_splash.json";
@@ -39,6 +33,8 @@ class Constants {
 
   static const profileImage = 'assets/images/profile.gif';
   static const splashImage = 'assets/icons/sample logo.jpg';
+
+  static const homeImage = 'assets/images/homescreen-removebg-preview.png';
 
   static const nullArtworkWidget =
       'assets/animations/musicplayer_nullArtwork.json';
@@ -75,4 +71,9 @@ class Constants {
   // ===================== Database =====================
   static const String boxName = 'musicsBox';
   static const String favouritesKey = 'favourites';
+
+  // Loading Widget
+  static const Widget circularProgressIndicator = CircularProgressIndicator(
+    color: black,
+  );
 }

@@ -24,7 +24,7 @@ class TracksView extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.data == null) {
             return const Center(
-              child: CircularProgressIndicator(color: Constants.black),
+              child: Constants.circularProgressIndicator,
             );
           } else if (snapshot.data!.isEmpty) {
             Center(
@@ -41,6 +41,7 @@ class TracksView extends StatelessWidget {
 
           List<SongModel> songs = snapshot.data!;
           return ListView.separated(
+            
             separatorBuilder: (context, index) =>
                 const Divider(color: Colors.transparent),
             itemCount: songs.length,
@@ -122,10 +123,12 @@ class TracksView extends StatelessWidget {
                   },
                 ),
                 onTap: () {
-                  Get.to(MusicPlayerView(
-                    songs: snapshot.data!,
-                    index: index,
-                  ));
+                  Get.to(
+                    MusicPlayerView(
+                      songs: snapshot.data!,
+                      index: index,
+                    ),
+                  );
                 },
               );
             },
