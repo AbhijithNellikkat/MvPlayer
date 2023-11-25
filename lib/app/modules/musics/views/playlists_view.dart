@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mv_player/app/modules/musics/controllers/playlist_controller.dart';
 import 'package:mv_player/app/modules/musics/views/playlist_details_view.dart';
+import 'package:mv_player/app/modules/musics/widgets/delete_playlist_confirmation_dialog_widget.dart';
+import 'package:mv_player/app/modules/musics/widgets/rename_playlist_dialog_widget.dart';
 
 import '../../../common/widgets/toast_message_widget.dart';
 import '../../../data/db_functions.dart';
@@ -23,8 +25,7 @@ class PlaylistsView extends StatelessWidget {
       backgroundColor: Constants.scaffoldBgColor,
       body: GetBuilder<PlaylistController>(builder: (context) {
         return FutureBuilder<List<String>>(
-          future: dbFunctions
-              .getPlaylistNames(), // Assuming you have a method to get playlist names
+          future: dbFunctions.getPlaylistNames(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -85,14 +86,13 @@ class PlaylistsView extends StatelessWidget {
                           PopupMenuItem(
                             child: TextButton(
                               onPressed: () async {
-                                await dbFunctions.deletePlaylist(playlistName);
-                                playlistController.refreshTheApp();
-                                toastMessageWidget(
-                                  message:
-                                      "The playlist list deleted permanently ❗",
-                                  gravity: ToastGravity.TOP,
-                                );
                                 Get.back();
+                                deletePlaylistComfirmationDialogWidget(
+                                  context: context,
+                                  dbFunctions: dbFunctions,
+                                  playlistController: playlistController,
+                                  playlistName: playlistName,
+                                );
                               },
                               child: Text(
                                 "Delete the playlist",
@@ -103,24 +103,8 @@ class PlaylistsView extends StatelessWidget {
                           PopupMenuItem(
                             child: TextButton(
                               onPressed: () async {
-                                String? newPlaylistName =
-                                    await showRenameDialog(
-                                        context, playlistName);
-
-                                if (newPlaylistName!.isNotEmpty) {
-                                  await dbFunctions.renamePlaylist(
-                                    oldPlaylistName: playlistName,
-                                    newPlaylistName: newPlaylistName,
-                                  );
-
-                                  playlistController.refreshTheApp();
-                                  toastMessageWidget(
-                                    message:
-                                        "Playlist renamed to $newPlaylistName ✨",
-                                    gravity: ToastGravity.TOP,
-                                  );
-                                  Get.back();
-                                }
+                                Get.back();
+                                await renamePlaylist(context, playlistName);
                               },
                               child: Text(
                                 "Rename the playlist",
@@ -156,35 +140,23 @@ class PlaylistsView extends StatelessWidget {
       ),
     );
   }
-}
 
-Future<String?> showRenameDialog(BuildContext context, String oldName) async {
-  TextEditingController newNameController = TextEditingController();
+  Future<void> renamePlaylist(BuildContext context, String playlistName) async {
+    String? newPlaylistName = await renamePlaylistDialogWidget(
+        context: context, oldName: playlistName);
 
-  return await showDialog<String>(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text("Rename Playlist"),
-        content: TextField(
-          controller: newNameController,
-          decoration: InputDecoration(hintText: "Enter new name"),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(newNameController.text.trim());
-            },
-            child: Text("Rename"),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop("");
-            },
-            child: Text("Cancel"),
-          ),
-        ],
+    if (newPlaylistName!.isNotEmpty) {
+      await dbFunctions.renamePlaylist(
+        oldPlaylistName: playlistName,
+        newPlaylistName: newPlaylistName,
       );
-    },
-  );
+
+      playlistController.refreshTheApp();
+      toastMessageWidget(
+        message: "Playlist renamed to $newPlaylistName ✨",
+        gravity: ToastGravity.TOP,
+      );
+      Get.back();
+    }
+  }
 }

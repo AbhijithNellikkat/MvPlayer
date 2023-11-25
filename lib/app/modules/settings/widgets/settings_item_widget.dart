@@ -1,7 +1,9 @@
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mv_player/app/utils/constants/constants.dart';
 
-class SettingsItems extends StatelessWidget {
+class SettingsItemWidget extends StatelessWidget {
   final IconData icons;
 
   final String title;
@@ -15,7 +17,7 @@ class SettingsItems extends StatelessWidget {
   final int? titleMaxLine;
   final int? subtitleMaxLine;
 
-  const SettingsItems({
+  const SettingsItemWidget({
     super.key,
     required this.icons,
     required this.title,
@@ -41,7 +43,7 @@ class SettingsItems extends StatelessWidget {
             color: backgroundColor,
             borderRadius: BorderRadius.circular(6),
           ),
-          padding: EdgeInsets.all(5),
+          padding: const EdgeInsets.all(5),
           child: Icon(
             icons,
             size: SettingsScreenUtils.settingsGroupIconSize,
@@ -50,7 +52,11 @@ class SettingsItems extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: titleStyle ?? TextStyle(fontWeight: FontWeight.bold),
+          style: titleStyle ??
+              GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
+                color: Constants.white,
+              ),
           maxLines: titleMaxLine,
         ),
         subtitle: (subtitle != null)

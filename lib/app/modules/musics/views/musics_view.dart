@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/home/controllers/nav_bar_controller_controller.dart';
-import 'package:mv_player/app/modules/musics/views/favourites_view.dart';
 import 'package:mv_player/app/modules/musics/views/playlists_view.dart';
 import 'package:mv_player/app/modules/musics/views/tracks_view.dart';
 
@@ -16,7 +15,7 @@ class MusicsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: DefaultTabController(
-        length: 3,
+        length: 2,
         child: GetBuilder<NavBarController>(builder: (controller) {
           return Scaffold(
             backgroundColor: Colors.white,
@@ -56,12 +55,12 @@ class MusicsView extends StatelessWidget {
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
-                  Tab(
-                    child: Text(
-                      'Favourties',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )
+                  // Tab(
+                  //   child: Text(
+                  //     'Favourites',
+                  //     style: TextStyle(color: Colors.black),
+                  //   ),
+                  // )
                 ],
               ),
             ),
@@ -69,7 +68,7 @@ class MusicsView extends StatelessWidget {
               children: [
                 TracksView(),
                 PlaylistsView(),
-                FavouritesView(),
+                // FavouritesView(),
               ],
             ),
           );

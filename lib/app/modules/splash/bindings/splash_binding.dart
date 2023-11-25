@@ -5,6 +5,7 @@ import 'package:mv_player/app/modules/settings/controllers/settings_controller.d
 import 'package:mv_player/app/modules/videos/controllers/videos_controller.dart';
 import 'package:mv_player/app/modules/videos/controllers/videos_player_controller.dart';
 
+import '../../musics/controllers/favourites_controller.dart';
 import '../../musics/controllers/music_player_controller.dart';
 import '../../musics/controllers/playlist_controller.dart';
 import '../../musics/controllers/tracks_controller.dart';
@@ -21,6 +22,9 @@ class SplashBinding extends Bindings {
     );
     Get.lazyPut<SettingsController>(
       () => SettingsController(),
+    );
+    Get.lazyPut<FavouritesController>(
+      () => FavouritesController(),
     );
 
     Get.put<VideosPlayerController>(VideosPlayerController());

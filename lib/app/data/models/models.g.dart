@@ -17,9 +17,10 @@ class MusicModelAdapter extends TypeAdapter<MusicModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return MusicModel(
-        playlist: (fields[0] as Map).map((dynamic k, dynamic v) =>
-            MapEntry(k as String, (v as List).cast<SongModel>())),
-        favourties: (fields[1] as List?)?.cast<SongModel>() ?? []);
+      playlist: (fields[0] as Map).map((dynamic k, dynamic v) =>
+          MapEntry(k as String, (v as List).cast<SongModel>())),
+      favourites: (fields[1] as List).cast<SongModel>(),
+    );
   }
 
   @override
@@ -29,7 +30,7 @@ class MusicModelAdapter extends TypeAdapter<MusicModel> {
       ..writeByte(0)
       ..write(obj.playlist)
       ..writeByte(1)
-      ..write(obj.favourties);
+      ..write(obj.favourites);
   }
 
   @override
