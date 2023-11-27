@@ -140,8 +140,6 @@ class DbFunctions {
     favouritesNotifier.value = List.from(favouritesSongs);
   }
 
-  
-
   Future<void> removeFromFavourites({required SongModel song}) async {
     favouritesSongs.remove(song);
 

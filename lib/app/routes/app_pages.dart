@@ -4,7 +4,6 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/bottom_navbar_view.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/musics/bindings/musics_binding.dart';
-import '../modules/musics/views/favourites_view.dart';
 import '../modules/musics/views/musics_view.dart';
 import '../modules/onbording/bindings/onbording_binding.dart';
 import '../modules/onbording/views/onbording_view.dart';
@@ -58,11 +57,11 @@ class AppPages {
       binding: HomeBinding(),
     ),
 
-    GetPage(
-      name: _Paths.FAVOURITES,
-      page: () => FavouritesView(),
-      binding: MusicsBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.FAVOURITES,
+    //   page: () => FavouritesView(),
+    //   binding: MusicsBinding(),
+    // ),
     GetPage(
       name: _Paths.RECENTLY_PLAYED,
       page: () => const RecentlyPlayedView(),
@@ -70,7 +69,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SETTINGS,
-      page: () =>  SettingsView(),
+      page: () => SettingsView(),
       binding: SettingsBinding(),
     ),
   ];

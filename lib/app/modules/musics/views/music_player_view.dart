@@ -79,7 +79,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
         child: StreamBuilder(
           stream: musicPlayerController.audioPlayer.currentIndexStream,
           builder: (context, snapshot) {
-            return Column(
+            return ListView(
               children: [
                 const SizedBox(height: 20),
                 Center(
