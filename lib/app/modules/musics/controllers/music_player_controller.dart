@@ -6,13 +6,15 @@ import 'package:just_audio/just_audio.dart';
 import 'package:mv_player/app/modules/musics/controllers/playlist_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
+import '../../../data/db_functions.dart';
 
 class MusicPlayerController extends GetxController {
   final AudioPlayer audioPlayer = AudioPlayer();
   final OnAudioQuery audioquery = OnAudioQuery();
 
   late PlaylistController playlistController;
-  
+
+  // RxList<SongModel> recentlyPlayed = <SongModel>[].obs;
 
   @override
   void onInit() {
@@ -28,8 +30,6 @@ class MusicPlayerController extends GetxController {
   // ignore: unused_field
   int? _index;
 
-
-
   // Current playback position
   Duration position = Duration.zero;
 
@@ -43,8 +43,11 @@ class MusicPlayerController extends GetxController {
 
   var volume = 1.0.obs;
 
+  late DbFunctions dbFunctions;
+
   MusicPlayerController() {
-    // loadDuration();
+    dbFunctions = DbFunctions();
+    loadDuration();
   }
 
   @override
@@ -59,12 +62,16 @@ class MusicPlayerController extends GetxController {
   }
 
   // Method to play a specific song in the playlist
-  playTheSong({required List<SongModel> songmodel, required index}) {
+  playTheSong({required List<SongModel> songmodel, required index}) async {
     try {
       audioPlayer.setAudioSource(
         playlistController.playthesong(songs: songmodel),
         initialIndex: index,
       );
+
+      // recentlyPlayed.add(songmodel[index]);
+
+      await dbFunctions.addRecentlyPlayedSong(song: songmodel[index]);
       playSong(songmodel[index], index);
     } on Exception {
       log("error playing");
@@ -80,10 +87,8 @@ class MusicPlayerController extends GetxController {
     audioPlayer.play();
   }
 
-  
-
   // Method to toggle play/pause for the currently playing song
-  toggleSong({required String uri}) async {
+  toggleSong() async {
     try {
       audioPlayer.playing ? await audioPlayer.pause() : audioPlayer.play();
       update();
@@ -151,6 +156,4 @@ class MusicPlayerController extends GetxController {
       audioPlayer.dispose();
     }
   }
-
-  
 }

@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../musics/views/recently_played_view.dart';
 import '../controllers/recently_played_controller.dart';
 
 class RecentlyPlayedView extends GetView<RecentlyPlayedController> {
-  
   const RecentlyPlayedView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        Get.to(RecentlyPlayedViews());
+      },
       leading: const CircleAvatar(
         maxRadius: 30,
         backgroundColor: Colors.black,

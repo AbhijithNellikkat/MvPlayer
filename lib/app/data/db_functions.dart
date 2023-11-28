@@ -8,14 +8,15 @@ import 'package:on_audio_query/on_audio_query.dart';
 
 class DbFunctions {
   var box = Hive.box(Constants.boxName);
-  List<SongModel>? songs;
+
 // ======================================================================================
 
   Future<void> createPlaylist({
     required String playlistName,
     required List<SongModel> songs,
   }) async {
-    var data = MusicModel(playlist: {playlistName: songs}, favourites: []);
+    var data = MusicModel(
+        playlist: {playlistName: songs}, favourites: [], recentlyPlayed: []);
     log('$data');
     await box.put(playlistName, data);
     log('songs : ${box.get(playlistName)}');
@@ -39,9 +40,9 @@ class DbFunctions {
     if (existingData != null) {
       // Create a new playlist with the new name and copy the songs
       var newData = MusicModel(
-        playlist: {newPlaylistName: existingData.playlist[oldPlaylistName]!},
-        favourites: existingData.favourites,
-      );
+          playlist: {newPlaylistName: existingData.playlist[oldPlaylistName]!},
+          favourites: existingData.favourites,
+          recentlyPlayed: []);
 
       // Put the new playlist in the box
       await box.put(newPlaylistName, newData);
@@ -123,28 +124,32 @@ class DbFunctions {
 
   // ===================================================================================
 
-  Future<void> addSongToFavourites({required SongModel song}) async {
-    songs?.add(song);
-    log('Favourites songs : $songs');
-  }
+  Future<void> addRecentlyPlayedSong({required SongModel song}) async {
+    var musicModel = box.get(Constants.boxName,
+        defaultValue: MusicModel(
+          playlist: {},
+          favourites: [],
+          recentlyPlayed: [],
+        ));
 
-  Future<void> removeSongFromFavorites(SongModel song) async {
-    var favoritesData = box.get(Constants.favouritesKey);
+    // Add the song to the recently played list
+    musicModel.recentlyPlayed.insert(0, song);
 
-    if (favoritesData != null) {
-      favoritesData.favourites.remove(song);
-      await box.put(Constants.favouritesKey, favoritesData);
-      log('Song removed from favorites: ${song.title}');
-    }
-  }
-
-  Future<List<SongModel>> getFavorites() async {
-    MusicModel? favoritesData = box.get(Constants.favouritesKey);
-
-    if (favoritesData != null) {
-      return List.from(favoritesData.favourites);
+    // Limit the recently played list to 10 songs
+    if (musicModel.recentlyPlayed.length > 10) {
+      musicModel.recentlyPlayed.removeLast();
     }
 
-    return [];
+    await box.put(Constants.boxName, musicModel);
+  }
+
+  Future<List<SongModel>> getRecentlyPlayed() async {
+    MusicModel? musicModel = box.get(Constants.boxName);
+
+    if (musicModel != null) {
+      return List<SongModel>.from(musicModel.recentlyPlayed);
+    } else {
+      return [];
+    }
   }
 }

@@ -116,12 +116,10 @@ class MusicsView extends StatelessWidget {
               children: [
                 TracksView(),
                 PlaylistsView(),
-                FavouritesView(),
+                const FavouritesView(),
               ],
             ),
-
             persistentFooterButtons: [MiniPlayerView()],
-            // persistentFooterAlignment: AlignmentDirectional.topCenter,
           );
         }),
       ),

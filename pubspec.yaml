@@ -13,11 +13,12 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   google_fonts: ^6.1.0
   flutter_onboarding_slider: ^1.0.11
-  curved_navigation_bar: ^1.0.3
   lottie: ^2.7.0
   carousel_slider: ^4.2.1
   anim_search_bar: ^2.0.3
   shimmer: ^3.0.0
+  google_nav_bar: ^5.0.6
+  babstrap_settings_screen: ^0.1.6
   permission_handler: ^9.2.0
   shared_preferences: ^2.2.2
   hive_flutter: ^1.1.0
@@ -31,16 +32,14 @@ dependencies:
  
 
   # ------------------ video section ------------------
-  fetch_all_videos: ^1.0.5
-  file_picker: ^6.1.1
   video_player: ^2.8.1
   photo_manager: ^2.8.1
   chewie: ^1.7.1
-  babstrap_settings_screen: ^0.1.6
+  
   path_provider: ^2.1.1
   fluttertoast: ^8.2.4
-  google_nav_bar: ^5.0.6
-  line_icons: ^2.0.3
+ 
+  
 
 
 flutter_launcher_icons:

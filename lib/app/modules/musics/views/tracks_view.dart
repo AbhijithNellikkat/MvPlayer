@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/data/db_functions.dart';
-import 'package:mv_player/app/modules/musics/controllers/playlist_controller.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
@@ -62,7 +61,7 @@ class TracksView extends StatelessWidget {
                 const Divider(color: Colors.transparent),
             itemCount: tracksController.displayedSongs.length,
             itemBuilder: (context, index) {
-              SongModel song = tracksController.displayedSongs[index];
+              // SongModel song = tracksController.displayedSongs[index];
               return ListTile(
                 leading: QueryArtworkWidget(
                   artworkFit: BoxFit.cover,
@@ -106,7 +105,7 @@ class TracksView extends StatelessWidget {
                       PopupMenuItem(
                         child: TextButton(
                           onPressed: () async {
-                            await dbFunctions.addSongToFavourites(song: song);
+                         
                             Get.back();
                           },
                           child: Text(

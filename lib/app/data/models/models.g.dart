@@ -20,17 +20,20 @@ class MusicModelAdapter extends TypeAdapter<MusicModel> {
       playlist: (fields[0] as Map).map((dynamic k, dynamic v) =>
           MapEntry(k as String, (v as List).cast<SongModel>())),
       favourites: (fields[1] as List).cast<SongModel>(),
+      recentlyPlayed: (fields[2] as List).cast<SongModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, MusicModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.playlist)
       ..writeByte(1)
-      ..write(obj.favourites);
+      ..write(obj.favourites)
+      ..writeByte(2)
+      ..write(obj.recentlyPlayed);
   }
 
   @override

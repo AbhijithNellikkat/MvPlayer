@@ -12,7 +12,9 @@ class MusicPlayingProgressBarWidget extends StatelessWidget {
       required this.progressBarColor,
       required this.baseBarColor,
       required this.timeLabelTextColor,
-      this.thumbRadius = 8});
+      this.thumbRadius = 8,
+      required this.fontSize,
+      required this.timeLabelLocation});
 
   final MusicPlayerController musicPlayerController;
   final Color thumbColor;
@@ -20,6 +22,8 @@ class MusicPlayingProgressBarWidget extends StatelessWidget {
   final Color baseBarColor;
   final Color timeLabelTextColor;
   final double thumbRadius;
+  final double fontSize;
+  final TimeLabelLocation timeLabelLocation;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class MusicPlayingProgressBarWidget extends StatelessWidget {
       stream: musicPlayerController.audioPlayer.positionStream,
       builder: (context, stream) {
         return ProgressBar(
-          timeLabelLocation: TimeLabelLocation.none,
+          timeLabelLocation: timeLabelLocation,
           progress: stream.data ?? Duration.zero,
           total: Duration(
               milliseconds: musicPlayerController.currentlyPlaying.duration!),
@@ -38,8 +42,8 @@ class MusicPlayingProgressBarWidget extends StatelessWidget {
           barCapShape: BarCapShape.round,
           thumbCanPaintOutsideBar: true,
           progressBarColor: progressBarColor,
-          timeLabelTextStyle:
-              GoogleFonts.poppins(fontSize: 10, color: Colors.grey),
+          timeLabelTextStyle: GoogleFonts.poppins(
+              fontSize: fontSize, color: timeLabelTextColor),
         );
       },
     );

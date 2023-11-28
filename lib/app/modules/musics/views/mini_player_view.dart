@@ -1,3 +1,4 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -84,41 +85,36 @@ class MiniPlayerView extends StatelessWidget {
                           ],
                         ),
                         GetBuilder<MusicPlayerController>(
-                          builder: (controller) {
-                            bool isPlaying = controller.audioPlayer.playing;
-                            return InkWell(
-                              onTap: () async {
-                                isPlaying
-                                    ? await audioPlayer.pause()
-                                    : audioPlayer.play();
-                              },
-                              child: isPlaying
-                                  ? const Padding(
-                                      padding: EdgeInsets.all(10.0),
-                                      child: Icon(
+                            builder: (controller) {
+                          bool isPlaying = controller.audioPlayer.playing;
+                          return Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.toggleSong();
+                                },
+                                child: isPlaying
+                                    ? const Icon(
                                         Constants.musicPause,
                                         size: 30,
                                         color: Constants.white,
-                                      ),
-                                    )
-                                  : const Padding(
-                                      padding: EdgeInsets.all(10.0),
-                                      child: Icon(
+                                      )
+                                    : const Icon(
                                         Constants.musicPlayArrow,
                                         size: 30,
                                         color: Constants.white,
                                       ),
-                                    ),
-                            );
-                          },
-                        ),
+                              ));
+                        }),
                       ],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                        top: 7, bottom: 6, left: 5, right: 5),
+                        top: 9, bottom: 6, left: 5, right: 5),
                     child: MusicPlayingProgressBarWidget(
+                      timeLabelLocation: TimeLabelLocation.none,
+                      fontSize: 0,
                       thumbRadius: 0,
                       baseBarColor: Colors.grey,
                       progressBarColor: Constants.white,

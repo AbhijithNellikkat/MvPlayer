@@ -265,22 +265,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
-  curved_navigation_bar:
-    dependency: "direct main"
-    description:
-      name: curved_navigation_bar
-      sha256: ea6412d00c5d83501bbf1cf9d1ac2ff11a20fbaf910c103c95ace7de82910334
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.3"
-  dart_pubspec_licenses:
-    dependency: transitive
-    description:
-      name: dart_pubspec_licenses
-      sha256: "38680e2d2fc41df3a0d435d0955b91acc382aeefcb89ef4738f8167c8288a29d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.2"
   dart_style:
     dependency: transitive
     description:
@@ -305,14 +289,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
-  fetch_all_videos:
-    dependency: "direct main"
-    description:
-      name: fetch_all_videos
-      sha256: "77e742e67d1ba58496ee2aa5b390dd1123f92fdeaeeeea5301596b6d4e2812aa"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.5"
   ffi:
     dependency: transitive
     description:
@@ -329,14 +305,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
-  file_picker:
-    dependency: "direct main"
-    description:
-      name: file_picker
-      sha256: "4e42aacde3b993c5947467ab640882c56947d9d27342a5b6f2895b23956954a6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.1.1"
   fixnum:
     dependency: transitive
     description:
@@ -382,22 +350,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.11"
-  flutter_oss_licenses:
-    dependency: transitive
-    description:
-      name: flutter_oss_licenses
-      sha256: eb15e1146b101dca063a177f6d339dfb85b639a9e2d2b71c18188d5fb2144869
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
-  flutter_plugin_android_lifecycle:
-    dependency: transitive
-    description:
-      name: flutter_plugin_android_lifecycle
-      sha256: b068ffc46f82a55844acfa4fdbb61fad72fa2aef0905548419d97f0f95c456da
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.17"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -592,14 +544,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.9"
-  line_icons:
-    dependency: "direct main"
-    description:
-      name: line_icons
-      sha256: "249d781d922f5437ac763d9c8f5a02cf5b499a6dc3f85e4b92e074cff0a932ab"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   lints:
     dependency: transitive
     description:

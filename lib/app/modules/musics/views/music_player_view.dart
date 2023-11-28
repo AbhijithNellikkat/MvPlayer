@@ -1,3 +1,4 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -127,6 +128,8 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                       Padding(
                         padding: const EdgeInsets.all(18.0),
                         child: MusicPlayingProgressBarWidget(
+                          timeLabelLocation: TimeLabelLocation.below,
+                          fontSize: 12,
                           musicPlayerController: musicPlayerController,
                           baseBarColor: Colors.grey,
                           thumbColor: Constants.black,
@@ -165,8 +168,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                   )),
                               InkWell(
                                 onTap: () {
-                                  controller.toggleSong(
-                                      uri: widget.songs[widget.index].uri!);
+                                  controller.toggleSong();
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
