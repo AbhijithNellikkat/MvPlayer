@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mv_player/app/data/db_functions.dart';
 import 'package:mv_player/app/modules/musics/controllers/playlist_controller.dart';
+import 'package:mv_player/app/utils/constants/constants.dart';
 
 import '../../../common/widgets/toast_message_widget.dart';
 
@@ -17,8 +19,15 @@ Future<void> deletePlaylistComfirmationDialogWidget({
     builder: (context) {
       return AlertDialog(
         title: const Text("Delete Playlist"),
-        content: Text(
-            'Are you sure you want to delete the playlist $playlistName ?'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Lottie.asset(Constants.deleteAnimation),
+            Text(
+                'Are you sure you want to delete the playlist $playlistName ?'),
+          ],
+        ),
         actions: <Widget>[
           TextButton(
             onPressed: () async {

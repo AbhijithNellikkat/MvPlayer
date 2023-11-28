@@ -91,7 +91,7 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
               const SizedBox(height: 10),
-              const MyFavouritesWidget(),
+              MyFavouritesWidget(),
               const SizedBox(height: 10),
               const RecentlyPlayedView(),
               const SizedBox(height: 20),

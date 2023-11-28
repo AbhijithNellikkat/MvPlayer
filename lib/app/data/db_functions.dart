@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mv_player/app/data/models/models.dart';
@@ -9,11 +8,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 
 class DbFunctions {
   var box = Hive.box(Constants.boxName);
-  List<SongModel> favouritesSongs = [];
-
-  // Initialize favouritesNotifier with an empty list
-  final favouritesNotifier = ValueNotifier<List<SongModel>>([]);
-
+  List<SongModel>? songs;
 // ======================================================================================
 
   Future<void> createPlaylist({
@@ -128,25 +123,28 @@ class DbFunctions {
 
   // ===================================================================================
 
-  Future<void> addToFavourites({required SongModel song}) async {
-    log('Fav song : ${song.title}');
-
-    favouritesSongs.add(song);
-
-    var data = MusicModel(playlist: {}, favourites: favouritesSongs);
-    box.put('favSong', data);
-
-    // Update the ValueNotifier
-    favouritesNotifier.value = List.from(favouritesSongs);
+  Future<void> addSongToFavourites({required SongModel song}) async {
+    songs?.add(song);
+    log('Favourites songs : $songs');
   }
 
-  Future<void> removeFromFavourites({required SongModel song}) async {
-    favouritesSongs.remove(song);
+  Future<void> removeSongFromFavorites(SongModel song) async {
+    var favoritesData = box.get(Constants.favouritesKey);
 
-    var data = MusicModel(playlist: {}, favourites: favouritesSongs);
-    box.put('favSong', data);
+    if (favoritesData != null) {
+      favoritesData.favourites.remove(song);
+      await box.put(Constants.favouritesKey, favoritesData);
+      log('Song removed from favorites: ${song.title}');
+    }
+  }
 
-    // Update the ValueNotifier
-    favouritesNotifier.value = List.from(favouritesSongs);
+  Future<List<SongModel>> getFavorites() async {
+    MusicModel? favoritesData = box.get(Constants.favouritesKey);
+
+    if (favoritesData != null) {
+      return List.from(favoritesData.favourites);
+    }
+
+    return [];
   }
 }

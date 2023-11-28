@@ -7,6 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mv_player/app/data/models/models.dart';
 import 'package:mv_player/app/data/models/songmodel_adapter.dart';
 import 'package:mv_player/app/modules/splash/bindings/splash_binding.dart';
+import 'package:mv_player/app/modules/splash/controllers/splash_controller.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -31,6 +32,8 @@ Future<void> main() async {
 
   await Hive.openBox(Constants.boxName);
 
+ 
+
   runApp(
     GetMaterialApp(
       title: "Mv Player",
@@ -40,11 +43,13 @@ Future<void> main() async {
       initialBinding: SplashBinding(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.white,
-            primary: Colors.black,
-            ),
+          seedColor: Colors.white,
+          primary: Colors.black,
+        ),
         useMaterial3: true,
       ),
     ),
   );
 }
+
+

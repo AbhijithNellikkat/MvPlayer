@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mv_player/app/data/db_functions.dart';
+import 'package:mv_player/app/modules/musics/controllers/playlist_controller.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
@@ -10,8 +12,9 @@ import 'music_player_view.dart';
 
 class TracksView extends StatelessWidget {
   final TracksController tracksController = Get.find();
-  final TextEditingController searchController = TextEditingController();
 
+  final TextEditingController searchController = TextEditingController();
+  final DbFunctions dbFunctions = DbFunctions();
   TracksView({super.key});
 
   @override
@@ -59,6 +62,7 @@ class TracksView extends StatelessWidget {
                 const Divider(color: Colors.transparent),
             itemCount: tracksController.displayedSongs.length,
             itemBuilder: (context, index) {
+              SongModel song = tracksController.displayedSongs[index];
               return ListTile(
                 leading: QueryArtworkWidget(
                   artworkFit: BoxFit.cover,
@@ -101,8 +105,9 @@ class TracksView extends StatelessWidget {
                     return [
                       PopupMenuItem(
                         child: TextButton(
-                          onPressed: () {
-                            // Add to favorites functionality
+                          onPressed: () async {
+                            await dbFunctions.addSongToFavourites(song: song);
+                            Get.back();
                           },
                           child: Text(
                             "Add to favorites",
@@ -161,6 +166,7 @@ class TracksView extends StatelessWidget {
                       index: index,
                     ),
                   );
+
                 },
               );
             },

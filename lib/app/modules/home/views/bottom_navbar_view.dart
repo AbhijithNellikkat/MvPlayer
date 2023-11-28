@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:mv_player/app/modules/home/views/home_view.dart';
 import 'package:mv_player/app/modules/settings/views/settings_view.dart';
 
@@ -30,34 +31,56 @@ class BottomNavbarView extends StatelessWidget {
               SettingsView(),
             ],
           ),
-          bottomNavigationBar: CurvedNavigationBar(
-            backgroundColor: Colors.white,
-            color: Colors.black,
-            index: navBarController.tabIndex,
-            key: bottomNavigationKey,
-            items: const <Widget>[
-              Icon(
-                Icons.home,
-                size: 30,
-                color: Colors.white,
+          bottomNavigationBar: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 20,
+                  color: Colors.black.withOpacity(.1),
+                )
+              ],
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+                child: GNav(
+                  rippleColor: Colors.grey[300]!,
+                  hoverColor: Colors.grey[100]!,
+                  gap: 8,
+                  activeColor: Colors.black,
+                  iconSize: 24,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  duration: const Duration(milliseconds: 400),
+                  tabBackgroundColor: Colors.grey[100]!,
+                  color: Colors.black,
+                  tabs: const [
+                    GButton(
+                      icon: Icons.home,
+                      text: 'Home',
+                    ),
+                    GButton(
+                      icon: Icons.music_note,
+                      text: 'Musics',
+                    ),
+                    GButton(
+                      icon: Icons.play_circle_fill_outlined,
+                      text: 'videos',
+                    ),
+                    GButton(
+                      icon: Icons.settings,
+                      text: 'settings',
+                    ),
+                  ],
+                  selectedIndex: navBarController.tabIndex,
+                  onTabChange: (index) {
+                    navBarController.changeTabIndex(index);
+                  },
+                ),
               ),
-              Icon(
-                Icons.music_note,
-                size: 30,
-                color: Colors.white,
-              ),
-              Icon(
-                Icons.play_circle_fill_outlined,
-                size: 30,
-                color: Colors.white,
-              ),
-              Icon(
-                Icons.settings,
-                size: 30,
-                color: Colors.white,
-              ),
-            ],
-            onTap: navBarController.changeTabIndex,
+            ),
           ),
         );
       },

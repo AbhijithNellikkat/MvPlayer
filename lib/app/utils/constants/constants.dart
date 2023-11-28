@@ -22,7 +22,7 @@ class Constants {
   static const noPlaylist = 'No playlist here';
 
   // ======================= Images  =======================
-  static const appSplashAnimation = "assets/animations/app_splash.json";
+
   static const emptyBoxAnimation = 'assets/animations/emptyBox.json';
 
   static const musicOnbordingImage = 'assets/images/music_onbording.jpg';
@@ -38,6 +38,8 @@ class Constants {
 
   static const nullArtworkWidget =
       'assets/animations/musicplayer_nullArtwork.json';
+
+  static const deleteAnimation = 'assets/animations/delete.json';
 
   // ------------------- Vertical Spaces -------------------
   static const formTextFormFieldVerticalSpace = SizedBox(height: 18);

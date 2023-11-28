@@ -159,8 +159,9 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Constants.black,
         onPressed: () async {
-          List<SongModel> allSongs =
-              await widget.tracksController.fetchAllSongs();
+          await widget.tracksController.fetchAllSongs();
+
+          List<SongModel> allSongs = widget.tracksController.allSongs;
 
           Get.bottomSheet(
             backgroundColor: Constants.black,

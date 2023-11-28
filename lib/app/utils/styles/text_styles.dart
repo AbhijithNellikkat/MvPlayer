@@ -14,8 +14,8 @@ TextStyle onbordingDescription = GoogleFonts.poppins(
 );
 
 // ================= Openning screen ================
-TextStyle openningScreenHeading =
-    GoogleFonts.poppins(fontSize: 35, fontWeight: FontWeight.bold);
+TextStyle openningScreenHeading = GoogleFonts.poppins(
+    fontSize: 35, fontWeight: FontWeight.bold, color: Constants.black);
 
 TextStyle openningScreenDescription = GoogleFonts.poppins(fontSize: 12);
 

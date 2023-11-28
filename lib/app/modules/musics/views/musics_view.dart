@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/home/controllers/nav_bar_controller_controller.dart';
 import 'package:mv_player/app/modules/musics/views/favourites_view.dart';
+import 'package:mv_player/app/modules/musics/views/mini_player_view.dart';
 import 'package:mv_player/app/modules/musics/views/playlists_view.dart';
 import 'package:mv_player/app/modules/musics/views/tracks_view.dart';
 
@@ -118,6 +119,9 @@ class MusicsView extends StatelessWidget {
                 FavouritesView(),
               ],
             ),
+
+            persistentFooterButtons: [MiniPlayerView()],
+            // persistentFooterAlignment: AlignmentDirectional.topCenter,
           );
         }),
       ),

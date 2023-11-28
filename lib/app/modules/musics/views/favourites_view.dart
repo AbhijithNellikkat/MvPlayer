@@ -15,7 +15,7 @@ class FavouritesView extends GetView {
       body: Column(
         children: [
           const SizedBox(height: 30),
-          const MyFavouritesWidget(),
+           MyFavouritesWidget(),
           const SizedBox(height: 120),
           Column(
             children: [

@@ -1,4 +1,3 @@
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +7,7 @@ import 'package:mv_player/app/modules/musics/controllers/music_player_controller
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
+import '../widgets/music_playing_progressbar_widget.dart';
 import '../widgets/player_bottomsheet_widget.dart';
 
 class MusicPlayerView extends StatefulWidget {
@@ -126,24 +126,13 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                       const SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.all(18.0),
-                        child: StreamBuilder(
-                          stream:
-                              musicPlayerController.audioPlayer.positionStream,
-                          builder: (context, stream) {
-                            return ProgressBar(
-                              progress: stream.data ?? Duration.zero,
-                              total: Duration(
-                                  milliseconds: musicPlayerController
-                                      .currentlyPlaying.duration!),
-                              onSeek: musicPlayerController.audioPlayer.seek,
-                              thumbColor: Constants.black,
-                              baseBarColor: Colors.grey,
-                              progressBarColor: Constants.black,
-                              timeLabelLocation: TimeLabelLocation.below,
-                              timeLabelTextStyle: GoogleFonts.poppins(
-                                  color: Constants.black, fontSize: 13),
-                            );
-                          },
+                        child: MusicPlayingProgressBarWidget(
+                          musicPlayerController: musicPlayerController,
+                          baseBarColor: Colors.grey,
+                          thumbColor: Constants.black,
+                          progressBarColor: Constants.black,
+                          timeLabelTextColor: Constants.black,
+                          thumbRadius: 9,
                         ),
                       ),
                       GetBuilder<MusicPlayerController>(
