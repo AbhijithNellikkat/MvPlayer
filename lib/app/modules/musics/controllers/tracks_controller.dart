@@ -9,7 +9,6 @@ class TracksController extends GetxController {
 
   // List to hold filtered/searched songs
   RxList<SongModel> displayedSongs = <SongModel>[].obs;
-  
 
   @override
   void onInit() {

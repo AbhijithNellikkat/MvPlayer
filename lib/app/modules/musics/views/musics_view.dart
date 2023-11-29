@@ -29,21 +29,54 @@ class MusicsView extends StatelessWidget {
                 'Music',
                 style: TextStyle(color: Colors.black),
               ),
-              // actions: [
-              //   const SizedBox(height: 20),
-              //   Padding(
-              //     padding: const EdgeInsets.symmetric(
-              //       horizontal: 20,
-              //     ),
-              //     child: AnimSearchBar(
-              //       rtl: true,
-              //       onSubmitted: (p0) {},
-              //       width: 300,
-              //       textController: textController,
-              //       onSuffixTap: () {},
-              //     ),
-              //   ),
-              // ],
+              bottom: const TabBar(
+                dividerColor: Colors.black,
+                tabs: [
+                  Tab(
+                    child: Text(
+                      'Tracks',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  Tab(
+                    child: Text(
+                      'Playlists',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  Tab(
+                    child: Text(
+                      'Favourites',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            body: TabBarView(
+              children: [
+                TracksView(),
+                PlaylistsView(),
+                const FavouritesView(),
+              ],
+            ),
+            persistentFooterButtons: [MiniPlayerView()],
+          );
+        }),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
               // actions: [
               //   Padding(
               //     padding: const EdgeInsets.all(8.0),
@@ -88,41 +121,3 @@ class MusicsView extends StatelessWidget {
               //     ),
               //   )
               // ],
-              bottom: const TabBar(
-                dividerColor: Colors.black,
-                tabs: [
-                  Tab(
-                    child: Text(
-                      'Tracks',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ),
-                  Tab(
-                    child: Text(
-                      'Playlists',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ),
-                  Tab(
-                    child: Text(
-                      'Favourites',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            body: TabBarView(
-              children: [
-                TracksView(),
-                PlaylistsView(),
-                const FavouritesView(),
-              ],
-            ),
-            persistentFooterButtons: [MiniPlayerView()],
-          );
-        }),
-      ),
-    );
-  }
-}

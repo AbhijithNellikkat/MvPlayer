@@ -73,6 +73,7 @@ class MusicPlayerController extends GetxController {
 
       await dbFunctions.addRecentlyPlayedSong(song: songmodel[index]);
       playSong(songmodel[index], index);
+      update();
     } on Exception {
       log("error playing");
     } catch (e) {

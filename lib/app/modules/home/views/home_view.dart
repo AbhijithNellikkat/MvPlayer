@@ -37,6 +37,7 @@ class _HomeViewState extends State<HomeView> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Constants.black,
+          elevation: 2,
         ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(

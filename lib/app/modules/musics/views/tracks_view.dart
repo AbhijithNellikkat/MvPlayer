@@ -105,7 +105,6 @@ class TracksView extends StatelessWidget {
                       PopupMenuItem(
                         child: TextButton(
                           onPressed: () async {
-                         
                             Get.back();
                           },
                           child: Text(
@@ -165,7 +164,6 @@ class TracksView extends StatelessWidget {
                       index: index,
                     ),
                   );
-
                 },
               );
             },
