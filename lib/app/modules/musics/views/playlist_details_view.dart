@@ -61,7 +61,7 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
                   child: Lottie.asset(Constants.emptyBoxAnimation),
                 ),
                 Text(
-                  'No songs in the playlist.',
+                  'No songs in the playlist ❗',
                   style: GoogleFonts.poppins(fontSize: 11),
                 )
               ],

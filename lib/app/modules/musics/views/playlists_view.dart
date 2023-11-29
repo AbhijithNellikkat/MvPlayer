@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mv_player/app/modules/musics/controllers/playlist_controller.dart';
 import 'package:mv_player/app/modules/musics/views/playlist_details_view.dart';
-import 'package:mv_player/app/modules/musics/widgets/delete_playlist_confirmation_dialog_widget.dart';
+import 'package:mv_player/app/modules/musics/widgets/delete_comfirmation_dialog_widget.dart';
 import 'package:mv_player/app/modules/musics/widgets/rename_playlist_dialog_widget.dart';
 
 import '../../../common/widgets/toast_message_widget.dart';
@@ -87,12 +87,21 @@ class PlaylistsView extends StatelessWidget {
                             child: TextButton(
                               onPressed: () async {
                                 Get.back();
-                                deletePlaylistComfirmationDialogWidget(
-                                  context: context,
-                                  dbFunctions: dbFunctions,
-                                  playlistController: playlistController,
-                                  playlistName: playlistName,
-                                );
+                                deleteComfirmationDialogWidget(
+                                    context: context,
+                                    onPressed: () async {
+                                      await dbFunctions
+                                          .deletePlaylist(playlistName);
+                                      playlistController.refreshTheApp();
+                                      Get.back();
+                                      toastMessageWidget(
+                                        message:
+                                            "The playlist list deleted permanently ❗",
+                                        gravity: ToastGravity.TOP,
+                                      );
+                                    },
+                                    deleteConfirmMessage:
+                                        'Are you sure you want to delete the playlist $playlistName ?');
                               },
                               child: Text(
                                 "Delete the playlist",

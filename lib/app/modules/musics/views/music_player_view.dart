@@ -97,6 +97,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                           child: Lottie.asset(Constants.nullArtworkWidget,
                               fit: BoxFit.cover),
                         ),
+                        quality: 100,
                         artworkQuality: FilterQuality.high,
                         size: MediaQuery.sizeOf(context).width.toInt(),
                         artworkHeight: 350,

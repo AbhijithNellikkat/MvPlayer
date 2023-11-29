@@ -57,7 +57,7 @@ class MusicsView extends StatelessWidget {
               children: [
                 TracksView(),
                 PlaylistsView(),
-                const FavouritesView(),
+                FavouritesView(),
               ],
             ),
             persistentFooterButtons: [MiniPlayerView()],
