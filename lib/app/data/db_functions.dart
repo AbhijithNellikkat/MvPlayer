@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mv_player/app/data/models/models.dart';
-import 'package:mv_player/app/utils/constants/constants.dart';
+import 'models/models.dart';
+import '../utils/constants/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class DbFunctions {

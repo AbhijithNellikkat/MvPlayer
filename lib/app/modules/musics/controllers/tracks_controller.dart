@@ -10,10 +10,14 @@ class TracksController extends GetxController {
   // List to hold filtered/searched songs
   RxList<SongModel> displayedSongs = <SongModel>[].obs;
 
+  // List to hold all albums
+  RxList<AlbumModel> allAlbums = <AlbumModel>[].obs;
+
   @override
   void onInit() {
     // Fetch all songs when the controller is initialized
     fetchAllSongs();
+    fetchAlbums();
     super.onInit();
   }
 
@@ -27,6 +31,15 @@ class TracksController extends GetxController {
     );
     // Initially, set displayedSongs to be the same as allSongs
     displayedSongs.value = List.from(allSongs);
+  }
+
+  // Method to fetch all albums from the device
+  fetchAlbums() async {
+    allAlbums.value = await audioQuery.queryAlbums(
+        sortType: AlbumSortType.ARTIST,
+        ignoreCase: true,
+        orderType: OrderType.DESC_OR_GREATER,
+        uriType: UriType.EXTERNAL);
   }
 
   // Method to filter songs based on the search query

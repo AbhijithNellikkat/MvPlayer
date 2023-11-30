@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -13,25 +14,37 @@ Future<void> deleteComfirmationDialogWidget({
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text("Delete Playlist"),
+        title: Text(
+          "Delete Playlist",
+          style: GoogleFonts.poppins(color: Constants.white),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Lottie.asset(Constants.deleteAnimation),
-            Text(deleteConfirmMessage),
+            Text(
+              deleteConfirmMessage,
+              style: GoogleFonts.poppins(color: Constants.white),
+            ),
           ],
         ),
         actions: <Widget>[
           TextButton(
             onPressed: onPressed,
-            child: const Text("Delete"),
+            child: Text(
+              "Delete",
+              style: GoogleFonts.poppins(color: Constants.white),
+            ),
           ),
           TextButton(
             onPressed: () {
               Get.back();
             },
-            child: const Text("Cancel"),
+            child: Text(
+              "Cancel",
+              style: GoogleFonts.poppins(color: Constants.white),
+            ),
           ),
         ],
       );

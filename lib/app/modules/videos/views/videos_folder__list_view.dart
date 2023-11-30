@@ -3,14 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/videos/controllers/videos_controller.dart';
 
-class ListViewWidget extends StatefulWidget {
-  const ListViewWidget({super.key});
+class ListViewWidget extends StatelessWidget {
+  ListViewWidget({super.key});
 
-  @override
-  State<ListViewWidget> createState() => _ListViewWidgetState();
-}
-
-class _ListViewWidgetState extends State<ListViewWidget> {
   final VideosController videosController = Get.find();
 
   @override
@@ -24,7 +19,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
             return ListTile(
               leading: const Icon(
                 Icons.folder,
-                color: Colors.black,
+                color: Color.fromRGBO(0, 0, 0, 1),
                 size: 40,
               ),
               title: Text(

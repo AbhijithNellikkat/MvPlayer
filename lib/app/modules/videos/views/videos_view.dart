@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mv_player/app/modules/videos/views/grid_view.dart';
-import 'package:mv_player/app/modules/videos/views/list_view.dart';
+import 'package:mv_player/app/modules/videos/views/videos_folder_grid_view.dart';
+import 'package:mv_player/app/modules/videos/views/videos_folder__list_view.dart';
 
 class VideosView extends StatefulWidget {
   const VideosView({super.key});

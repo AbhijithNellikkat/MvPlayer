@@ -13,7 +13,6 @@ import 'package:on_audio_query/on_audio_query.dart';
 import '../../../utils/constants/constants.dart';
 import '../../../utils/styles/text_styles.dart';
 import '../controllers/favourites_controller.dart';
-import '../widgets/delete_comfirmation_dialog_widget.dart';
 
 // ignore: must_be_immutable
 class FavouritesView extends StatelessWidget {
@@ -27,7 +26,7 @@ class FavouritesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Constants.black,
+        toolbarHeight: 70,
         actions: [
           IconButton(
               onPressed: () {
@@ -36,8 +35,8 @@ class FavouritesView extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.play_circle_fill_outlined,
-                size: 44,
-                color: Constants.white,
+                size: 55,
+                color: Constants.black,
               )),
           const SizedBox(width: 20)
         ],
@@ -108,23 +107,15 @@ class FavouritesView extends StatelessWidget {
                   },
                   trailing: IconButton(
                     onPressed: () {
+                      favouritesController.removeSongFromFavorites(song);
                       Get.back();
-                      deleteComfirmationDialogWidget(
-                          context: context,
-                          deleteConfirmMessage:
-                              'Are you sure you want to delete the song ${song.title} ❓',
-                          onPressed: () {
-                            favouritesController.removeSongFromFavorites(song);
-                            Get.back();
-                            toastMessageWidget(
-                                message:
-                                    '${song.title} deleted from favourites❗',
-                                gravity: ToastGravity.TOP);
-                          });
+                      toastMessageWidget(
+                          message: '${song.title} deleted from favourites❗',
+                          gravity: ToastGravity.TOP);
                     },
                     icon: const Icon(
-                      Icons.delete_outline_rounded,
-                      color: Colors.red,
+                      Icons.close_rounded,
+                      color: Constants.black,
                     ),
                   ),
                 );

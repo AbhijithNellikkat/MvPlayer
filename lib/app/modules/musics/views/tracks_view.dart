@@ -37,15 +37,14 @@ class TracksView extends StatelessWidget {
             // Call the filterSongs method when the text in the search bar changes
             tracksController.filterSongs(query);
           },
+          showCursor: true,
+          cursorColor: Constants.black,
           style: GoogleFonts.poppins(color: Constants.black, fontSize: 14),
           decoration: InputDecoration(
-              hintText: 'Search',
-              hintStyle: GoogleFonts.poppins(color: Colors.grey),
-              border: const UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Colors.grey,
-                      style: BorderStyle.solid,
-                      strokeAlign: 1))),
+            hintText: 'Search',
+            hintStyle: GoogleFonts.poppins(color: Colors.grey),
+            border: InputBorder.none,
+          ),
         ),
         actions: [
           IconButton(
@@ -132,11 +131,9 @@ class TracksView extends StatelessWidget {
                       PopupMenuItem(
                         child: TextButton(
                           onPressed: () async {
-                            // Set the selected song
                             selectedSong =
                                 tracksController.displayedSongs[index];
-
-                            // Show the dialog to select a playlist
+                            Get.back();
 
                             await songAddToPlaylistDialogWidget(
                                 context: context,
@@ -167,8 +164,8 @@ class TracksView extends StatelessWidget {
                       ),
                       PopupMenuItem(
                         child: TextButton(
-                          onPressed: () {
-                            // Rename functionality
+                          onPressed: () async {
+                            Get.back();
                           },
                           child: Text(
                             "Rename",

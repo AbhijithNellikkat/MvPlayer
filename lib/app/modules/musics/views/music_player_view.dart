@@ -167,7 +167,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                     Constants.skipPrevious,
                                     size: 40,
                                   )),
-                              InkWell(
+                              GestureDetector(
                                 onTap: () {
                                   controller.toggleSong();
                                 },

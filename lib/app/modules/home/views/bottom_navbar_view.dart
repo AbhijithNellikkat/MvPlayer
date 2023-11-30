@@ -22,7 +22,7 @@ class BottomNavbarView extends StatelessWidget {
           body: IndexedStack(
             index: navBarController.tabIndex,
             children: [
-              const HomeView(),
+               HomeView(),
               MusicsView(),
               const VideosView(),
               SettingsView(),

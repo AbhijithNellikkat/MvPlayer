@@ -39,10 +39,9 @@ Future<void> main() async {
       debugShowCheckedModeBanner: false,
       initialBinding: SplashBinding(),
       theme: ThemeData(
+        dialogBackgroundColor: Constants.black,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.white,
-          primary: Colors.black,
-        ),
+            seedColor: Colors.white, primary: Colors.black),
         useMaterial3: true,
       ),
     ),

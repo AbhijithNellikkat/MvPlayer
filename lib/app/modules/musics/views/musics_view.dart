@@ -77,47 +77,4 @@ class MusicsView extends StatelessWidget {
 
 
 
-              // actions: [
-              //   Padding(
-              //     padding: const EdgeInsets.all(8.0),
-              //     child: PopupMenuButton(
-              //       itemBuilder: (context) {
-              //         return [
-              //           PopupMenuItem(
-              //             child: TextButton(
-              //               onPressed: () {
-              //                 tracksController.changeSortOption(
-              //                   SortOption.byTitle,
-              //                 );
-              //                 Get.back();
-              //               },
-              //               child: const Text('Sort by Title'),
-              //             ),
-              //           ),
-              //           PopupMenuItem(
-              //             child: TextButton(
-              //               onPressed: () {
-              //                 tracksController.changeSortOption(
-              //                   SortOption.byArtist,
-              //                 );
-              //                 Get.back();
-              //               },
-              //               child: const Text('Sort by Artist'),
-              //             ),
-              //           ),
-              //           PopupMenuItem(
-              //             child: TextButton(
-              //               onPressed: () {
-              //                 tracksController.changeSortOption(
-              //                   SortOption.byDuration,
-              //                 );
-              //                 Get.back();
-              //               },
-              //               child: const Text('Sort by Duration'),
-              //             ),
-              //           ),
-              //         ];
-              //       },
-              //     ),
-              //   )
-              // ],
+             

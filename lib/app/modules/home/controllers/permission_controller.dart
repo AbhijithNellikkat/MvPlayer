@@ -11,6 +11,7 @@ class PermissionController extends GetxController {
       androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
       androidNotificationChannelName: 'Audio playback',
       androidNotificationOngoing: true,
+      
     );
   }
 

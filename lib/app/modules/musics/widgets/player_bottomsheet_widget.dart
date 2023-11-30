@@ -45,8 +45,10 @@ void musicPlayerBottomSheet({
                           ),
                           width: 50,
                           height: 50,
-                          child: Lottie.asset(Constants.nullArtworkWidget,
-                              fit: BoxFit.cover),
+                          child: Lottie.asset(
+                            Constants.nullArtworkWidget,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         artworkQuality: FilterQuality.high,
                         size: MediaQuery.sizeOf(context).width.toInt(),
