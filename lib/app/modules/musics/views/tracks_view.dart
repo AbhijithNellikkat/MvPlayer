@@ -10,8 +10,10 @@ import 'package:on_audio_query/on_audio_query.dart';
 import '../../../common/widgets/toast_message_widget.dart';
 import '../../../utils/constants/constants.dart';
 import '../../../utils/styles/text_styles.dart';
+import '../widgets/add_to_playlist_dialog_widget.dart';
 import 'music_player_view.dart';
 
+// ignore: must_be_immutable
 class TracksView extends StatelessWidget {
   final TracksController tracksController = Get.find();
 
@@ -19,6 +21,8 @@ class TracksView extends StatelessWidget {
   final FavouritesController favouritesController = Get.find();
   final DbFunctions dbFunctions = DbFunctions();
   TracksView({super.key});
+
+  late SongModel selectedSong;
 
   @override
   Widget build(BuildContext context) {
@@ -127,8 +131,18 @@ class TracksView extends StatelessWidget {
                       ),
                       PopupMenuItem(
                         child: TextButton(
-                          onPressed: () {
-                            // Add to playlist functionality
+                          onPressed: () async {
+                            // Set the selected song
+                            selectedSong =
+                                tracksController.displayedSongs[index];
+
+                            // Show the dialog to select a playlist
+
+                            await songAddToPlaylistDialogWidget(
+                                context: context,
+                                dbFunctions: dbFunctions,
+                                selectedSong: selectedSong);
+                            Get.back();
                           },
                           child: Text(
                             "Add to Playlist",
