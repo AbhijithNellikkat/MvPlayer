@@ -22,6 +22,7 @@ Future<void> main() async {
 
   Directory directory = await getApplicationDocumentsDirectory();
   log('directory path :  ${directory.path}');
+
   // Initializes Hive with the path from getApplicationDocumentsDirectory
   Hive.init(directory.path);
 

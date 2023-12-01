@@ -13,11 +13,14 @@ class TracksController extends GetxController {
   // List to hold all albums
   RxList<AlbumModel> allAlbums = <AlbumModel>[].obs;
 
+ 
+
   @override
   void onInit() {
     // Fetch all songs when the controller is initialized
     fetchAllSongs();
     fetchAlbums();
+   
     super.onInit();
   }
 
@@ -41,6 +44,8 @@ class TracksController extends GetxController {
         orderType: OrderType.DESC_OR_GREATER,
         uriType: UriType.EXTERNAL);
   }
+
+  
 
   // Method to filter songs based on the search query
   filterSongs(String query) {

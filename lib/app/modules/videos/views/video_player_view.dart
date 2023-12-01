@@ -7,11 +7,13 @@ import 'package:mv_player/app/modules/videos/controllers/videos_player_controlle
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:photo_manager/photo_manager.dart';
 
+// ignore: must_be_immutable
 class VideoPlayerView extends StatelessWidget {
   final AssetEntity video;
-  final VideosPlayerController videosPlayerController = Get.find();
 
   VideoPlayerView({required this.video, Key? key}) : super(key: key);
+
+  final VideosPlayerController videosPlayerController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +29,8 @@ class VideoPlayerView extends StatelessWidget {
               future: videosPlayerController.initializeVideoPlayer(video),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  // ignore: unnecessary_null_comparison
-                  if (videosPlayerController.chewieController != null) {
-                    return Chewie(
-                      controller: videosPlayerController.chewieController,
-                    );
-                  } else {
-                    return const Center(
-                      child: Text('Error: ChewieController not initialized'),
-                    );
-                  }
+                  return Chewie(
+                      controller: videosPlayerController.chewieController);
                 } else {
                   return const Center(
                     child: CircularProgressIndicator(
@@ -54,15 +48,14 @@ class VideoPlayerView extends StatelessWidget {
               height: 60,
               width: 60,
               child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(
-                  Icons.arrow_back,
-                  size: 23,
-                  color: Constants.white,
-                ),
-              ),
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    weight: 23,
+                    color: Constants.white,
+                  )),
             ),
           )
         ],
@@ -70,3 +63,16 @@ class VideoPlayerView extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+  

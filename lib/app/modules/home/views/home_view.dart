@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 
 import '../../../utils/constants/constants.dart';
-import '../../recentlyPlayed/views/recently_played_view.dart';
+import '../../musics/views/artists_lsit_view.dart';
 import '../controllers/nav_bar_controller_controller.dart';
 
 class HomeView extends StatelessWidget {
@@ -17,7 +18,7 @@ class HomeView extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Constants.white,
-          elevation: 2,
+          elevation: 0,
         ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -25,8 +26,28 @@ class HomeView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              const RecentlyPlayedView(),
-              const SizedBox(height: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Text(
+                      'All Artists',
+                      style: GoogleFonts.poppins(
+                        fontSize: 22,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(12),
+                    width: double.infinity,
+                    height: 120,
+                    child: ArtistListView(),
+                  ),
+
+                  // RecentlyPlayedViews(),
+                ],
+              ),
             ],
           ),
         ),

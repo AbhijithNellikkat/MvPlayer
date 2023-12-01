@@ -32,7 +32,7 @@ class FavouritesView extends StatelessWidget {
               onPressed: () {
                 musicPlayerController.playTheSong(
                     songmodel: favSongs, index: 0);
-              },
+              },                                        
               icon: const Icon(
                 Icons.play_circle_fill_outlined,
                 size: 55,

@@ -1,41 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:mv_player/app/modules/videos/views/videos_folder_grid_view.dart';
+import 'package:get/get.dart';
+import 'package:mv_player/app/modules/videos/controllers/videos_controller.dart';
 import 'package:mv_player/app/modules/videos/views/videos_folder__list_view.dart';
+import 'package:mv_player/app/modules/videos/views/videos_folder_grid_view.dart';
 
-class VideosView extends StatefulWidget {
-  const VideosView({super.key});
+// ignore: must_be_immutable
+class VideosView extends StatelessWidget {
+  VideosView({super.key});
 
-  @override
-  State<VideosView> createState() => _VideosViewState();
-}
-
-class _VideosViewState extends State<VideosView> {
   bool gridView = true;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 0,
+    return GetBuilder<VideosController>(
+      builder: (controller) {
+        return Scaffold(
           backgroundColor: Colors.white,
-          title: const Text(
-            'Folders',
-            style: TextStyle(color: Colors.black),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  gridView = !gridView;
-                });
-              },
-              icon: gridView
-                  ? const Icon(Icons.list_sharp, color: Colors.black)
-                  : const Icon(Icons.grid_view_outlined, color: Colors.black),
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.white,
+            title: const Text(
+              'Folders',
+              style: TextStyle(color: Colors.black),
             ),
-            const SizedBox(width: 10),
-          ],
-        ),
-        body: gridView ?  GridViewWidget() :  ListViewWidget());
+            actions: [
+              IconButton(
+                onPressed: () {
+                  controller.toggleView();
+                },
+                icon: Icon(controller.isGridView.value
+                    ? Icons.list_sharp
+                    : Icons.grid_view_rounded),
+              ),
+              const SizedBox(width: 10),
+            ],
+          ),
+          body:
+              controller.isGridView.value ? GridViewWidget() : ListViewWidget(),
+        );
+      },
+    );
   }
 }

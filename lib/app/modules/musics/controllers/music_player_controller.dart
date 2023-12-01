@@ -157,4 +157,8 @@ class MusicPlayerController extends GetxController {
       audioPlayer.dispose();
     }
   }
+
+  void updateCurrentlyPlayingIndex(int index) {
+    currentlyPlayingIndex = index;
+  }
 }

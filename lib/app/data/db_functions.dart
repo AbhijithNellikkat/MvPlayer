@@ -2,9 +2,10 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'models/models.dart';
-import '../utils/constants/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+
+import '../utils/constants/constants.dart';
+import 'models/models.dart';
 
 class DbFunctions {
   var box = Hive.box(Constants.boxName);
@@ -132,15 +133,19 @@ class DbFunctions {
           recentlyPlayed: [],
         ));
 
-    // Add the song to the recently played list
-    musicModel.recentlyPlayed.insert(0, song);
+    // Check if the song is already in the recently played list
+    if (!musicModel.recentlyPlayed
+        .any((recentSong) => recentSong.id == song.id)) {
+      // Add the song to the recently played list
+      musicModel.recentlyPlayed.insert(0, song);
 
-    // Limit the recently played list to 10 songs
-    if (musicModel.recentlyPlayed.length > 10) {
-      musicModel.recentlyPlayed.removeLast();
+      // Limit the recently played list to 10 songs
+      if (musicModel.recentlyPlayed.length > 10) {
+        musicModel.recentlyPlayed.removeLast();
+      }
+
+      await box.put(Constants.boxName, musicModel);
     }
-
-    await box.put(Constants.boxName, musicModel);
   }
 
   Future<List<SongModel>> getRecentlyPlayed() async {

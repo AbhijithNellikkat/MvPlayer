@@ -7,8 +7,6 @@ import '../modules/musics/bindings/musics_binding.dart';
 import '../modules/musics/views/musics_view.dart';
 import '../modules/onbording/bindings/onbording_binding.dart';
 import '../modules/onbording/views/onbording_view.dart';
-import '../modules/recentlyPlayed/bindings/recently_played_binding.dart';
-import '../modules/recentlyPlayed/views/recently_played_view.dart';
 import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -28,7 +26,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () =>  HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -48,7 +46,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.VIDEOS,
-      page: () => const VideosView(),
+      page: () => VideosView(),
       binding: VideosBinding(),
     ),
     GetPage(
@@ -62,11 +60,7 @@ class AppPages {
     //   page: () => FavouritesView(),
     //   binding: MusicsBinding(),
     // ),
-    GetPage(
-      name: _Paths.RECENTLY_PLAYED,
-      page: () => const RecentlyPlayedView(),
-      binding: RecentlyPlayedBinding(),
-    ),
+ 
     GetPage(
       name: _Paths.SETTINGS,
       page: () => SettingsView(),

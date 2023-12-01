@@ -60,21 +60,10 @@ class MusicsView extends StatelessWidget {
                 FavouritesView(),
               ],
             ),
-            persistentFooterButtons: [MiniPlayerView()],
+            persistentFooterButtons: const [MiniPlayerView()],
           );
         }),
       ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-             

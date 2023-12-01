@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/videos/controllers/videos_controller.dart';
-import 'package:mv_player/app/modules/videos/views/video_player_view.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -47,7 +46,7 @@ class VideosGridInFolderView extends GetView {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    Get.to(VideoPlayerView(video: videos[index]));
+                    // Get.to(VideoPlayerView(video: videos[index]));
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

@@ -91,7 +91,7 @@ class VideosListInFolderView extends StatelessWidget {
                         child: Container(
                           width: 44,
                           height: 15,
-                          color: const Color.fromARGB(93, 17, 17, 17),
+                          color: const Color.fromARGB(255, 17, 17, 17),
                           child: Text(
                             '${videos[index].duration.minutes}',
                             style: const TextStyle(color: Colors.white),

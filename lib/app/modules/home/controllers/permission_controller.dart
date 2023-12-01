@@ -12,6 +12,7 @@ class PermissionController extends GetxController {
       androidNotificationChannelName: 'Audio playback',
       androidNotificationOngoing: true,
       
+      
     );
   }
 

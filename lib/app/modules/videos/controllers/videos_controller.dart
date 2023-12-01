@@ -9,11 +9,18 @@ class VideosController extends GetxController {
   final RxList<AssetEntity> videos = <AssetEntity>[].obs;
   final RxList<AssetPathEntity> folders = <AssetPathEntity>[].obs;
 
+  RxBool isGridView = true.obs;
+
   @override
   void onInit() {
     fetchMediaFolders();
     log('====================== VideosController  onInit ======================');
     super.onInit();
+  }
+
+  void toggleView() {
+    isGridView.toggle();
+    update();
   }
 
   Future<void> fetchMediaFolders() async {
@@ -44,7 +51,8 @@ class VideosController extends GetxController {
       log('Error navigating to videos: $e');
     }
   }
- Future<void> navigateToVideosGridInFolder(
+
+  Future<void> navigateToVideosGridInFolder(
       {required AssetPathEntity folder, required String foldersName}) async {
     try {
       final List<AssetEntity> videos =
@@ -60,7 +68,4 @@ class VideosController extends GetxController {
       log('Error navigating to videos: $e');
     }
   }
-
-
-  
 }

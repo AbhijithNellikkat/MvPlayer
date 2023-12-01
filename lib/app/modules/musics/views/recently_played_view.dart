@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/data/db_functions.dart';
+import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class RecentlyPlayedViews extends GetView {
@@ -10,45 +12,73 @@ class RecentlyPlayedViews extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Recently Played'),
-      ),
-      body: FutureBuilder<List<SongModel>>(
-        future: dbFunctions.getRecentlyPlayed(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          }
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: SizedBox(
+        width: double.infinity,
+        height: 220,
+        child: FutureBuilder<List<SongModel>>(
+          future: dbFunctions.getRecentlyPlayed(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            }
 
-          final recentlyPlayed = snapshot.data ?? [];
+            final recentlyPlayed = snapshot.data ?? [];
 
-          return GridView.builder(
-            itemCount: recentlyPlayed.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3),
-            itemBuilder: (context, index) {
-              final song = recentlyPlayed[index];
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 100,
-                  height: 50,
-                  decoration: const BoxDecoration(color: Colors.black),
-                  child: Padding(
-                    padding: const EdgeInsets.all(11.0),
-                    child: Text(
-                      song.title,
-                      style: const TextStyle(color: Colors.white, fontSize: 12),
-                    ),
-                  ),
-                ),
+            if (recentlyPlayed.isNotEmpty) {
+              return GridView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: recentlyPlayed.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1),
+                itemBuilder: (context, index) {
+                  final song = recentlyPlayed[index];
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 140,
+                        height: 170,
+                        child: QueryArtworkWidget(
+                          artworkFit: BoxFit.cover,
+                          artworkQuality: FilterQuality.high,
+                          artworkBorder: const BorderRadius.all(Radius.zero),
+                          id: song.id,
+                          type: ArtworkType.AUDIO,
+                          nullArtworkWidget: Container(
+                            width: 60,
+                            height: 130,
+                            decoration: const BoxDecoration(
+                              color: Constants.black,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(15),
+                              ),
+                            ),
+                            child: const Icon(
+                              Constants.music,
+                              color: Constants.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        song.title,
+                        style: GoogleFonts.poppins(
+                            color: Constants.black, fontSize: 10),
+                      ),
+                    ],
+                  );
+                },
               );
-            },
-          );
-        },
+            } else {
+              return const SizedBox();
+            }
+          },
+        ),
       ),
     );
   }

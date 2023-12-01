@@ -11,7 +11,7 @@ class AlbumCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150, // Set the desired width for each album card
+      width: 150, 
       margin: const EdgeInsets.all(4),
       child: Card(
         color: Constants.black,
