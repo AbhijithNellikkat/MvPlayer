@@ -42,7 +42,9 @@ Future<void> main() async {
       theme: ThemeData(
         dialogBackgroundColor: Constants.black,
         colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.white, primary: Colors.black),
+          seedColor: Colors.white,
+          primary: Colors.black,
+        ),
         useMaterial3: true,
       ),
     ),

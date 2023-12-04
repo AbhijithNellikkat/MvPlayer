@@ -56,7 +56,6 @@ class PlaylistsView extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(top: 15),
               child: ListView.separated(
-                
                 separatorBuilder: (context, index) => const Divider(
                   color: Colors.transparent,
                 ),
@@ -81,6 +80,7 @@ class PlaylistsView extends StatelessWidget {
                       ),
                     ),
                     title: Text(playlistName),
+                  
                     trailing: PopupMenuButton(
                       itemBuilder: (context) {
                         return [

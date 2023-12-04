@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 
 import '../../../utils/constants/constants.dart';
-import '../../musics/views/artists_lsit_view.dart';
 import '../controllers/nav_bar_controller_controller.dart';
 
 class HomeView extends StatelessWidget {
@@ -42,7 +41,7 @@ class HomeView extends StatelessWidget {
                     margin: const EdgeInsets.all(12),
                     width: double.infinity,
                     height: 120,
-                    child: ArtistListView(),
+                    // child: ArtistListView(),
                   ),
 
                   // RecentlyPlayedViews(),

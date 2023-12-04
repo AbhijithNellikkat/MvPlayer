@@ -27,6 +27,7 @@ class VideosPlayerController extends GetxController {
 
       chewieController = ChewieController(
         videoPlayerController: videoPlayerController,
+        customControls: const MaterialControls(),
         autoPlay: true,
         looping: false,
         placeholder: const Center(
