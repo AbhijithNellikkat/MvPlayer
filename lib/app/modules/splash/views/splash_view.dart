@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -12,6 +13,12 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     splashController.delayAndNavigate();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     return Scaffold(
       backgroundColor: Constants.white,
       body: SafeArea(

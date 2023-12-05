@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:video_player/video_player.dart';
 
@@ -27,19 +26,28 @@ class VideosPlayerController extends GetxController {
 
       chewieController = ChewieController(
         videoPlayerController: videoPlayerController,
-        customControls: const MaterialControls(),
+        materialProgressColors: ChewieProgressColors(
+          backgroundColor: Colors.white,
+          playedColor: Colors.grey,
+          handleColor: Colors.white,
+        ),
         autoPlay: true,
         looping: false,
+        allowFullScreen: false,
         placeholder: const Center(
           child: CircularProgressIndicator(
             color: Colors.white,
           ),
         ),
-        allowMuting: true,
-        materialProgressColors: ChewieProgressColors(
-          playedColor: Constants.white,
-          handleColor: Constants.black,
-        ),
+        allowMuting: false,
+        errorBuilder: (context, errorMessage) {
+          return Center(
+            child: Text(
+              errorMessage,
+              style: const TextStyle(color: Colors.white),
+            ),
+          );
+        },
       );
     } else {
       log('Error: Video file is null.');

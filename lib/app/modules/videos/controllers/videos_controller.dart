@@ -30,6 +30,7 @@ class VideosController extends GetxController {
           await PhotoManager.getAssetPathList(type: RequestType.video);
 
       folders.assignAll(paths);
+      log('$folders');
     } catch (e) {
       log('Error fetching media folders: $e');
     }

@@ -31,7 +31,7 @@ class HomeView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Text(
-                      'All Artists',
+                      'Welcome to Mv player',
                       style: GoogleFonts.poppins(
                         fontSize: 22,
                       ),
@@ -41,7 +41,6 @@ class HomeView extends StatelessWidget {
                     margin: const EdgeInsets.all(12),
                     width: double.infinity,
                     height: 120,
-                    // child: ArtistListView(),
                   ),
 
                   // RecentlyPlayedViews(),

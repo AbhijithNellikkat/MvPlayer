@@ -39,6 +39,8 @@ dependencies:
   path_provider: ^2.1.1
   fluttertoast: ^8.2.4
   marquee: ^2.2.0
+  fetch_all_videos: ^1.0.5
+  
   
  
   

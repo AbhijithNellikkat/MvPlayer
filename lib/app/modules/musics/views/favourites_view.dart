@@ -28,17 +28,29 @@ class FavouritesView extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 70,
         actions: [
-          IconButton(
-              onPressed: () {
-                musicPlayerController.playTheSong(
-                    songmodel: favSongs, index: 0);
-              },                                        
-              icon: const Icon(
-                Icons.play_circle_fill_outlined,
-                size: 55,
-                color: Constants.black,
-              )),
-          const SizedBox(width: 20)
+          GetBuilder<FavouritesController>(
+            builder: (controller) {
+              favSongs = controller.getFavoriteSongs();
+
+              if (favSongs.isNotEmpty) {
+                return IconButton(
+                  onPressed: () {
+                    musicPlayerController.playTheSong(
+                        songmodel: favSongs, index: 0);
+                  },
+                  icon: const Icon(
+                    Icons.play_circle_fill_outlined,
+                    size: 55,
+                    color: Constants.black,
+                  ),
+                );
+              } else {
+                // Return an empty container if there are no favorite songs
+                return Container();
+              }
+            },
+          ),
+          const SizedBox(width: 20),
         ],
       ),
       body: GetBuilder<FavouritesController>(

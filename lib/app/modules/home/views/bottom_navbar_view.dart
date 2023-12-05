@@ -25,6 +25,7 @@ class BottomNavbarView extends StatelessWidget {
               HomeView(),
               MusicsView(),
               VideosView(),
+              // VideoScreen(),
               SettingsView(),
             ],
           ),
