@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../data/db_functions.dart';
@@ -30,7 +31,7 @@ class RecentlyPlayedSongSliderWidget extends StatelessWidget {
               return CarouselSlider.builder(
                 itemCount: recentlyPlayed.length,
                 options: CarouselOptions(
-                  height: 150,
+                  height: 180,
                   autoPlay: true,
                   viewportFraction: 0.55,
                   enlargeCenterPage: true,
@@ -47,24 +48,21 @@ class RecentlyPlayedSongSliderWidget extends StatelessWidget {
                       height: 250,
                       width: 180,
                       child: QueryArtworkWidget(
+                        quality: 100,
                         artworkFit: BoxFit.cover,
                         artworkQuality: FilterQuality.high,
                         artworkBorder: const BorderRadius.all(Radius.zero),
                         type: ArtworkType.AUDIO,
                         id: song.id,
                         nullArtworkWidget: Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                            color: Constants.black,
+                          ),
                           width: 250,
                           height: 180,
-                          decoration: const BoxDecoration(
-                            color: Constants.black,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                          ),
-                          child: const Icon(
-                            Constants.music,
-                            color: Constants.white,
-                          ),
+                          child: Lottie.asset(Constants.nullArtworkWidget,
+                              fit: BoxFit.cover),
                         ),
                       ),
                     ),

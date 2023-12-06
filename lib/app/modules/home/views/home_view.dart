@@ -32,14 +32,13 @@ class HomeView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Text(
-                      'Welcome to Mv player',
+                      'Recently Played',
                       style: GoogleFonts.poppins(
-                        fontSize: 22,
-                      ),
+                          fontSize: 22, fontWeight: FontWeight.w200),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                   RecentlyPlayedSongSliderWidget(),
+                  const SizedBox(height: 10),
+                  RecentlyPlayedSongSliderWidget(),
                   // RecentlyPlayedViews(),
                 ],
               ),
