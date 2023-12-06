@@ -37,12 +37,12 @@ class RecentlyPlayedViews extends GetView {
                 itemBuilder: (context, index) {
                   final song = recentlyPlayed[index];
                   return Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
+                      Container(
                         width: 140,
-                        height: 170,
+                        height: 140,
                         child: QueryArtworkWidget(
                           artworkFit: BoxFit.cover,
                           artworkQuality: FilterQuality.high,
@@ -50,8 +50,8 @@ class RecentlyPlayedViews extends GetView {
                           id: song.id,
                           type: ArtworkType.AUDIO,
                           nullArtworkWidget: Container(
-                            width: 60,
-                            height: 130,
+                            width: 140,
+                            height: 140,
                             decoration: const BoxDecoration(
                               color: Constants.black,
                               borderRadius: BorderRadius.all(

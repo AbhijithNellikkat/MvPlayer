@@ -5,6 +5,7 @@ import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart'
 
 import '../../../utils/constants/constants.dart';
 import '../controllers/nav_bar_controller_controller.dart';
+import '../widgets/recently_played_song_slider.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
@@ -37,12 +38,8 @@ class HomeView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.all(12),
-                    width: double.infinity,
-                    height: 120,
-                  ),
-
+                  const SizedBox(height: 20),
+                   RecentlyPlayedSongSliderWidget(),
                   // RecentlyPlayedViews(),
                 ],
               ),
