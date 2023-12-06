@@ -53,7 +53,6 @@ class TracksView extends StatelessWidget {
               color: Colors.grey,
             ),
             onPressed: () {
-              // Clear the search bar and show all songs when the 'clear' button is pressed
               tracksController.filterSongs('');
               searchController.clear();
             },

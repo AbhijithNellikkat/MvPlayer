@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mv_player/app/data/db_functions.dart';
+import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
+import 'package:mv_player/app/modules/musics/widgets/add_to_playlist_dialog_widget.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -13,8 +16,10 @@ final PlaylistController playlistController = Get.find();
 void musicPlayerBottomSheet({
   required BuildContext context,
   required MusicPlayerController musicPlayerController,
+  required TracksController tracksController,
   required List<SongModel> songs,
   required int index,
+  required DbFunctions dbFunctions,
 }) {
   Get.bottomSheet(
     backgroundColor: Constants.black,
@@ -92,7 +97,16 @@ void musicPlayerBottomSheet({
         const Divider(color: Constants.white, thickness: 0),
         const SizedBox(height: 15),
         ListTile(
-          onTap: () {},
+          onTap: () async {
+            Get.back();
+            var selectedSong = tracksController.displayedSongs[index];
+            await songAddToPlaylistDialogWidget(
+              dbFunctions: dbFunctions,
+              selectedSong: selectedSong,
+              context: context,
+            );
+            Get.back();
+          },
           leading: const Icon(
             Icons.playlist_add,
             size: 29,

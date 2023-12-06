@@ -13,12 +13,7 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     splashController.delayAndNavigate();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
+   
     return Scaffold(
       backgroundColor: Constants.white,
       body: SafeArea(

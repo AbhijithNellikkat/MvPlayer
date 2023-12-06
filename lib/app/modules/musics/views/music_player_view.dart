@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mv_player/app/data/db_functions.dart';
 import 'package:mv_player/app/modules/musics/controllers/music_player_controller.dart';
+import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -23,6 +25,11 @@ class MusicPlayerView extends StatefulWidget {
 
 class _MusicPlayerViewState extends State<MusicPlayerView> {
   final MusicPlayerController musicPlayerController = Get.find();
+
+  final TracksController tracksController = Get.find();
+
+  final DbFunctions dbFunctions  = DbFunctions();
+
 
   @override
   void initState() {
@@ -58,9 +65,12 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
           IconButton(
             onPressed: () {
               musicPlayerBottomSheet(
+                tracksController: tracksController,
+                
                 context: context,
                 index: widget.index,
                 songs: widget.songs,
+                dbFunctions: dbFunctions,
                 musicPlayerController: musicPlayerController,
               );
             },

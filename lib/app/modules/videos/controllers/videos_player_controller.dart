@@ -9,12 +9,16 @@ import 'package:video_player/video_player.dart';
 
 class VideosPlayerController extends GetxController {
   late VideoPlayerController videoPlayerController;
+
   late ChewieController chewieController;
+
   RxBool isPlaying = false.obs;
 
   Future<void> initializeVideoPlayer(AssetEntity video) async {
     final File? videoFile = await video.file;
     log('$videoFile');
+
+    
 
     if (videoFile != null) {
       videoPlayerController = VideoPlayerController.file(videoFile);

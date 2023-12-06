@@ -49,7 +49,7 @@ class VideoPlayerView extends StatelessWidget {
               width: 60,
               child: IconButton(
                   onPressed: () {
-                    videosPlayerController.chewieController.pause();
+                      
                     Get.back();
                   },
                   icon: const Icon(

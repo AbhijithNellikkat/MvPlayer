@@ -12,7 +12,7 @@ class TracksController extends GetxController {
 
   @override
   void onInit() {
-    // Fetch all songs when the controller is initialized
+    
     fetchAllSongs();
     super.onInit();
   }

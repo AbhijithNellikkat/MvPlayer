@@ -14,8 +14,6 @@ class MusicPlayerController extends GetxController {
 
   late PlaylistController playlistController;
 
-  // RxList<SongModel> recentlyPlayed = <SongModel>[].obs;
-
   @override
   void onInit() {
     playlistController = Get.find();
