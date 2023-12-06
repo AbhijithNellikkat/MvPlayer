@@ -16,7 +16,8 @@ class OnbordingView extends GetView<OnbordingController> {
         child: OnBoardingSlider(
           centerBackground: true,
           headerBackgroundColor: Constants.white,
-          finishButtonTextStyle: const TextStyle(fontSize: 13),
+          finishButtonTextStyle:
+              const TextStyle(fontSize: 13, color: Constants.white),
           onFinish: () {
             Get.offAndToNamed(Routes.BOTTOMNAVIGATIONBAR);
           },

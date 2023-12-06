@@ -105,7 +105,7 @@ void musicPlayerBottomSheet({
               selectedSong: selectedSong,
               context: context,
             );
-            Get.back();
+            
           },
           leading: const Icon(
             Icons.playlist_add,
