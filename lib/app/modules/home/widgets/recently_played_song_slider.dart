@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:marquee/marquee.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../data/db_functions.dart';
@@ -70,7 +72,31 @@ class RecentlyPlayedSongSliderWidget extends StatelessWidget {
                 },
               );
             } else {
-              return const SizedBox();
+              return SizedBox(
+                width: double.infinity,
+                height: 40,
+                child: Marquee(
+                  text: 'No songs in the Recently played❗',
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
+                  fadingEdgeStartFraction: 0.9,
+                  fadingEdgeEndFraction: 0.9,
+                  scrollAxis: Axis.horizontal,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  blankSpace: 20.0,
+                  velocity: 50.0,
+                  pauseAfterRound: const Duration(seconds: 1),
+                  startPadding: 10.0,
+                  accelerationDuration: const Duration(seconds: 1),
+                  accelerationCurve: Curves.linear,
+                  decelerationDuration: const Duration(milliseconds: 500),
+                  decelerationCurve: Curves.easeOut,
+                  textDirection: TextDirection.ltr,
+                ),
+              );
             }
           },
         ),

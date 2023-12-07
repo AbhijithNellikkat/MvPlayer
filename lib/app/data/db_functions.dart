@@ -126,20 +126,22 @@ class DbFunctions {
   // ===================================================================================
 
   Future<void> addRecentlyPlayedSong({required SongModel song}) async {
-    var musicModel = box.get(Constants.boxName,
-        defaultValue: MusicModel(
-          playlist: {},
-          favourites: [],
-          recentlyPlayed: [],
-        ));
+    var musicModel = box.get(
+      Constants.boxName,
+      defaultValue: MusicModel(
+        playlist: {},
+        favourites: [],
+        recentlyPlayed: [],
+      ),
+    );
 
-    // Check if the song is already in the recently played list
+    
     if (!musicModel.recentlyPlayed
         .any((recentSong) => recentSong.id == song.id)) {
-      // Add the song to the recently played list
+      
       musicModel.recentlyPlayed.insert(0, song);
 
-      // Limit the recently played list to 10 songs
+      
       if (musicModel.recentlyPlayed.length > 10) {
         musicModel.recentlyPlayed.removeLast();
       }
@@ -159,5 +161,4 @@ class DbFunctions {
   }
 
   // ===============================================================================
-
 }

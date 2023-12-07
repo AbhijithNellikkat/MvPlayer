@@ -101,7 +101,7 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
                                 const Duration(milliseconds: 500),
                             decelerationCurve: Curves.easeOut,
                             textDirection: TextDirection.ltr,
-                            // Add any other properties you need
+                            
                           ),
                         );
                       }),
