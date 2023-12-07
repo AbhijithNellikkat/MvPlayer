@@ -23,14 +23,15 @@ class VideoPlayerView extends StatelessWidget {
         children: [
           Container(
             color: Colors.black,
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height,
             child: FutureBuilder(
               future: videosPlayerController.initializeVideoPlayer(video),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return Chewie(
-                      controller: videosPlayerController.chewieController);
+                  return Container(
+                    height: MediaQuery.of(context).size.height,
+                    child: Chewie(
+                        controller: videosPlayerController.chewieController),
+                  );
                 } else {
                   return const Center(
                     child: CircularProgressIndicator(
@@ -49,7 +50,6 @@ class VideoPlayerView extends StatelessWidget {
               width: 60,
               child: IconButton(
                   onPressed: () {
-                      
                     Get.back();
                   },
                   icon: const Icon(

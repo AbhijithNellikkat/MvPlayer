@@ -135,13 +135,10 @@ class DbFunctions {
       ),
     );
 
-    
     if (!musicModel.recentlyPlayed
         .any((recentSong) => recentSong.id == song.id)) {
-      
       musicModel.recentlyPlayed.insert(0, song);
 
-      
       if (musicModel.recentlyPlayed.length > 10) {
         musicModel.recentlyPlayed.removeLast();
       }
@@ -161,4 +158,16 @@ class DbFunctions {
   }
 
   // ===============================================================================
+
+  Future<List<AlbumModel>> getLocalAlbums() async {
+    OnAudioQuery onAudioQuery = OnAudioQuery();
+    List<AlbumModel> albums = await onAudioQuery.queryAlbums(
+      sortType: AlbumSortType.ARTIST,
+      orderType: OrderType.DESC_OR_GREATER,
+      ignoreCase: true,
+      uriType: UriType.EXTERNAL,
+    );
+
+    return albums;
+  }
 }

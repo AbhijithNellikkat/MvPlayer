@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:mv_player/app/data/db_functions.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class TracksController extends GetxController {
@@ -10,10 +11,15 @@ class TracksController extends GetxController {
   // List to hold filtered/searched songs
   RxList<SongModel> displayedSongs = <SongModel>[].obs;
 
+
+   
+
+
   @override
   void onInit() {
     
     fetchAllSongs();
+
     super.onInit();
   }
 
@@ -28,6 +34,7 @@ class TracksController extends GetxController {
     // Initially, set displayedSongs to be the same as allSongs
     displayedSongs.value = List.from(allSongs);
   }
+
 
   // Method to filter songs based on the search query
   filterSongs(String query) {

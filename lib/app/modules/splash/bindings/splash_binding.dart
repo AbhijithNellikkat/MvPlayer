@@ -5,6 +5,7 @@ import 'package:mv_player/app/modules/settings/controllers/settings_controller.d
 import 'package:mv_player/app/modules/videos/controllers/videos_controller.dart';
 import 'package:mv_player/app/modules/videos/controllers/videos_player_controller.dart';
 
+import '../../home/controllers/fetch_local_albums_controller.dart';
 import '../../musics/controllers/favourites_controller.dart';
 import '../../musics/controllers/music_player_controller.dart';
 import '../../musics/controllers/playlist_controller.dart';
@@ -14,6 +15,7 @@ import '../controllers/splash_controller.dart';
 class SplashBinding extends Bindings {
   @override
   void dependencies() {
+    Get.put<FetchLocalAlbumsController>(FetchLocalAlbumsController());
     Get.put<HomeController>(HomeController());
     Get.put<SplashController>(SplashController());
     Get.put<NavBarController>(NavBarController());
