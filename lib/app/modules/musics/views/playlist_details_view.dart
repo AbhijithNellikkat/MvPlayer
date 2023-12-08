@@ -11,6 +11,7 @@ import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../common/widgets/toast_message_widget.dart';
 import '../../../utils/styles/text_styles.dart';
+import '../controllers/favourites_controller.dart';
 
 class PlaylistDetailsView extends StatefulWidget {
   PlaylistDetailsView({
@@ -30,6 +31,8 @@ class PlaylistDetailsView extends StatefulWidget {
 
 class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
   late ValueNotifier<List<SongModel>> playlistNotifier;
+
+  final FavouritesController favouritesController = Get.find();
 
   @override
   void initState() {
@@ -114,7 +117,14 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
                     return [
                       PopupMenuItem(
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              favouritesController.addSongToFavourites(song);
+                              Get.back();
+                              toastMessageWidget(
+                                  message:
+                                      '${song.title} added to favourites ❤',
+                                  gravity: ToastGravity.TOP);
+                            },
                             child: Text(
                               "Add to favorites",
                               style: GoogleFonts.poppins(),
@@ -219,13 +229,11 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
                       ),
                       trailing: IconButton(
                         onPressed: () async {
-                          // Add the song to the playlist
                           await widget.dbFunctions.addSongToPlaylist(
                             playlistName: widget.playlistName,
                             song: song,
                           );
 
-                          // Fetch and update the playlist
                           await fetchAndSetPlaylist();
                         },
                         icon: const Icon(Icons.add),
