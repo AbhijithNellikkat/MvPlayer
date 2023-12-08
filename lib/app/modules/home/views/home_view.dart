@@ -1,81 +1,105 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mv_player/app/modules/home/controllers/fetch_local_albums_controller.dart';
-import 'package:mv_player/app/modules/home/widgets/a_card.dart';
 
-import '../../../utils/constants/constants.dart';
 import '../controllers/nav_bar_controller_controller.dart';
+import '../widgets/local_songs_suggestions_widget .dart';
 import '../widgets/recently_played_song_slider.dart';
 
 class HomeView extends StatelessWidget {
-  HomeView({super.key});
-
-  final FetchLocalAlbumsController fetchLocalAlbumsController = Get.find();
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<NavBarController>(builder: (controller) {
-      return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Constants.white,
-          elevation: 0,
-        ),
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+      return SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: <Widget>[
+              SliverAppBar(
+                backgroundColor: Colors.white,
+                stretch: true,
+                onStretchTrigger: () async {},
+                stretchTriggerOffset: 300.0,
+                expandedHeight: 400.0,
+                flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: true,
+                  title: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    // child: SizedBox(
+                    //   width: double.infinity,
+                    //   height: 40,
+                    //   child: Marquee(
+                    //     text: 'Welcome to Mv Player',
+                    //     style: GoogleFonts.poppins(
+                    //       fontWeight: FontWeight.w400,
+                    //       fontSize: 18,
+                    //       color: Colors.black,
+                    //     ),
+                    //     fadingEdgeStartFraction: 0.9,
+                    //     fadingEdgeEndFraction: 0.9,
+                    //     scrollAxis: Axis.horizontal,
+                    //     crossAxisAlignment: CrossAxisAlignment.center,
+                    //     blankSpace: 20.0,
+                    //     velocity: 50.0,
+                    //     pauseAfterRound: const Duration(seconds: 0),
+                    //     startPadding: 10.0,
+                    //     accelerationDuration: const Duration(seconds: 1),
+                    //     accelerationCurve: Curves.linear,
+                    //     decelerationDuration: const Duration(milliseconds: 500),
+                    //     decelerationCurve: Curves.easeOut,
+                    //     textDirection: TextDirection.ltr,
+                    //   ),
+                    // ),
                     child: Text(
-                      'Recently Played',
+                      'Welcome to Mv Player 👋',
                       style: GoogleFonts.poppins(
-                          fontSize: 22, fontWeight: FontWeight.w200),
+                          color: Colors.black, fontSize: 15),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  RecentlyPlayedSongSliderWidget(),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Featured Albums',
-                      style: GoogleFonts.poppins(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w200,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
+                  background: Image.network(
+                    'https://img.freepik.com/free-vector/abstract-flat-line-with-music-note-motion-shapes-pattern-cover-design-poster-banner-decoration_460848-15092.jpg?w=740&t=st=1701967887~exp=1701968487~hmac=e139f3526c60356260c085bb6625c5f84a5477d0405a58c00c4498053aff3402',
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
-              if (fetchLocalAlbumsController.allAlbums.isEmpty)
-                const Center(child: CircularProgressIndicator())
-              else
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: List.generate(
-                        fetchLocalAlbumsController.allAlbums.length,
-                        (index) => AlbumCard(
-                          album: fetchLocalAlbumsController.allAlbums[index],
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  childCount: 1,
+                  (BuildContext context, int index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 30),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 18.0),
+                          child: Text(
+                            'Suggestions',
+                            style: GoogleFonts.poppins(
+                                fontSize: 18, fontWeight: FontWeight.w400),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
+                        const Padding(
+                          padding: EdgeInsets.all(18.0),
+                          child: LocalSongsSuggestionsSliderWidget(),
+                        ),
+                        const SizedBox(height: 30),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 18.0),
+                          child: Text(
+                            'Recently Played',
+                            style: GoogleFonts.poppins(
+                                fontSize: 18, fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                        RecentlyPlayedSongSliderWidget(),
+                      ],
+                    );
+                  },
                 ),
+              ),
             ],
           ),
         ),

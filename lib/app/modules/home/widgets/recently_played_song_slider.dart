@@ -47,7 +47,7 @@ class RecentlyPlayedSongSliderWidget extends StatelessWidget {
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: SizedBox(
-                      height: 250,
+                      height: 230,
                       width: 180,
                       child: QueryArtworkWidget(
                         quality: 100,
@@ -62,7 +62,7 @@ class RecentlyPlayedSongSliderWidget extends StatelessWidget {
                             color: Constants.black,
                           ),
                           width: 250,
-                          height: 180,
+                          height: 230,
                           child: Lottie.asset(Constants.nullArtworkWidget,
                               fit: BoxFit.cover),
                         ),
