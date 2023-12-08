@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/nav_bar_controller_controller.dart';
-import '../widgets/local_songs_suggestions_widget .dart';
+import '../widgets/local_songs_suggestions_slider_widget .dart';
 import '../widgets/recently_played_song_slider.dart';
 
 class HomeView extends StatelessWidget {
