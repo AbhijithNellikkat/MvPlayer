@@ -16,7 +16,7 @@ import '../controllers/favourites_controller.dart';
 
 // ignore: must_be_immutable
 class FavouritesView extends StatefulWidget {
-  FavouritesView({Key? key}) : super(key: key);
+  const FavouritesView({Key? key}) : super(key: key);
 
   @override
   State<FavouritesView> createState() => _FavouritesViewState();

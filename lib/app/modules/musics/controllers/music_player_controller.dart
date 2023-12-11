@@ -14,12 +14,6 @@ class MusicPlayerController extends GetxController {
 
   late PlaylistController playlistController;
 
-  @override
-  void onInit() {
-    playlistController = Get.find();
-    super.onInit();
-  }
-
   // Currently playing song information
   var currentlyPlaying;
 
@@ -42,10 +36,12 @@ class MusicPlayerController extends GetxController {
   var volume = 1.0.obs;
 
   late DbFunctions dbFunctions;
-
-  MusicPlayerController() {
+  @override
+  void onInit() {
+    playlistController = Get.find();
     dbFunctions = DbFunctions();
     loadDuration();
+    super.onInit();
   }
 
   @override

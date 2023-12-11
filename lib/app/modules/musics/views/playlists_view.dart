@@ -80,7 +80,6 @@ class PlaylistsView extends StatelessWidget {
                       ),
                     ),
                     title: Text(playlistName),
-                  
                     trailing: PopupMenuButton(
                       itemBuilder: (context) {
                         return [
