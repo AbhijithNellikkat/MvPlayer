@@ -14,7 +14,7 @@ import '../controllers/splash_controller.dart';
 class SplashBinding extends Bindings {
   @override
   void dependencies() {
-    
+    Get.put<VideosController>(VideosController());
     Get.put<HomeController>(HomeController());
     Get.put<SplashController>(SplashController());
     Get.put<NavBarController>(NavBarController());
@@ -30,7 +30,7 @@ class SplashBinding extends Bindings {
 
     Get.put<VideosPlayerController>(VideosPlayerController());
     Get.put<PlaylistController>(PlaylistController());
-    Get.put<VideosController>(VideosController());
+
     Get.put<MusicPlayerController>(MusicPlayerController());
   }
 }

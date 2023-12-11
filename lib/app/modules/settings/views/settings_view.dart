@@ -66,14 +66,14 @@ class SettingsView extends GetView<SettingsController> {
                       subtitleMaxLine: 1,
                       backgroundColor: Constants.black,
                       iconColor: Constants.white,
-                      trailing: IconButton(
-                        onPressed: () {
-                          settingsController.toggleTheme();
-                        },
-                        icon: Obx(() => settingsController.isDarkMode.value
-                            ? const Icon(Icons.light_mode)
-                            : const Icon(Icons.dark_mode)),
-                      ),
+                      // trailing: IconButton(
+                      //   onPressed: () {
+                      //     settingsController.toggleTheme();
+                      //   },
+                      //   icon: Obx(() => settingsController.isDarkMode.value
+                      //       ? const Icon(Icons.light_mode)
+                      //       : const Icon(Icons.dark_mode)),
+                      // ),
                     ),
                   ),
                 ),

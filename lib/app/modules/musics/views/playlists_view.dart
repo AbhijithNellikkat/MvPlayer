@@ -22,7 +22,7 @@ class PlaylistsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Constants.scaffoldBgColor,
+      backgroundColor: Constants.scaffoldBgColor,
       body: GetBuilder<PlaylistController>(builder: (context) {
         return FutureBuilder<List<String>>(
           future: dbFunctions.getPlaylistNames(),
@@ -80,6 +80,7 @@ class PlaylistsView extends StatelessWidget {
                       ),
                     ),
                     title: Text(playlistName),
+                  
                     trailing: PopupMenuButton(
                       itemBuilder: (context) {
                         return [

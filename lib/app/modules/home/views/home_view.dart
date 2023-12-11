@@ -15,12 +15,12 @@ class HomeView extends StatelessWidget {
     return GetBuilder<NavBarController>(builder: (controller) {
       return SafeArea(
         child: Scaffold(
-          // backgroundColor: Colors.white,
+          backgroundColor: Colors.white,
           body: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
-                // backgroundColor: Colors.white,
+                backgroundColor: Colors.white,
                 stretch: true,
                 onStretchTrigger: () async {},
                 stretchTriggerOffset: 300.0,
@@ -37,10 +37,10 @@ class HomeView extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  // background: Image.asset(
-                  //   Constants.homePageBgImage,
-                  //   fit: BoxFit.fitWidth,
-                  // ),
+                  background: Image.asset(
+                    Constants.homePageBgImage,
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
               SliverList(

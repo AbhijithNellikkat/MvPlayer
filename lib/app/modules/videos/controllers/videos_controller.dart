@@ -7,13 +7,20 @@ import 'package:photo_manager/photo_manager.dart';
 
 class VideosController extends GetxController {
   final RxList<AssetEntity> videos = <AssetEntity>[].obs;
-  final RxList<AssetPathEntity> folders = <AssetPathEntity>[].obs;
+  RxList<AssetPathEntity> folders = <AssetPathEntity>[].obs;
 
   RxBool isGridView = true.obs;
 
   @override
   void onInit() {
-    fetchMediaFolders();
+    fetchMediaFolders().then((List<AssetPathEntity> result) {
+      // Handle the result here if needed
+      log('Fetched media folders: $result');
+    }).catchError((error) {
+      // Handle the error here if needed
+      log('Error fetching media folders: $error');
+    });
+
     log('====================== VideosController  onInit ======================');
     super.onInit();
   }
@@ -23,16 +30,20 @@ class VideosController extends GetxController {
     update();
   }
 
-  Future<void> fetchMediaFolders() async {
+  Future<List<AssetPathEntity>> fetchMediaFolders() async {
     log('--------------------------- Fetch Media Folders ---------------------------');
     try {
       final List<AssetPathEntity> paths =
           await PhotoManager.getAssetPathList(type: RequestType.video);
 
       folders.assignAll(paths);
-      log('$folders');
+      update();
+      log('folders : $folders');
+      return paths;
     } catch (e) {
       log('Error fetching media folders: $e');
+      // You might want to handle the error accordingly, e.g., throw an exception or return an empty list
+      return [];
     }
   }
 

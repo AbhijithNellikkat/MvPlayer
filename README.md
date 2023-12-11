@@ -1,8 +1,8 @@
 # mv_player
 
-A new Flutter project.
+MV Player - Flutter App
 
-## Getting Started
+## Overview:
 
 This project is a starting point for a Flutter application.
 
