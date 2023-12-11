@@ -1,8 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mv_player/app/modules/musics/views/music_player_view.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -47,54 +49,62 @@ class LocalSongsSuggestionsSliderWidget extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final song = localSongs[index];
 
-                          return Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 12),
-                            width: 170,
-                            height: 130,
-                            decoration: const BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(12))),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  width: double.infinity,
-                                  height: 180,
-                                  decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(12))),
-                                  child: QueryArtworkWidget(
-                                    quality: 100,
-                                    artworkFit: BoxFit.cover,
-                                    artworkQuality: FilterQuality.high,
-                                    artworkBorder: const BorderRadius.all(
-                                        Radius.circular(7)),
-                                    type: ArtworkType.AUDIO,
-                                    id: song.id,
-                                    nullArtworkWidget: Container(
-                                      decoration: const BoxDecoration(
+                          return GestureDetector(
+                            onTap: () {
+                              Get.to(MusicPlayerView(
+                                  songs: localSongs, index: index));
+                            },
+                            child: Container(
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              width: 170,
+                              height: 130,
+                              decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(12))),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    height: 180,
+                                    decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(15)),
-                                        color: Constants.black,
+                                            Radius.circular(12))),
+                                    child: QueryArtworkWidget(
+                                      quality: 100,
+                                      artworkFit: BoxFit.cover,
+                                      artworkQuality: FilterQuality.high,
+                                      artworkBorder: const BorderRadius.all(
+                                          Radius.circular(7)),
+                                      type: ArtworkType.AUDIO,
+                                      id: song.id,
+                                      nullArtworkWidget: Container(
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15)),
+                                          color: Constants.black,
+                                        ),
+                                        width: 250,
+                                        height: 230,
+                                        child: Lottie.asset(
+                                            Constants.nullArtworkWidget,
+                                            fit: BoxFit.cover),
                                       ),
-                                      width: 250,
-                                      height: 230,
-                                      child: Lottie.asset(
-                                          Constants.nullArtworkWidget,
-                                          fit: BoxFit.cover),
                                     ),
                                   ),
-                                ),
-                                Text(
-                                  song.title,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
+                                  Text(
+                                    song.title,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         },

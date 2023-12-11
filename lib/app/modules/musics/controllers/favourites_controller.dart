@@ -9,6 +9,7 @@ import '../../../data/models/models.dart';
 class FavouritesController extends GetxController {
   final DbFunctions dbFunctions = DbFunctions();
 
+  // Add a song to favorites
   Future<void> addSongToFavourites(SongModel song) async {
     var existingData = dbFunctions.box.get('favourites',
         defaultValue: MusicModel(
@@ -28,6 +29,7 @@ class FavouritesController extends GetxController {
     }
   }
 
+  // Get the list of favorite songs
   List<SongModel> getFavoriteSongs() {
     var favData = dbFunctions.box.get('favourites',
         defaultValue: MusicModel(
@@ -39,6 +41,7 @@ class FavouritesController extends GetxController {
     return favData.favourites;
   }
 
+  // Remove a song from favorites
   Future<void> removeSongFromFavorites(SongModel song) async {
     var favData = dbFunctions.box.get(
       'favourites',
@@ -49,14 +52,12 @@ class FavouritesController extends GetxController {
       ),
     );
 
-    favData.favourites.remove(song); // Corrected spelling here
+    favData.favourites.remove(song);
 
     dbFunctions.box.put(
       'favourites',
       favData,
     );
-    update();
+    update(); 
   }
-
-  
 }

@@ -9,6 +9,7 @@ import 'package:mv_player/app/data/models/songmodel_adapter.dart';
 import 'package:mv_player/app/modules/splash/bindings/splash_binding.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:path_provider/path_provider.dart';
+
 import 'app/modules/home/controllers/permission_controller.dart';
 import 'app/routes/app_pages.dart';
 
@@ -31,8 +32,6 @@ Future<void> main() async {
   Hive.registerAdapter(SongModelAdapter());
 
   await Hive.openBox(Constants.boxName);
-
-
 
   runApp(
     GetMaterialApp(

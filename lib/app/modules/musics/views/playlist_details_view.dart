@@ -71,7 +71,9 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
             );
           }
 
-          return ListView.builder(
+          return ListView.separated(
+            separatorBuilder: (context, index) =>
+                const Divider(color: Colors.transparent),
             itemCount: playlist.length,
             itemBuilder: (context, index) {
               SongModel song = playlist[index];

@@ -28,35 +28,12 @@ class HomeView extends StatelessWidget {
                   centerTitle: true,
                   title: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    // child: SizedBox(
-                    //   width: double.infinity,
-                    //   height: 40,
-                    //   child: Marquee(
-                    //     text: 'Welcome to Mv Player',
-                    //     style: GoogleFonts.poppins(
-                    //       fontWeight: FontWeight.w400,
-                    //       fontSize: 18,
-                    //       color: Colors.black,
-                    //     ),
-                    //     fadingEdgeStartFraction: 0.9,
-                    //     fadingEdgeEndFraction: 0.9,
-                    //     scrollAxis: Axis.horizontal,
-                    //     crossAxisAlignment: CrossAxisAlignment.center,
-                    //     blankSpace: 20.0,
-                    //     velocity: 50.0,
-                    //     pauseAfterRound: const Duration(seconds: 0),
-                    //     startPadding: 10.0,
-                    //     accelerationDuration: const Duration(seconds: 1),
-                    //     accelerationCurve: Curves.linear,
-                    //     decelerationDuration: const Duration(milliseconds: 500),
-                    //     decelerationCurve: Curves.easeOut,
-                    //     textDirection: TextDirection.ltr,
-                    //   ),
-                    // ),
                     child: Text(
                       'Welcome to Mv Player 👋',
-                      style: GoogleFonts.poppins(
-                          color: Colors.black, fontSize: 15),
+                      style: GoogleFonts.yeonSung(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                   background: Image.network(

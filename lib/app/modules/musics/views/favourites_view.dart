@@ -15,11 +15,18 @@ import '../../../utils/styles/text_styles.dart';
 import '../controllers/favourites_controller.dart';
 
 // ignore: must_be_immutable
-class FavouritesView extends StatelessWidget {
+class FavouritesView extends StatefulWidget {
   FavouritesView({Key? key}) : super(key: key);
 
+  @override
+  State<FavouritesView> createState() => _FavouritesViewState();
+}
+
+class _FavouritesViewState extends State<FavouritesView> {
   final FavouritesController favouritesController = Get.find();
+
   final MusicPlayerController musicPlayerController = Get.find();
+
   late var favSongs;
 
   @override
@@ -27,6 +34,7 @@ class FavouritesView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
+       
         actions: [
           GetBuilder<FavouritesController>(
             builder: (controller) {
@@ -139,25 +147,3 @@ class FavouritesView extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-// ListView.builder(
-//               itemCount: favSongs.length,
-//               itemBuilder: (context, index) {
-//                 var song = favSongs[index];
-//                 return ListTile(
-//                   title: Text(song.title),
-//                   subtitle: Text(song.artist.toString()),
-//                   onTap: () {},
-//                   trailing: IconButton(
-//                     onPressed: () {
-//                       controller.removeSongFromFavorites(song);
-//                     },
-//                     icon: const Icon(Icons.close),
-//                   ),
-//                 );
-//               },
-//             );
