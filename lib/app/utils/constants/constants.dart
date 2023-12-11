@@ -25,6 +25,8 @@ class Constants {
 
   static const emptyBoxAnimation = 'assets/animations/emptyBox.json';
 
+  static const homePageBgImage = 'assets/images/home_view_image.png';
+
   static const musicOnbordingImage = 'assets/images/music_onbording.jpg';
   static const videoOnbordingImage = 'assets/images/video_onbording.jpg';
   static const authenticationOnboringImage =

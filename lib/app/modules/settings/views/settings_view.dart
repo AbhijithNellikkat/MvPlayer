@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mv_player/app/modules/splash/controllers/splash_controller.dart';
 
 import '../../../utils/constants/constants.dart';
 import '../controllers/settings_controller.dart';
@@ -13,7 +12,7 @@ class SettingsView extends GetView<SettingsController> {
   SettingsView({Key? key}) : super(key: key);
 
   final SettingsController settingsController = Get.find();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +23,6 @@ class SettingsView extends GetView<SettingsController> {
         ),
         backgroundColor: Constants.white,
         elevation: 0,
-        
       ),
       backgroundColor: Constants.scaffoldBgColor,
       body: SafeArea(
@@ -68,9 +66,13 @@ class SettingsView extends GetView<SettingsController> {
                       subtitleMaxLine: 1,
                       backgroundColor: Constants.black,
                       iconColor: Constants.white,
-                      trailing: Switch.adaptive(
-                        value: true,
-                        onChanged: (value) {},
+                      trailing: IconButton(
+                        onPressed: () {
+                          settingsController.toggleTheme();
+                        },
+                        icon: Obx(() => settingsController.isDarkMode.value
+                            ? const Icon(Icons.light_mode)
+                            : const Icon(Icons.dark_mode)),
                       ),
                     ),
                   ),

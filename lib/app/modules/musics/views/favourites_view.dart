@@ -34,7 +34,6 @@ class _FavouritesViewState extends State<FavouritesView> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
-       
         actions: [
           GetBuilder<FavouritesController>(
             builder: (controller) {

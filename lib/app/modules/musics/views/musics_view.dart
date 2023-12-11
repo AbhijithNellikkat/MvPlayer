@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/home/controllers/nav_bar_controller_controller.dart';
 import 'package:mv_player/app/modules/musics/views/favourites_view.dart';
 import 'package:mv_player/app/modules/musics/views/mini_player_view.dart';
@@ -22,12 +23,12 @@ class MusicsView extends StatelessWidget {
         length: 3,
         child: GetBuilder<NavBarController>(builder: (controller) {
           return Scaffold(
-            backgroundColor: Colors.white,
+            // backgroundColor: Colors.white,
             appBar: AppBar(
-              backgroundColor: Colors.white,
-              title: const Text(
-                'Music',
-                style: TextStyle(color: Colors.black),
+              // backgroundColor: Colors.white,
+              title: Text(
+                'Musics',
+                style: GoogleFonts.poppins(fontSize: 18),
               ),
               bottom: const TabBar(
                 dividerColor: Colors.black,
@@ -35,19 +36,19 @@ class MusicsView extends StatelessWidget {
                   Tab(
                     child: Text(
                       'Tracks',
-                      style: TextStyle(color: Colors.black),
+                      // style: TextStyle(color: Colors.black),
                     ),
                   ),
                   Tab(
                     child: Text(
                       'Playlists',
-                      style: TextStyle(color: Colors.black),
+                      // style: TextStyle(color: Colors.black),
                     ),
                   ),
                   Tab(
                     child: Text(
                       'Favourites',
-                      style: TextStyle(color: Colors.black),
+                      // style: TextStyle(color: Colors.black),
                     ),
                   )
                 ],

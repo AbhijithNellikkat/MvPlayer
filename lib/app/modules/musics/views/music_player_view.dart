@@ -50,7 +50,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
       },
     );
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
@@ -82,7 +82,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
           const SizedBox(width: 11),
         ],
         automaticallyImplyLeading: false,
-        backgroundColor: Constants.scaffoldBgColor,
+        // backgroundColor: Constants.scaffoldBgColor,
       ),
       body: Container(
         width: double.infinity,

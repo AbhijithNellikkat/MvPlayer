@@ -235,11 +235,6 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
                     ],
                   ),
                   IconButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                        Colors.green,
-                      ),
-                    ),
                     onPressed: () {
                       controller.toggleSong();
                     },
@@ -256,11 +251,6 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
                           ),
                   ),
                   IconButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                        Colors.red,
-                      ),
-                    ),
                     onPressed: () {
                       controller.playNextSong(
                           index: controller.currentlyPlayingIndex);

@@ -1,28 +1,41 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
-import 'package:mv_player/app/utils/constants/constants.dart';
+import 'package:mv_player/app/utils/themes/theme_colors.dart';
 
 class AppThemes {
-  static final darkTheme = ThemeData(
-    primaryColor: Constants.black,
-    scaffoldBackgroundColor: Constants.black,
-    iconTheme: const IconThemeData(
-      color: Colors.white,
+  static ThemeData lightTheme = ThemeData.light().copyWith(
+    primaryColor: ThemeColors.primaryColor,
+    hintColor: ThemeColors.accentColor,
+    backgroundColor: ThemeColors.backgroundColorLight,
+    scaffoldBackgroundColor: ThemeColors.backgroundColorLight,
+    textTheme: TextTheme(
+      bodyText1: TextStyle(color: ThemeColors.textColorLight),
+      bodyText2: TextStyle(color: ThemeColors.textColorLight),
+      
+      
     ),
-    appBarTheme: const AppBarTheme(
-      foregroundColor: Constants.white,
-      backgroundColor: Constants.black,
-    ),
+    // Add more customizations as needed
   );
 
-  static final lightTheme = ThemeData(
-    primaryColor: Constants.white,
-    scaffoldBackgroundColor: Constants.white,
-    iconTheme: const IconThemeData(
-      color: Colors.black,
-    ),
+  static ThemeData darkTheme = ThemeData.dark().copyWith(
+    primaryColor: ThemeColors.primaryColor,
+    hintColor: ThemeColors.accentColor,
     appBarTheme: const AppBarTheme(
-      foregroundColor: Constants.black,
-      backgroundColor: Constants.white,
+      backgroundColor: Colors.black,
+      titleTextStyle: TextStyle(
+        color: Colors.white,
+      ),
     ),
+    backgroundColor: ThemeColors.backgroundColorDark,
+    scaffoldBackgroundColor: ThemeColors.backgroundColorDark,
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: Colors.white,
+    ),
+    textTheme: const TextTheme(
+      bodyText1: TextStyle(color: ThemeColors.textColorDark),
+      bodyText2: TextStyle(color: ThemeColors.textColorDark),
+    ),
+    // Add more customizations as needed
   );
 }
