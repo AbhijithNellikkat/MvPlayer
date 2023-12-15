@@ -22,46 +22,47 @@ class _GridViewWidgetState extends State<GridViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(
-        () {
-          if (videosController.folders.isEmpty) {
-            return const Center(
-              child:
-                  CircularProgressIndicator(), // You can use a loading indicator here
-            );
-          } else {
-            return ListView.builder(
-              itemCount: videosController.folders.length,
-              itemBuilder: (context, index) {
-                final foldersName = videosController.folders[index].name;
-                return ListTile(
-                  leading: const Icon(
+    return Obx(
+      () => GridView.builder(
+        padding: const EdgeInsets.all(3),
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        itemCount: videosController.folders.length,
+        itemBuilder: (context, index) {
+          final foldersName = videosController.folders[index].name;
+          return Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: GestureDetector(
+              onTap: () {
+                videosController.navigateToVideosGridInFolder(
+                  folder: videosController.folders[index],
+                  foldersName: foldersName,
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Icon(
                     Icons.folder,
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    size: 40,
+                    size: 80,
                   ),
-                  title: Text(
+                  Text(
                     videosController.folders[index].name,
+                    maxLines: 1,
                     style: GoogleFonts.poppins(
-                        fontSize: 16, fontWeight: FontWeight.w400),
+                        fontSize: 14, fontWeight: FontWeight.w400),
                   ),
-                  subtitle: Text(
+                  Text(
                     // ignore: deprecated_member_use
                     '${videosController.folders[index].assetCount} media files',
                     style: GoogleFonts.poppins(
-                        fontSize: 12, fontWeight: FontWeight.w400),
+                        fontSize: 10, fontWeight: FontWeight.w400),
                   ),
-                  onTap: () {
-                    videosController.navigateToVideosInFolder(
-                      folder: videosController.folders[index],
-                      foldersName: foldersName,
-                    );
-                  },
-                );
-              },
-            );
-          }
+                ],
+              ),
+            ),
+          );
         },
       ),
     );

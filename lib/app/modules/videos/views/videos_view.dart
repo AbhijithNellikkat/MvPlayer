@@ -28,15 +28,18 @@ class VideosView extends StatelessWidget {
                 onPressed: () {
                   controller.toggleView();
                 },
-                icon: Icon(controller.isGridView.value
-                    ? Icons.list_sharp
-                    : Icons.grid_view_rounded),
+                icon: Icon(
+                  controller.isGridView.value
+                      ? Icons.list_sharp
+                      : Icons.grid_view_rounded,
+                ),
               ),
               const SizedBox(width: 10),
             ],
           ),
-          body:
-              controller.isGridView.value ? GridViewWidget() : ListViewWidget(),
+          body: controller.isGridView.value
+              ? const GridViewWidget()
+              : const ListViewWidget(),
         );
       },
     );

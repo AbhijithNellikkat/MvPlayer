@@ -11,16 +11,6 @@ class VideosController extends GetxController {
 
   RxBool isGridView = true.obs;
 
-  // @override
-  // Future<void> onInit() async {
-  //   super.onInit();
-  //   // Fetch media folders only once during initialization
-  //   await fetchMediaFolders();
-  //   Future.delayed(const Duration(seconds: 1), () async {
-  //     await fetchMediaFolders();
-  //   });
-  //   print('video controller on init Function called');
-  // }
 
   void toggleView() {
     isGridView.toggle();
