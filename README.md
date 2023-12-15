@@ -34,6 +34,7 @@ Video Playback: Video Player and Chewie packages ensure smooth video playback wi
 
 Media Fetching: Audio Query and Photo Manager are used to fetch and organize songs and videos from local storage.
 
+--------------------------- 
 
 
 Technologies Used:

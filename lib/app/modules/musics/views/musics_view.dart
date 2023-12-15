@@ -26,7 +26,7 @@ class MusicsView extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: Colors.white,
               title: const Text(
-                'Music',
+                'Musics',
                 style: TextStyle(color: Colors.black),
               ),
               bottom: const TabBar(

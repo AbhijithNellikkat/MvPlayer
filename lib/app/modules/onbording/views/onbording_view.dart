@@ -21,7 +21,7 @@ class OnbordingView extends GetView<OnbordingController> {
           onFinish: () {
             Get.offAndToNamed(Routes.BOTTOMNAVIGATIONBAR);
           },
-          finishButtonText: 'explore the app',
+          finishButtonText: 'Explore the app',
           skipIcon: const Icon(
             Constants.rightArrow,
             color: Constants.white,

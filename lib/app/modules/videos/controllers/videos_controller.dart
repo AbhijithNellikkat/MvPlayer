@@ -11,39 +11,32 @@ class VideosController extends GetxController {
 
   RxBool isGridView = true.obs;
 
-  @override
-  void onInit() {
-    fetchMediaFolders().then((List<AssetPathEntity> result) {
-      // Handle the result here if needed
-      log('Fetched media folders: $result');
-    }).catchError((error) {
-      // Handle the error here if needed
-      log('Error fetching media folders: $error');
-    });
-
-    log('====================== VideosController  onInit ======================');
-    super.onInit();
-  }
+  // @override
+  // Future<void> onInit() async {
+  //   super.onInit();
+  //   // Fetch media folders only once during initialization
+  //   await fetchMediaFolders();
+  //   Future.delayed(const Duration(seconds: 1), () async {
+  //     await fetchMediaFolders();
+  //   });
+  //   print('video controller on init Function called');
+  // }
 
   void toggleView() {
     isGridView.toggle();
     update();
   }
 
-  Future<List<AssetPathEntity>> fetchMediaFolders() async {
+  Future<void> fetchMediaFolders() async {
     log('--------------------------- Fetch Media Folders ---------------------------');
     try {
       final List<AssetPathEntity> paths =
           await PhotoManager.getAssetPathList(type: RequestType.video);
 
       folders.assignAll(paths);
-      update();
-      log('folders : $folders');
-      return paths;
+      log('Folders : $folders');
     } catch (e) {
       log('Error fetching media folders: $e');
-      // You might want to handle the error accordingly, e.g., throw an exception or return an empty list
-      return [];
     }
   }
 
