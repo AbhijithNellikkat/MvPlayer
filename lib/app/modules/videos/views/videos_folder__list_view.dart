@@ -40,7 +40,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
               ),
               subtitle: Text(
                 // ignore: deprecated_member_use
-                '${videosController.folders[index].assetCount} media files',
+                '${videosController.folders[index].assetCount} videos',
                 style: GoogleFonts.poppins(
                     fontSize: 12, fontWeight: FontWeight.w400),
               ),

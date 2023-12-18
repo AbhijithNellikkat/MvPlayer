@@ -18,8 +18,6 @@ class VideosPlayerController extends GetxController {
     final File? videoFile = await video.file;
     log('$videoFile');
 
-    
-
     if (videoFile != null) {
       videoPlayerController = VideoPlayerController.file(videoFile);
       await videoPlayerController.initialize();
@@ -53,9 +51,20 @@ class VideosPlayerController extends GetxController {
           );
         },
       );
+
+      final String videoType = getVideoType(videoFile.path);
+      log('Video Type: $videoType');
     } else {
       log('Error: Video file is null.');
     }
+  }
+
+  String getVideoType(String filePath) {
+    final List<String> parts = filePath.split('.');
+    if (parts.isNotEmpty) {
+      return parts.last.toLowerCase();
+    }
+    return 'Unknown';
   }
 
   @override
@@ -65,3 +74,5 @@ class VideosPlayerController extends GetxController {
     super.onClose();
   }
 }
+
+

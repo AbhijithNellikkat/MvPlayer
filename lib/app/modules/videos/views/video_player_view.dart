@@ -27,10 +27,9 @@ class VideoPlayerView extends StatelessWidget {
               future: videosPlayerController.initializeVideoPlayer(video),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
-                  return Container(
+                  return SizedBox(
                     height: MediaQuery.of(context).size.height,
-                    child: Chewie(
-                        controller: videosPlayerController.chewieController),
+                     child: Chewie(controller: videosPlayerController.chewieController),
                   );
                 } else {
                   return const Center(

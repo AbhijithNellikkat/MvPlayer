@@ -39,6 +39,7 @@ dependencies:
   path_provider: ^2.1.1
   fluttertoast: ^8.2.4
   marquee: ^2.2.0
+ 
   
   
   
