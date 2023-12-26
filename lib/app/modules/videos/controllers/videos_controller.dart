@@ -1,7 +1,6 @@
-// ignore_for_file: deprecated_member_use
+
 
 import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/videos/views/videos_grid_in_folder_view.dart';
 import 'package:mv_player/app/modules/videos/views/videos_list_in_folder_view.dart';
@@ -60,5 +59,15 @@ class VideosController extends GetxController {
     } catch (e) {
       log('Error navigating to videos: $e');
     }
+  }
+
+  void sortAtoZ() {
+    videos.sort((a, b) => (a.title ?? '').compareTo(b.title ?? ''));
+    update();
+  }
+
+  void sortZtoA() {
+    videos.sort((a, b) => (b.title ?? '').compareTo(a.title ?? ''));
+    update();
   }
 }

@@ -1,9 +1,12 @@
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mv_player/app/utils/constants/constants.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 
 class SettingsItemWidget extends StatelessWidget {
+  final SettingsController settingsController = Get.find();
+
   final IconData icons;
 
   final String title;
@@ -17,20 +20,19 @@ class SettingsItemWidget extends StatelessWidget {
   final int? titleMaxLine;
   final int? subtitleMaxLine;
 
-  const SettingsItemWidget({
-    super.key,
-    required this.icons,
-    required this.title,
-    this.titleStyle,
-    this.subtitle,
-    this.subtitleStyle,
-    this.trailing,
-    this.onTap,
-    this.backgroundColor,
-    this.titleMaxLine,
-    this.subtitleMaxLine,
-    this.iconColor = Colors.black,
-  });
+  SettingsItemWidget(
+      {super.key,
+      required this.icons,
+      required this.title,
+      this.titleStyle,
+      this.subtitle,
+      this.subtitleStyle,
+      this.trailing,
+      this.onTap,
+      this.backgroundColor,
+      this.titleMaxLine,
+      this.subtitleMaxLine,
+      this.iconColor = Colors.transparent});
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +46,14 @@ class SettingsItemWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
           ),
           padding: const EdgeInsets.all(5),
-          child: Icon(
-            icons,
-            size: SettingsScreenUtils.settingsGroupIconSize,
-            color: iconColor,
+          child: Obx(
+            () => Icon(
+              icons,
+              size: SettingsScreenUtils.settingsGroupIconSize,
+              color: settingsController.isDarkMode.value
+                  ? Colors.white
+                  : Colors.black,
+            ),
           ),
         ),
         title: Text(
@@ -55,7 +61,7 @@ class SettingsItemWidget extends StatelessWidget {
           style: titleStyle ??
               GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
-                color: Constants.white,
+                // color: Constants.white,
               ),
           maxLines: titleMaxLine,
         ),

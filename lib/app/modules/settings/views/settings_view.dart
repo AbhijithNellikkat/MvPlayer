@@ -19,12 +19,14 @@ class SettingsView extends GetView<SettingsController> {
       appBar: AppBar(
         title: Text(
           "Settings",
-          style: GoogleFonts.poppins(color: Constants.black),
+          style: GoogleFonts.poppins(
+              // color: Constants.black,
+              ),
         ),
-        backgroundColor: Constants.white,
+        // backgroundColor: Constants.white,
         elevation: 0,
       ),
-      backgroundColor: Constants.scaffoldBgColor,
+      // backgroundColor: Constants.scaffoldBgColor,
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -48,8 +50,8 @@ class SettingsView extends GetView<SettingsController> {
                           GoogleFonts.poppins(fontWeight: FontWeight.w600),
                       titleMaxLine: 1,
                       subtitleMaxLine: 1,
-                      backgroundColor: Constants.black,
-                      iconColor: Constants.white,
+                      // backgroundColor: Constants.black,
+                      // iconColor: Constants.white,
                     ),
                   ),
                 ),
@@ -64,16 +66,18 @@ class SettingsView extends GetView<SettingsController> {
                           GoogleFonts.poppins(fontWeight: FontWeight.w600),
                       titleMaxLine: 1,
                       subtitleMaxLine: 1,
-                      backgroundColor: Constants.black,
-                      iconColor: Constants.white,
-                      // trailing: IconButton(
-                      //   onPressed: () {
-                      //     settingsController.toggleTheme();
-                      //   },
-                      //   icon: Obx(() => settingsController.isDarkMode.value
-                      //       ? const Icon(Icons.light_mode)
-                      //       : const Icon(Icons.dark_mode)),
-                      // ),
+                      // backgroundColor: Constants.black,
+                      // iconColor: Constants.white,
+                      trailing: IconButton(
+                        onPressed: () {
+                          settingsController.toggleTheme();
+                        },
+                        icon: Obx(
+                          () => settingsController.isDarkMode.value
+                              ? const Icon(Icons.light_mode)
+                              : const Icon(Icons.dark_mode),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -89,8 +93,8 @@ class SettingsView extends GetView<SettingsController> {
                       titleMaxLine: 1,
                       subtitleMaxLine: 1,
                       subtitle: "Learn more about Mv player",
-                      backgroundColor: Constants.black,
-                      iconColor: Constants.white,
+                      // backgroundColor: Constants.black,
+                      // iconColor: Constants.white,
                     ),
                   ),
                 ),
@@ -105,8 +109,8 @@ class SettingsView extends GetView<SettingsController> {
                           GoogleFonts.poppins(fontWeight: FontWeight.w600),
                       titleMaxLine: 1,
                       subtitleMaxLine: 1,
-                      backgroundColor: Constants.black,
-                      iconColor: Constants.white,
+                      // backgroundColor: Constants.black,
+                      // iconColor: Constants.white,
                     ),
                   ),
                 ),

@@ -41,7 +41,15 @@ Future<void> main() async {
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       initialBinding: SplashBinding(),
-      theme: ThemeData(
+      // theme: ThemeData(
+      //   dialogBackgroundColor: Constants.black,
+      //   colorScheme: ColorScheme.fromSeed(
+      //     seedColor: Colors.white,
+      //     primary: Colors.black,
+      //   ),
+      //   useMaterial3: true,
+      // ),
+       theme: ThemeData(
         dialogBackgroundColor: Constants.black,
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.white,
@@ -49,9 +57,8 @@ Future<void> main() async {
         ),
         useMaterial3: true,
       ),
-      // theme: AppThemes.lightTheme,
-      // darkTheme: AppThemes.darkTheme,
-      // themeMode: ThemeMode.system,
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
     ),
   );
 }

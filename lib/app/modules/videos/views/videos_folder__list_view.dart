@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 import 'package:mv_player/app/modules/videos/controllers/videos_controller.dart';
 
 class ListViewWidget extends StatefulWidget {
@@ -12,6 +13,8 @@ class ListViewWidget extends StatefulWidget {
 
 class _ListViewWidgetState extends State<ListViewWidget> {
   final VideosController videosController = Get.find();
+
+  final SettingsController settingsController = Get.find();
 
   @override
   void initState() {
@@ -30,7 +33,6 @@ class _ListViewWidgetState extends State<ListViewWidget> {
             return ListTile(
               leading: const Icon(
                 Icons.folder,
-                color: Color.fromRGBO(0, 0, 0, 1),
                 size: 40,
               ),
               title: Text(

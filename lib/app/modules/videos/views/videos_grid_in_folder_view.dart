@@ -21,9 +21,11 @@ class VideosGridInFolderView extends GetView {
       appBar: AppBar(
         title: Text(
           foldersName,
-          style: GoogleFonts.poppins(color: Colors.black),
+          style: GoogleFonts.poppins(
+              // color: Colors.black,
+              ),
         ),
-        backgroundColor: Constants.white,
+        // backgroundColor: Constants.white,
         elevation: 0,
         automaticallyImplyLeading: false,
         leading: IconButton(
@@ -32,7 +34,7 @@ class VideosGridInFolderView extends GetView {
             },
             icon: const Icon(
               Constants.backArrow,
-              color: Constants.black,
+              // color: Constants.black,
             )),
       ),
       body: GetBuilder<VideosController>(
@@ -50,56 +52,55 @@ class VideosGridInFolderView extends GetView {
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      color: Constants.black,
-                      child: Stack(
-                        children: [
-                          FutureBuilder<Uint8List?>(
-                            future: videos[index].thumbnailDataWithSize(
-                              const ThumbnailSize(120, 120),
-                              format: ThumbnailFormat.jpeg,
-                              quality: 100,
-                            ),
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState ==
-                                      ConnectionState.done &&
-                                  snapshot.data != null) {
-                                return Image.memory(
-                                  snapshot.data!,
-                                  filterQuality: FilterQuality.high,
-                                  width: 159,
-                                  height: 190,
-                                  fit: BoxFit.cover,
-                                );
-                              } else {
-                                return Container(
-                                  width: 130,
-                                  height: 130,
-                                  color: Colors.black,
-                                  child: const Center(
-                                    child: CircularProgressIndicator(
-                                      color: Colors.white,
-                                    ),
+                    child: Stack(
+                      children: [
+                        FutureBuilder<Uint8List?>(
+                          future: videos[index].thumbnailDataWithSize(
+                            const ThumbnailSize(120, 120),
+                            format: ThumbnailFormat.jpeg,
+                            quality: 100,
+                          ),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                    ConnectionState.done &&
+                                snapshot.data != null) {
+                              return Image.memory(
+                                snapshot.data!,
+                                filterQuality: FilterQuality.high,
+                                width: 159,
+                                height: 190,
+                                fit: BoxFit.cover,
+                              );
+                            } else {
+                              return const SizedBox(
+                                width: 130,
+                                height: 130,
+                                // color: Colors.black,
+                                child: Center(
+                                  child: CircularProgressIndicator(
+                                      // color: Colors.white,
+                                      ),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                        Positioned(
+                          bottom: 9,
+                          right: 9,
+                          child: Container(
+                            width: 44,
+                            height: 19,
+                            // color: const Color.fromARGB(93, 17, 17, 17),
+                            child: Text(
+                              '${videos[index].duration.minutes}',
+                              style: const TextStyle(
+                                  // color: Colors.white,
                                   ),
-                                );
-                              }
-                            },
-                          ),
-                          Positioned(
-                            bottom: 9,
-                            right: 9,
-                            child: Container(
-                              width: 44,
-                              height: 19,
-                              color: const Color.fromARGB(93, 17, 17, 17),
-                              child: Text(
-                                '${videos[index].duration.minutes}',
-                                style: const TextStyle(color: Colors.white),
-                              ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 );

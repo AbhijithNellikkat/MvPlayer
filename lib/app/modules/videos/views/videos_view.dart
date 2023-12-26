@@ -15,13 +15,15 @@ class VideosView extends StatelessWidget {
     return GetBuilder<VideosController>(
       builder: (controller) {
         return Scaffold(
-          backgroundColor: Colors.white,
+          // backgroundColor: Colors.white,
           appBar: AppBar(
             elevation: 0,
-            backgroundColor: Colors.white,
+            // backgroundColor: Colors.white,
             title: const Text(
               'Folders',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(
+                  // color: Colors.black,
+                  ),
             ),
             actions: [
               IconButton(
