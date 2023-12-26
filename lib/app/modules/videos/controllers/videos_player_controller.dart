@@ -9,9 +9,7 @@ import 'package:video_player/video_player.dart';
 
 class VideosPlayerController extends GetxController {
   late VideoPlayerController videoPlayerController;
-
   late ChewieController chewieController;
-
   RxBool isPlaying = false.obs;
 
   Future<void> initializeVideoPlayer(AssetEntity video) async {
@@ -66,13 +64,4 @@ class VideosPlayerController extends GetxController {
     }
     return 'Unknown';
   }
-
-  @override
-  void onClose() {
-    videoPlayerController.dispose();
-    chewieController.dispose();
-    super.onClose();
-  }
 }
-
-

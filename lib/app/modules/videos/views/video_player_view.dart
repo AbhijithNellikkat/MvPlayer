@@ -7,29 +7,35 @@ import 'package:mv_player/app/modules/videos/controllers/videos_player_controlle
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:photo_manager/photo_manager.dart';
 
-// ignore: must_be_immutable
-class VideoPlayerView extends StatelessWidget {
+class VideoPlayerView extends StatefulWidget {
   final AssetEntity video;
 
-  VideoPlayerView({required this.video, Key? key}) : super(key: key);
+  const VideoPlayerView({required this.video, Key? key}) : super(key: key);
 
+  @override
+  State<VideoPlayerView> createState() => _VideoPlayerViewState();
+}
+
+class _VideoPlayerViewState extends State<VideoPlayerView> {
   final VideosPlayerController videosPlayerController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    log('path : ${video.relativePath}');
+    log('path : ${widget.video.relativePath}');
     return Scaffold(
       body: Stack(
         children: [
           Container(
             color: Colors.black,
             child: FutureBuilder(
-              future: videosPlayerController.initializeVideoPlayer(video),
+              future:
+                  videosPlayerController.initializeVideoPlayer(widget.video),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   return SizedBox(
                     height: MediaQuery.of(context).size.height,
-                     child: Chewie(controller: videosPlayerController.chewieController),
+                    child: Chewie(
+                        controller: videosPlayerController.chewieController),
                   );
                 } else {
                   return const Center(
@@ -48,18 +54,26 @@ class VideoPlayerView extends StatelessWidget {
               height: 60,
               width: 60,
               child: IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    weight: 23,
-                    color: Constants.white,
-                  )),
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                  weight: 23,
+                  color: Constants.white,
+                ),
+              ),
             ),
           )
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    videosPlayerController.videoPlayerController.dispose();
+    videosPlayerController.chewieController.dispose();
+    super.dispose();
   }
 }

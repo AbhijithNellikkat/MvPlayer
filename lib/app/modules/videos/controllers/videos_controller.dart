@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:developer';
 
 import 'package:get/get.dart';
@@ -11,7 +13,6 @@ class VideosController extends GetxController {
 
   RxBool isGridView = true.obs;
 
-
   void toggleView() {
     isGridView.toggle();
     update();
@@ -22,7 +23,6 @@ class VideosController extends GetxController {
     try {
       final List<AssetPathEntity> paths =
           await PhotoManager.getAssetPathList(type: RequestType.video);
-
       folders.assignAll(paths);
       log('Folders : $folders');
     } catch (e) {
@@ -34,7 +34,6 @@ class VideosController extends GetxController {
       {required AssetPathEntity folder, required String foldersName}) async {
     try {
       final List<AssetEntity> videos =
-          // ignore: deprecated_member_use
           await folder.getAssetListRange(start: 0, end: folder.assetCount);
 
       this.videos.assignAll(videos);
@@ -51,7 +50,6 @@ class VideosController extends GetxController {
       {required AssetPathEntity folder, required String foldersName}) async {
     try {
       final List<AssetEntity> videos =
-          // ignore: deprecated_member_use
           await folder.getAssetListRange(start: 0, end: folder.assetCount);
 
       this.videos.assignAll(videos);

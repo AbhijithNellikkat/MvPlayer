@@ -106,6 +106,15 @@ class VideosListInFolderView extends StatelessWidget {
                     ));
                     log('Selected video path: ${videos[index].relativePath}');
                   },
+                  trailing: IconButton(
+                    onPressed: () {
+                      showDeleteConfirmationDialog(context, videos[index]);
+                    },
+                    icon: const Icon(
+                      Icons.delete_forever,
+                      color: Colors.red,
+                    ),
+                  ),
                 );
               },
             ),
@@ -114,4 +123,29 @@ class VideosListInFolderView extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> showDeleteConfirmationDialog(
+    BuildContext context, AssetEntity video) async {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Delete Video'),
+        content: const Text('Are you sure you want to delete this video?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () async {},
+            child: const Text('Delete'),
+          ),
+        ],
+      );
+    },
+  );
 }
