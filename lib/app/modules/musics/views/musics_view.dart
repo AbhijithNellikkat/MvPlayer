@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/home/controllers/nav_bar_controller_controller.dart';
 import 'package:mv_player/app/modules/musics/views/favourites_view.dart';
 import 'package:mv_player/app/modules/musics/views/mini_player_view.dart';
@@ -22,32 +23,43 @@ class MusicsView extends StatelessWidget {
         length: 3,
         child: GetBuilder<NavBarController>(builder: (controller) {
           return Scaffold(
-            backgroundColor: Colors.white,
+            // backgroundColor: Colors.white,
             appBar: AppBar(
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
               title: const Text(
                 'Musics',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(
+                    // color: Colors.black,
+                    ),
               ),
-              bottom: const TabBar(
-                dividerColor: Colors.black,
+              bottom: TabBar(
+                // dividerColor: Colors.black,
                 tabs: [
                   Tab(
                     child: Text(
                       'Tracks',
-                      style: TextStyle(color: Colors.black),
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   Tab(
                     child: Text(
                       'Playlists',
-                      style: TextStyle(color: Colors.black),
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   Tab(
                     child: Text(
                       'Favourites',
-                      style: TextStyle(color: Colors.black),
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   )
                 ],
@@ -57,9 +69,10 @@ class MusicsView extends StatelessWidget {
               children: [
                 TracksView(),
                 PlaylistsView(),
-                FavouritesView(),
+                const FavouritesView(),
               ],
             ),
+
             persistentFooterButtons: const [MiniPlayerView()],
           );
         }),

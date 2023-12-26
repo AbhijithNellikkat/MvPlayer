@@ -22,7 +22,7 @@ class PlaylistsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Constants.scaffoldBgColor,
+      // backgroundColor: Constants.scaffoldBgColor,
       body: GetBuilder<PlaylistController>(builder: (context) {
         return FutureBuilder<List<String>>(
           future: dbFunctions.getPlaylistNames(),
@@ -68,19 +68,18 @@ class PlaylistsView extends StatelessWidget {
                       width: 60,
                       height: 130,
                       decoration: const BoxDecoration(
-                        color: Constants.black,
+                        // color: Constants.black,
                         borderRadius: BorderRadius.all(
                           Radius.circular(15),
                         ),
                       ),
                       child: const Icon(
                         Icons.playlist_play_rounded,
-                        color: Constants.white,
+                        // color: Constants.white,
                         size: 35,
                       ),
                     ),
                     title: Text(playlistName),
-                  
                     trailing: PopupMenuButton(
                       itemBuilder: (context) {
                         return [
@@ -139,13 +138,15 @@ class PlaylistsView extends StatelessWidget {
         );
       }),
       floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Constants.black,
+        // backgroundColor: Constants.black,
         onPressed: () {
           createPlaylistDialogWidget(context, dbFunctions, playlistController);
         },
         label: Text(
           'create playlist',
-          style: GoogleFonts.poppins(color: Constants.white),
+          style: GoogleFonts.poppins(
+              // color: Constants.white,
+              ),
         ),
       ),
     );

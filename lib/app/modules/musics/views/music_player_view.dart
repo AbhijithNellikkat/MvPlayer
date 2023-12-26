@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:mv_player/app/data/db_functions.dart';
 import 'package:mv_player/app/modules/musics/controllers/music_player_controller.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -28,8 +29,9 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
 
   final TracksController tracksController = Get.find();
 
-  final DbFunctions dbFunctions  = DbFunctions();
+  final SettingsController settingsController = Get.find();
 
+  final DbFunctions dbFunctions = DbFunctions();
 
   @override
   void initState() {
@@ -50,7 +52,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
       },
     );
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
@@ -59,14 +61,13 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
             },
             icon: const Icon(
               Constants.backArrow,
-              color: Colors.black,
+              // color: Colors.black,
             )),
         actions: [
           IconButton(
             onPressed: () {
               musicPlayerBottomSheet(
                 tracksController: tracksController,
-                
                 context: context,
                 index: widget.index,
                 songs: widget.songs,
@@ -76,13 +77,13 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
             },
             icon: const Icon(
               Constants.moreVert,
-              color: Constants.black,
+              // color: Constants.black,
             ),
           ),
           const SizedBox(width: 11),
         ],
         automaticallyImplyLeading: false,
-        backgroundColor: Constants.scaffoldBgColor,
+        // backgroundColor: Constants.scaffoldBgColor,
       ),
       body: Container(
         width: double.infinity,
@@ -100,7 +101,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                         nullArtworkWidget: Container(
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(15)),
-                            color: Constants.black,
+                            // color: Constants.black,
                           ),
                           width: 350,
                           height: 350,
@@ -143,9 +144,16 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                           fontSize: 12,
                           musicPlayerController: musicPlayerController,
                           baseBarColor: Colors.grey,
-                          thumbColor: Constants.black,
-                          progressBarColor: Constants.black,
-                          timeLabelTextColor: Constants.black,
+                          thumbColor: settingsController.isDarkMode.value
+                              ? Constants.white
+                              : Constants.black,
+                          progressBarColor: settingsController.isDarkMode.value
+                              ? Constants.white
+                              : Constants.black,
+                          timeLabelTextColor:
+                              settingsController.isDarkMode.value
+                                  ? Constants.white
+                                  : Constants.black,
                           thumbRadius: 9,
                         ),
                       ),
@@ -164,7 +172,7 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                       ? Constants.shuffleOnsharp
                                       : Constants.shuffle,
                                   size: 25,
-                                  color: Constants.black,
+                                  // color: Constants.black,
                                 ),
                               ),
 
@@ -185,7 +193,9 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                       style: BorderStyle.solid,
-                                      color: Constants.black,
+                                      color: settingsController.isDarkMode.value
+                                          ? Constants.white
+                                          : Constants.black,
                                     ),
                                     shape: BoxShape.circle,
                                   ),

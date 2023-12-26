@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mv_player/app/utils/constants/constants.dart';
 
 import '../controllers/nav_bar_controller_controller.dart';
 import '../widgets/local_songs_suggestions_slider_widget .dart';
@@ -15,12 +14,12 @@ class HomeView extends StatelessWidget {
     return GetBuilder<NavBarController>(builder: (controller) {
       return SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+          // backgroundColor: Colors.white,
           body: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
-                backgroundColor: Colors.white,
+                // backgroundColor: Colors.white,
                 stretch: true,
                 onStretchTrigger: () async {},
                 stretchTriggerOffset: 300.0,
@@ -32,15 +31,13 @@ class HomeView extends StatelessWidget {
                     child: Text(
                       'Welcome to Mv Player 👋',
                       style: GoogleFonts.yeonSung(
-                          color: Constants.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500),
+                          fontSize: 15, fontWeight: FontWeight.w500),
                     ),
                   ),
-                  background: Image.asset(
-                    Constants.homePageBgImage,
-                    fit: BoxFit.fitWidth,
-                  ),
+                  // background: Image.asset(
+                  //   Constants.homePageBgImage,
+                  //   fit: BoxFit.fitWidth,
+                  // ),
                 ),
               ),
               SliverList(

@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:mv_player/app/common/widgets/toast_message_widget.dart';
 import 'package:mv_player/app/modules/musics/controllers/music_player_controller.dart';
 import 'package:mv_player/app/modules/musics/views/music_player_view.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -26,6 +27,7 @@ class _FavouritesViewState extends State<FavouritesView> {
   final FavouritesController favouritesController = Get.find();
 
   final MusicPlayerController musicPlayerController = Get.find();
+  final SettingsController settingsController = Get.find();
 
   late var favSongs;
 
@@ -33,8 +35,7 @@ class _FavouritesViewState extends State<FavouritesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 70,
-       
+        toolbarHeight: 78,
         actions: [
           GetBuilder<FavouritesController>(
             builder: (controller) {
@@ -49,7 +50,7 @@ class _FavouritesViewState extends State<FavouritesView> {
                   icon: const Icon(
                     Icons.play_circle_fill_outlined,
                     size: 55,
-                    color: Constants.black,
+                    // color: Constants.black,
                   ),
                 );
               } else {
@@ -98,15 +99,19 @@ class _FavouritesViewState extends State<FavouritesView> {
                     nullArtworkWidget: Container(
                       width: 60,
                       height: 130,
-                      decoration: const BoxDecoration(
-                        color: Constants.black,
-                        borderRadius: BorderRadius.all(
+                      decoration: BoxDecoration(
+                        color: settingsController.isDarkMode.value
+                            ? Constants.white
+                            : Constants.black,
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(15),
                         ),
                       ),
-                      child: const Icon(
+                      child: Icon(
                         Constants.music,
-                        color: Constants.white,
+                        color: settingsController.isDarkMode.value
+                            ? Constants.black
+                            : Constants.white,
                       ),
                     ),
                   ),
@@ -135,7 +140,7 @@ class _FavouritesViewState extends State<FavouritesView> {
                     },
                     icon: const Icon(
                       Icons.close_rounded,
-                      color: Constants.black,
+                      // color: Constants.black,
                     ),
                   ),
                 );

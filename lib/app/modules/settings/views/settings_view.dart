@@ -58,24 +58,24 @@ class SettingsView extends GetView<SettingsController> {
                 Card(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: SettingsItemWidget(
-                      onTap: () {},
-                      icons: Icons.dark_mode_rounded,
-                      title: 'Switch Theme',
-                      titleStyle:
-                          GoogleFonts.poppins(fontWeight: FontWeight.w600),
-                      titleMaxLine: 1,
-                      subtitleMaxLine: 1,
-                      // backgroundColor: Constants.black,
-                      // iconColor: Constants.white,
-                      trailing: IconButton(
-                        onPressed: () {
-                          settingsController.toggleTheme();
-                        },
-                        icon: Obx(
-                          () => settingsController.isDarkMode.value
-                              ? const Icon(Icons.light_mode)
-                              : const Icon(Icons.dark_mode),
+                    child: Obx(
+                      () => SettingsItemWidget(
+                        onTap: () {},
+                        icons: settingsController.isDarkMode.value
+                            ? Icons.dark_mode_rounded
+                            : Icons.light_mode_rounded,
+                        title: 'Switch Theme',
+                        titleStyle:
+                            GoogleFonts.poppins(fontWeight: FontWeight.w600),
+                        titleMaxLine: 1,
+                        subtitleMaxLine: 1,
+                        trailing: Obx(
+                          () => Switch.adaptive(
+                            onChanged: (value) {
+                              settingsController.toggleTheme();
+                            },
+                            value: settingsController.isDarkMode.value,
+                          ),
                         ),
                       ),
                     ),

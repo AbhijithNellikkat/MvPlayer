@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee/marquee.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -20,6 +21,8 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
     with TickerProviderStateMixin {
   final MusicPlayerController musicPlayerController = Get.find();
   final TracksController tracksController = Get.find();
+  final SettingsController settingsController = Get.find();
+
   late AnimationController animationController;
 
   @override
@@ -30,7 +33,6 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
       duration: const Duration(seconds: 1),
     )..repeat();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
               height: 80,
               width: double.infinity,
               decoration: const BoxDecoration(
-                color: Colors.black,
+                // color: Colors.black,s
                 borderRadius: BorderRadius.all(Radius.circular(12)),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 3),
@@ -65,7 +67,9 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
                       width: 55,
                       height: 55,
                       decoration: BoxDecoration(
-                        color: Constants.black,
+                        color: settingsController.isDarkMode.value
+                            ? Constants.white
+                            : Constants.black,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Lottie.asset(Constants.nullArtworkWidget,
@@ -83,7 +87,7 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
-                            color: Colors.white,
+                            // color: Colors.white,
                           ),
                           fadingEdgeStartFraction: 0.5,
                           fadingEdgeEndFraction: 0.9,
@@ -111,12 +115,12 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
                         ? const Icon(
                             Constants.musicPause,
                             size: 37,
-                            color: Constants.white,
+                            // color: Constants.white,
                           )
                         : const Icon(
                             Constants.musicPlayArrow,
                             size: 37,
-                            color: Constants.white,
+                            // color: Constants.white,
                           ),
                   ),
                   IconButton(
@@ -127,7 +131,7 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
                     icon: const Icon(
                       Constants.skipNext,
                       size: 37,
-                      color: Constants.white,
+                      // color: Constants.white,
                     ),
                   )
                 ],

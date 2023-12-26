@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:mv_player/app/data/db_functions.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
 import 'package:mv_player/app/modules/musics/views/music_player_view.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
@@ -33,6 +34,8 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
   late ValueNotifier<List<SongModel>> playlistNotifier;
 
   final FavouritesController favouritesController = Get.find();
+
+  final SettingsController settingsController = Get.find();
 
   @override
   void initState() {
@@ -89,15 +92,19 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
                   nullArtworkWidget: Container(
                     width: 60,
                     height: 130,
-                    decoration: const BoxDecoration(
-                      color: Constants.black,
-                      borderRadius: BorderRadius.all(
+                    decoration: BoxDecoration(
+                      color: settingsController.isDarkMode.value
+                          ? Constants.white
+                          : Constants.black,
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(15),
                       ),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Constants.music,
-                      color: Constants.white,
+                      color: settingsController.isDarkMode.value
+                          ? Constants.black
+                          : Constants.white,
                     ),
                   ),
                 ),
@@ -169,14 +176,16 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Constants.black,
+      
         onPressed: () async {
           await widget.tracksController.fetchAllSongs();
 
           List<SongModel> allSongs = widget.tracksController.allSongs;
 
           Get.bottomSheet(
-            backgroundColor: Constants.black,
+            backgroundColor: settingsController.isDarkMode.value
+                ? Constants.black
+                : Constants.white,
             SizedBox(
               width: double.maxFinite,
               height: 400,
@@ -199,24 +208,29 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
                         nullArtworkWidget: Container(
                           width: 60,
                           height: 130,
-                          decoration: const BoxDecoration(
-                            color: Constants.white,
-                            borderRadius: BorderRadius.all(
+                          decoration: BoxDecoration(
+                            color: settingsController.isDarkMode.value
+                                ? Constants.white
+                                : Constants.black,
+                            borderRadius: const BorderRadius.all(
                               Radius.circular(15),
                             ),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Constants.music,
-                            color: Constants.black,
+                            color: settingsController.isDarkMode.value
+                                ? Constants.black
+                                : Constants.white,
                           ),
                         ),
                       ),
                       title: Text(
                         song.title,
                         style: GoogleFonts.poppins(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w600,
-                            color: Constants.white),
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          // color: Constants.white,
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -225,9 +239,10 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
                             ? "Unknown Artist"
                             : '${song.artist}',
                         style: GoogleFonts.poppins(
-                            fontSize: 9,
-                            fontWeight: FontWeight.w300,
-                            color: Constants.white),
+                          fontSize: 9,
+                          fontWeight: FontWeight.w300,
+                          // color: Constants.white,
+                        ),
                       ),
                       trailing: IconButton(
                         onPressed: () async {
@@ -255,7 +270,7 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
         },
         child: const Icon(
           Icons.add,
-          color: Constants.white,
+          // color: Constants.white,
         ),
       ),
     );

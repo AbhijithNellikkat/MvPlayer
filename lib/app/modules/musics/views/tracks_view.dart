@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/data/db_functions.dart';
 import 'package:mv_player/app/modules/musics/controllers/favourites_controller.dart';
 import 'package:mv_player/app/modules/musics/controllers/tracks_controller.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../common/widgets/toast_message_widget.dart';
@@ -19,6 +20,9 @@ class TracksView extends StatelessWidget {
 
   final TextEditingController searchController = TextEditingController();
   final FavouritesController favouritesController = Get.find();
+
+  final SettingsController settingsController = Get.find();
+
   final DbFunctions dbFunctions = DbFunctions();
   TracksView({super.key});
 
@@ -27,19 +31,21 @@ class TracksView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Constants.scaffoldBgColor,
+      // backgroundColor: Constants.scaffoldBgColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
         elevation: 0,
         title: TextField(
           controller: searchController,
           onChanged: (query) {
-            // Call the filterSongs method when the text in the search bar changes
             tracksController.filterSongs(query);
           },
           showCursor: true,
-          cursorColor: Constants.black,
-          style: GoogleFonts.poppins(color: Constants.black, fontSize: 14),
+          // cursorColor: Constants.black,
+          style: GoogleFonts.poppins(
+            // color: Constants.black,
+            fontSize: 14,
+          ),
           decoration: InputDecoration(
             hintText: 'Search',
             hintStyle: GoogleFonts.poppins(color: Colors.grey),
@@ -80,21 +86,28 @@ class TracksView extends StatelessWidget {
                   nullArtworkWidget: Container(
                     width: 60,
                     height: 130,
-                    decoration: const BoxDecoration(
-                      color: Constants.black,
-                      borderRadius: BorderRadius.all(
+                    decoration: BoxDecoration(
+                      color: settingsController.isDarkMode.value
+                          ? Constants.white
+                          : Constants.black,
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(15),
                       ),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Constants.music,
-                      color: Constants.white,
+                      color: settingsController.isDarkMode.value
+                          ? Constants.black
+                          : Constants.white,
                     ),
                   ),
                 ),
                 title: Text(
                   tracksController.displayedSongs[index].title,
-                  style: musicListTitleStyle,
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),

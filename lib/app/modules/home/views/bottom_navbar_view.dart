@@ -31,7 +31,7 @@ class BottomNavbarView extends StatelessWidget {
           ),
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              // color: Colors.white,
               boxShadow: [
                 BoxShadow(
                   blurRadius: 20,
@@ -43,16 +43,16 @@ class BottomNavbarView extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
               child: GNav(
-                rippleColor: Colors.grey[300]!,
-                hoverColor: Colors.grey[100]!,
+                // rippleColor: Colors.grey[300]!,
+                // hoverColor: Colors.grey[100]!,
                 gap: 8,
-                activeColor: Colors.black,
+                // activeColor: Colors.black,
                 iconSize: 24,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 duration: const Duration(milliseconds: 400),
-                tabBackgroundColor: Colors.grey[100]!,
-                color: Colors.black,
+                // tabBackgroundColor: Colors.grey[100]!,
+                // color: Colors.black,
                 tabs: const [
                   GButton(
                     icon: Icons.home,

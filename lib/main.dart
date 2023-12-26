@@ -49,15 +49,8 @@ Future<void> main() async {
       //   ),
       //   useMaterial3: true,
       // ),
-       theme: ThemeData(
-        dialogBackgroundColor: Constants.black,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.white,
-          primary: Colors.black,
-        ),
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData.dark(),
+      theme: ThemeData.light(useMaterial3: true),
+      darkTheme: ThemeData.dark(useMaterial3: true),
       themeMode: ThemeMode.system,
     ),
   );
