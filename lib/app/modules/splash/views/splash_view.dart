@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../../utils/constants/constants.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends StatelessWidget {
@@ -13,16 +11,15 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     splashController.delayAndNavigate();
-   
+
     return Scaffold(
-      backgroundColor: Constants.white,
       body: SafeArea(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                Constants.splashImage,
+                'assets/images/sample_logo-removebg-preview.png',
                 width: 200,
               )
             ],
@@ -32,20 +29,3 @@ class SplashView extends StatelessWidget {
     );
   }
 }
-
-
-// SafeArea(
-//         child: Center(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Image.asset(
-//                 Constants.splashImage,
-//                 width: 200,
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-
-

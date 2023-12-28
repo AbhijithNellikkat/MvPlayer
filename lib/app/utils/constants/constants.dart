@@ -74,7 +74,7 @@ class Constants {
 
   // ===================== Database =====================
   static const String boxName = 'musicsBox';
-  static const String favouritesKey = 'favourites';
+  // static const String favouritesKey = 'favourites';
 
   // Loading Widget
   static const Widget circularProgressIndicator = CircularProgressIndicator(
