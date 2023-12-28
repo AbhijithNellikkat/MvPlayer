@@ -28,4 +28,6 @@ class SettingsController extends GetxController {
     isDarkMode.value = savedDarkMode;
     Get.changeThemeMode(isDarkMode.value ? ThemeMode.dark : ThemeMode.light);
   }
+
+  
 }

@@ -47,10 +47,12 @@ class _FavouritesViewState extends State<FavouritesView> {
                     musicPlayerController.playTheSong(
                         songmodel: favSongs, index: 0);
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.play_circle_fill_outlined,
                     size: 55,
-                    // color: Constants.black,
+                    color: settingsController.isDarkMode.value
+                        ? Constants.white
+                        : Constants.black,
                   ),
                 );
               } else {

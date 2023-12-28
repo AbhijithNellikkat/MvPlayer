@@ -136,7 +136,11 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
                             },
                             child: Text(
                               "Add to favorites",
-                              style: GoogleFonts.poppins(),
+                              style: GoogleFonts.poppins(
+                                color: settingsController.isDarkMode.value
+                                    ? Constants.black
+                                    : Constants.white,
+                              ),
                             )),
                       ),
                       PopupMenuItem(
@@ -157,7 +161,11 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
                           },
                           child: Text(
                             "Delete from this playlist",
-                            style: GoogleFonts.poppins(),
+                            style: GoogleFonts.poppins(
+                              color: settingsController.isDarkMode.value
+                                  ? Constants.black
+                                  : Constants.white,
+                            ),
                           ),
                         ),
                       ),
@@ -176,7 +184,6 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-      
         onPressed: () async {
           await widget.tracksController.fetchAllSongs();
 
@@ -268,9 +275,11 @@ class _PlaylistDetailsViewState extends State<PlaylistDetailsView> {
             ),
           );
         },
-        child: const Icon(
+        child: Icon(
           Icons.add,
-          // color: Constants.white,
+          color: settingsController.isDarkMode.value
+              ? Constants.black
+              : Constants.white,
         ),
       ),
     );

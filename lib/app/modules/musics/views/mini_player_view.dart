@@ -67,9 +67,7 @@ class _MiniPlayerViewState extends State<MiniPlayerView>
                       width: 55,
                       height: 55,
                       decoration: BoxDecoration(
-                        color: settingsController.isDarkMode.value
-                            ? Constants.white
-                            : Constants.black,
+                        color: Constants.black,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Lottie.asset(Constants.nullArtworkWidget,

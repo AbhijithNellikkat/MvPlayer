@@ -15,6 +15,7 @@ class AppThemes {
         color: Constants.white,
         elevation: 2,
       ),
+      popupMenuTheme: const PopupMenuThemeData(color: Constants.black),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Constants.black,
       ),
@@ -32,6 +33,7 @@ class AppThemes {
         color: Constants.black,
         elevation: 2,
       ),
+      popupMenuTheme: const PopupMenuThemeData(color: Constants.white),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Constants.white,
       ),

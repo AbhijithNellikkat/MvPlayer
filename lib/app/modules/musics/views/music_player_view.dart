@@ -100,8 +100,9 @@ class _MusicPlayerViewState extends State<MusicPlayerView> {
                       QueryArtworkWidget(
                         nullArtworkWidget: Container(
                           decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                            // color: Constants.black,
+                            borderRadius:
+                                 BorderRadius.all(Radius.circular(15)),
+                            color: Constants.black,
                           ),
                           width: 350,
                           height: 350,

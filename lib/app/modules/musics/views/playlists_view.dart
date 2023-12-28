@@ -7,6 +7,7 @@ import 'package:mv_player/app/modules/musics/controllers/playlist_controller.dar
 import 'package:mv_player/app/modules/musics/views/playlist_details_view.dart';
 import 'package:mv_player/app/modules/musics/widgets/delete_comfirmation_dialog_widget.dart';
 import 'package:mv_player/app/modules/musics/widgets/rename_playlist_dialog_widget.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 
 import '../../../common/widgets/toast_message_widget.dart';
 import '../../../data/db_functions.dart';
@@ -18,6 +19,7 @@ class PlaylistsView extends StatelessWidget {
 
   final PlaylistController playlistController = Get.find();
   final DbFunctions dbFunctions = DbFunctions();
+  final SettingsController settingsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +107,11 @@ class PlaylistsView extends StatelessWidget {
                               },
                               child: Text(
                                 "Delete the playlist",
-                                style: GoogleFonts.poppins(),
+                                style: GoogleFonts.poppins(
+                                  color: settingsController.isDarkMode.value
+                                      ? Constants.black
+                                      : Constants.white,
+                                ),
                               ),
                             ),
                           ),
@@ -117,7 +123,11 @@ class PlaylistsView extends StatelessWidget {
                               },
                               child: Text(
                                 "Rename the playlist",
-                                style: GoogleFonts.poppins(),
+                                style: GoogleFonts.poppins(
+                                  color: settingsController.isDarkMode.value
+                                      ? Constants.black
+                                      : Constants.white,
+                                ),
                               ),
                             ),
                           ),
@@ -145,8 +155,10 @@ class PlaylistsView extends StatelessWidget {
         label: Text(
           'create playlist',
           style: GoogleFonts.poppins(
-              // color: Constants.white,
-              ),
+            color: settingsController.isDarkMode.value
+                ? Constants.black
+                : Constants.white,
+          ),
         ),
       ),
     );

@@ -136,6 +136,9 @@ class TracksView extends StatelessWidget {
                             "Add to favorites",
                             style: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
+                              color: settingsController.isDarkMode.value
+                                  ? Constants.black
+                                  : Constants.white,
                             ),
                           ),
                         ),
@@ -157,6 +160,9 @@ class TracksView extends StatelessWidget {
                             "Add to Playlist",
                             style: TextStyle(
                               fontFamily: GoogleFonts.poppins().fontFamily,
+                              color: settingsController.isDarkMode.value
+                                  ? Constants.black
+                                  : Constants.white,
                             ),
                           ),
                         ),

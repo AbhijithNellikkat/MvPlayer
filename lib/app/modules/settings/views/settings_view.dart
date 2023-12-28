@@ -19,14 +19,10 @@ class SettingsView extends GetView<SettingsController> {
       appBar: AppBar(
         title: Text(
           "Settings",
-          style: GoogleFonts.poppins(
-              // color: Constants.black,
-              ),
+          style: GoogleFonts.poppins(),
         ),
-        // backgroundColor: Constants.white,
         elevation: 0,
       ),
-      // backgroundColor: Constants.scaffoldBgColor,
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
