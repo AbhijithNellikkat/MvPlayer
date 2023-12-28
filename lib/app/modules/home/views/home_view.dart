@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 
+import '../../../utils/constants/constants.dart';
 import '../controllers/nav_bar_controller_controller.dart';
 import '../widgets/local_songs_suggestions_slider_widget .dart';
 import '../widgets/recently_played_song_slider.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
+
+  final SettingsController settingsController = SettingsController();
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<NavBarController>(builder: (controller) {
       return SafeArea(
         child: Scaffold(
-          // backgroundColor: Colors.white,
           body: CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
+                systemOverlayStyle: const SystemUiOverlayStyle(
+                  statusBarBrightness: Brightness.dark,
+                ),
                 // backgroundColor: Colors.white,
                 stretch: true,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
                 onStretchTrigger: () async {},
                 stretchTriggerOffset: 300.0,
                 expandedHeight: 400.0,
@@ -31,13 +40,15 @@ class HomeView extends StatelessWidget {
                     child: Text(
                       'Welcome to Mv Player 👋',
                       style: GoogleFonts.yeonSung(
-                          fontSize: 15, fontWeight: FontWeight.w500),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                  // background: Image.asset(
-                  //   Constants.homePageBgImage,
-                  //   fit: BoxFit.fitWidth,
-                  // ),
+                  background: Image.asset(
+                    Constants.homePageBgImage,
+                    fit: BoxFit.fitWidth,
+                  ),
                 ),
               ),
               SliverList(

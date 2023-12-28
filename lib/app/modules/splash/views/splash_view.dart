@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mv_player/app/utils/constants/constants.dart';
 
 import '../controllers/splash_controller.dart';
 
@@ -13,6 +14,7 @@ class SplashView extends StatelessWidget {
     splashController.delayAndNavigate();
 
     return Scaffold(
+      backgroundColor: Constants.white,
       body: SafeArea(
         child: Center(
           child: Column(

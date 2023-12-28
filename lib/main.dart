@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:developer';
 import 'dart:io';
 
@@ -8,9 +10,8 @@ import 'package:mv_player/app/data/models/models.dart';
 import 'package:mv_player/app/data/models/songmodel_adapter.dart';
 import 'package:mv_player/app/modules/splash/bindings/splash_binding.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
-// import 'package:mv_player/app/utils/themes/app_theme.dart';
+import 'package:mv_player/app/utils/themes/app_theme.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'app/modules/home/controllers/permission_controller.dart';
 import 'app/routes/app_pages.dart';
 
@@ -41,16 +42,8 @@ Future<void> main() async {
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       initialBinding: SplashBinding(),
-      // theme: ThemeData(
-      //   dialogBackgroundColor: Constants.black,
-      //   colorScheme: ColorScheme.fromSeed(
-      //     seedColor: Colors.white,
-      //     primary: Colors.black,
-      //   ),
-      //   useMaterial3: true,
-      // ),
-      theme: ThemeData.light(useMaterial3: true),
-      darkTheme: ThemeData.dark(useMaterial3: true),
+      theme: AppThemes.lightTheme(),
+      darkTheme: AppThemes.darkTheme(),
       themeMode: ThemeMode.system,
     ),
   );
