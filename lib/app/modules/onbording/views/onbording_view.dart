@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/routes/app_pages.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:mv_player/app/utils/styles/text_styles.dart';
@@ -17,12 +18,11 @@ class OnbordingView extends GetView<OnbordingController> {
           child: OnBoardingSlider(
             centerBackground: true,
             headerBackgroundColor: Constants.white,
-            finishButtonTextStyle:
-                const TextStyle(fontSize: 13, color: Constants.white),
+            finishButtonTextStyle: finishButtonTextStyle,
             onFinish: () {
               Get.offAndToNamed(Routes.BOTTOMNAVIGATIONBAR);
             },
-            finishButtonText: 'Explore the app',
+            finishButtonText: Constants.openningScreenHeading,
             skipIcon: const Icon(
               Constants.rightArrow,
               color: Constants.white,
@@ -31,9 +31,9 @@ class OnbordingView extends GetView<OnbordingController> {
                 backgroundColor: Constants.black,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)))),
-            skipTextButton: const Text(
+            skipTextButton: Text(
               'Skip',
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                   color: Constants.black, fontWeight: FontWeight.bold),
             ),
             pageBackgroundColor: Constants.white,
@@ -85,6 +85,9 @@ class OnbordingView extends GetView<OnbordingController> {
                 ),
               ),
               Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Constants.white,
+                ),
                 backgroundColor: Constants.scaffoldBgColor,
                 body: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -103,15 +106,17 @@ class OnbordingView extends GetView<OnbordingController> {
                         style: openningScreenHeading),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
-                      child: Text(Constants.musicOnbordingDescription,
-                          style: openningScreenDescription),
+                      child: Center(
+                        child: Text(Constants.musicOnbordingDescription,
+                            style: openningScreenDescription),
+                      ),
                     ),
                     const SizedBox(
                       height: 140,
                     )
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

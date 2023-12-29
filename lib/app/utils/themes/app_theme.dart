@@ -15,6 +15,7 @@ class AppThemes {
         color: Constants.white,
         elevation: 2,
       ),
+      // textTheme: TextTheme(),
       popupMenuTheme: const PopupMenuThemeData(color: Constants.black),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Constants.black,

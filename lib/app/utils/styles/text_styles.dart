@@ -9,6 +9,11 @@ TextStyle onbordingHeading = GoogleFonts.poppins(
 TextStyle onbordingDescription = GoogleFonts.poppins(
     fontSize: 9, fontWeight: FontWeight.w300, color: Constants.black);
 
+TextStyle finishButtonTextStyle = GoogleFonts.poppins(
+  fontSize: 15,
+  color: Constants.white,
+);
+
 // ================= Openning screen ================
 TextStyle openningScreenHeading = GoogleFonts.poppins(
     fontSize: 35, fontWeight: FontWeight.bold, color: Constants.black);

@@ -52,15 +52,15 @@ class PermissionController extends GetxController {
               ),
             );
           }
-          // if (status == PermissionStatus.permanentlyDenied) {
-          //   requestStoragePermission();
-          //   // Get.snackbar(
-          //   //   'permanentlyDenied',
-          //   //   'The Permission is required !',
-          //   //   margin: const EdgeInsets.all(12),
-          //   //   duration: const Duration(seconds: 2),
-          //   // );
-          // }
+          if (status == PermissionStatus.permanentlyDenied) {
+            requestStoragePermission();
+            // Get.snackbar(
+            //   'permanentlyDenied',
+            //   'The Permission is required !',
+            //   margin: const EdgeInsets.all(12),
+            //   duration: const Duration(seconds: 2),
+            // );
+          }
         } on Exception catch (e) {
           log('------------------------------------- $e -------------------------------------');
         }

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 
 import '../../../utils/constants/constants.dart';
+
+final SettingsController settingsController = Get.find();
 
 Future<void> deleteComfirmationDialogWidget({
   required BuildContext context,
@@ -14,9 +17,16 @@ Future<void> deleteComfirmationDialogWidget({
     context: context,
     builder: (context) {
       return AlertDialog(
+        backgroundColor: settingsController.isDarkMode.value
+            ? Constants.white
+            : Constants.black,
         title: Text(
           "Delete Playlist",
-          style: GoogleFonts.poppins(color: Constants.white),
+          style: GoogleFonts.poppins(
+            color: settingsController.isDarkMode.value
+                ? Constants.black
+                : Constants.white,
+          ),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -25,7 +35,11 @@ Future<void> deleteComfirmationDialogWidget({
             Lottie.asset(Constants.deleteAnimation),
             Text(
               deleteConfirmMessage,
-              style: GoogleFonts.poppins(color: Constants.white),
+              style: GoogleFonts.poppins(
+                color: settingsController.isDarkMode.value
+                    ? Constants.black
+                    : Constants.white,
+              ),
             ),
           ],
         ),
@@ -34,7 +48,11 @@ Future<void> deleteComfirmationDialogWidget({
             onPressed: onPressed,
             child: Text(
               "Delete",
-              style: GoogleFonts.poppins(color: Constants.white),
+              style: GoogleFonts.poppins(
+                color: settingsController.isDarkMode.value
+                    ? Constants.black
+                    : Constants.white,
+              ),
             ),
           ),
           TextButton(
@@ -43,7 +61,11 @@ Future<void> deleteComfirmationDialogWidget({
             },
             child: Text(
               "Cancel",
-              style: GoogleFonts.poppins(color: Constants.white),
+              style: GoogleFonts.poppins(
+                color: settingsController.isDarkMode.value
+                    ? Constants.black
+                    : Constants.white,
+              ),
             ),
           ),
         ],

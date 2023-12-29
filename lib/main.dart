@@ -41,7 +41,7 @@ Future<void> main() async {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
-      initialBinding: SplashBinding(),
+      initialBinding: SplashBinding(),  
       theme: AppThemes.lightTheme(),
       darkTheme: AppThemes.darkTheme(),
       themeMode: ThemeMode.system,

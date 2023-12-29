@@ -23,98 +23,100 @@ class SettingsView extends GetView<SettingsController> {
         ),
         elevation: 0,
       ),
-      body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            SimpleUserCard(
-              userName: "Mv player",
-              textStyle: GoogleFonts.poppins(fontSize: 20),
-              userProfilePic: const AssetImage(Constants.splashImage),
-            ),
-            Column(
-              children: [
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SettingsItemWidget(
-                      onTap: () {},
-                      icons: CupertinoIcons.restart,
-                      title: 'Reset App',
-                      titleStyle:
-                          GoogleFonts.poppins(fontWeight: FontWeight.w600),
-                      titleMaxLine: 1,
-                      subtitleMaxLine: 1,
-                      // backgroundColor: Constants.black,
-                      // iconColor: Constants.white,
-                    ),
-                  ),
-                ),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Obx(
-                      () => SettingsItemWidget(
+      body: SingleChildScrollView(
+        child: SafeArea(
+            child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              SimpleUserCard(
+                userName: "Mv player",
+                textStyle: GoogleFonts.poppins(fontSize: 20),
+                userProfilePic: const AssetImage(Constants.splashImage),
+              ),
+              Column(
+                children: [
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SettingsItemWidget(
                         onTap: () {},
-                        icons: settingsController.isDarkMode.value
-                            ? Icons.dark_mode_rounded
-                            : Icons.light_mode_rounded,
-                        title: 'Switch Theme',
+                        icons: CupertinoIcons.restart,
+                        title: 'Reset App',
                         titleStyle:
                             GoogleFonts.poppins(fontWeight: FontWeight.w600),
                         titleMaxLine: 1,
                         subtitleMaxLine: 1,
-                        trailing: Obx(
-                          () => Switch.adaptive(
-                            onChanged: (value) {
-                              settingsController.toggleTheme();
-                            },
-                            value: settingsController.isDarkMode.value,
+                        // backgroundColor: Constants.black,
+                        // iconColor: Constants.white,
+                      ),
+                    ),
+                  ),
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Obx(
+                        () => SettingsItemWidget(
+                          onTap: () {},
+                          icons: settingsController.isDarkMode.value
+                              ? Icons.dark_mode_rounded
+                              : Icons.light_mode_rounded,
+                          title: 'Switch Theme',
+                          titleStyle:
+                              GoogleFonts.poppins(fontWeight: FontWeight.w600),
+                          titleMaxLine: 1,
+                          subtitleMaxLine: 1,
+                          trailing: Obx(
+                            () => Switch.adaptive(
+                              onChanged: (value) {
+                                settingsController.toggleTheme();
+                              },
+                              value: settingsController.isDarkMode.value,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SettingsItemWidget(
-                      onTap: () {},
-                      icons: Icons.info_rounded,
-                      title: 'About',
-                      titleStyle:
-                          GoogleFonts.poppins(fontWeight: FontWeight.w600),
-                      titleMaxLine: 1,
-                      subtitleMaxLine: 1,
-                      subtitle: "Learn more about Mv player",
-                      // backgroundColor: Constants.black,
-                      // iconColor: Constants.white,
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SettingsItemWidget(
+                        onTap: () {},
+                        icons: Icons.info_rounded,
+                        title: 'About',
+                        titleStyle:
+                            GoogleFonts.poppins(fontWeight: FontWeight.w600),
+                        titleMaxLine: 1,
+                        subtitleMaxLine: 1,
+                        subtitle: "Learn more about Mv player",
+                        // backgroundColor: Constants.black,
+                        // iconColor: Constants.white,
+                      ),
                     ),
                   ),
-                ),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SettingsItemWidget(
-                      onTap: () {},
-                      icons: Icons.privacy_tip,
-                      title: 'Privacy Policy',
-                      titleStyle:
-                          GoogleFonts.poppins(fontWeight: FontWeight.w600),
-                      titleMaxLine: 1,
-                      subtitleMaxLine: 1,
-                      // backgroundColor: Constants.black,
-                      // iconColor: Constants.white,
+                  Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SettingsItemWidget(
+                        onTap: () {},
+                        icons: Icons.privacy_tip,
+                        title: 'Privacy Policy',
+                        titleStyle:
+                            GoogleFonts.poppins(fontWeight: FontWeight.w600),
+                        titleMaxLine: 1,
+                        subtitleMaxLine: 1,
+                        // backgroundColor: Constants.black,
+                        // iconColor: Constants.white,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      )),
+                ],
+              ),
+            ],
+          ),
+        )),
+      ),
     );
   }
 }
