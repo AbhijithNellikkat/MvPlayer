@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/musics/controllers/favourites_controller.dart';
+import 'package:mv_player/app/modules/settings/widgets/reset_comfirmation_dialog_widget.dart';
 
 import '../../../utils/constants/constants.dart';
 import '../controllers/settings_controller.dart';
@@ -43,7 +44,14 @@ class SettingsView extends GetView<SettingsController> {
                       padding: const EdgeInsets.all(8.0),
                       child: SettingsItemWidget(
                         onTap: () async {
-                          await favouritesController.resetApp();
+                          resetComfirmationDialogWidget(
+                              context: context,
+                              onPressed: () async {
+                                await favouritesController.resetApp();
+                                Get.back();
+                              },
+                              resetConfirmMessage:
+                                  'Are you sure you want to reset the app? This action will clear all playlists and favorites. This cannot be undone.');
                         },
                         icons: CupertinoIcons.restart,
                         title: 'Reset App',
@@ -53,7 +61,6 @@ class SettingsView extends GetView<SettingsController> {
                         subtitleMaxLine: 1,
                         // backgroundColor: Constants.black,
                         // iconColor: Constants.white,
-                        trailing: const Icon(Icons.power_settings_new_outlined),
                       ),
                     ),
                   ),
