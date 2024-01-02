@@ -43,6 +43,9 @@ class Constants {
 
   static const deleteAnimation = 'assets/animations/delete.json';
 
+  static const String resetConfirmMessage =
+      'Are you sure you want to reset the app? This action will clear all playlists and favorites. This cannot be undone.';
+
   // ------------------- Vertical Spaces -------------------
   static const formTextFormFieldVerticalSpace = SizedBox(height: 18);
   static const firstTextFormFieldAndHeadingVerticalSpace = SizedBox(height: 40);

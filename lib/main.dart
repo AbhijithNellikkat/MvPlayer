@@ -35,6 +35,9 @@ Future<void> main() async {
 
   await Hive.openBox(Constants.boxName);
 
+    
+  
+
   runApp(
     GetMaterialApp(
       title: "Mv Player",

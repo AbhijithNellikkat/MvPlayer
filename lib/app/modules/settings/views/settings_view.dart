@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/musics/controllers/favourites_controller.dart';
 import 'package:mv_player/app/modules/settings/widgets/reset_comfirmation_dialog_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../utils/constants/constants.dart';
 import '../controllers/settings_controller.dart';
@@ -51,7 +52,7 @@ class SettingsView extends GetView<SettingsController> {
                                 Get.back();
                               },
                               resetConfirmMessage:
-                                  'Are you sure you want to reset the app? This action will clear all playlists and favorites. This cannot be undone.');
+                                  Constants.resetConfirmMessage);
                         },
                         icons: CupertinoIcons.restart,
                         title: 'Reset App',
@@ -111,7 +112,13 @@ class SettingsView extends GetView<SettingsController> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SettingsItemWidget(
-                        onTap: () {},
+                        onTap: () {
+                          const privacyPolicyUrl =
+                              'https://doc-hosting.flycricket.io/mvplayer-privacy-policy/26967e4b-ddbf-44db-91cc-e2cfac7f4823/privacy';
+
+                          launchUrl(Uri.parse(privacyPolicyUrl),
+                              mode: LaunchMode.externalApplication);
+                        },
                         icons: Icons.privacy_tip,
                         title: 'Privacy Policy',
                         titleStyle:
@@ -131,4 +138,14 @@ class SettingsView extends GetView<SettingsController> {
       ),
     );
   }
+}
+
+void launchPrivacyPolicy() async {
+  const privacyPolicyUrl =
+      'https://doc-hosting.flycricket.io/mvplayer-privacy-policy/26967e4b-ddbf-44db-91cc-e2cfac7f4823/privacy';
+
+  launchUrl(
+    Uri.parse(privacyPolicyUrl),
+    mode: LaunchMode.inAppWebView,
+  );
 }
