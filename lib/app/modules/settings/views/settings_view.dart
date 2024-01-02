@@ -97,14 +97,20 @@ class SettingsView extends GetView<SettingsController> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SettingsItemWidget(
-                        onTap: () {},
+                        onTap: () {
+                          const privacyPolicyUrl =
+                              'https://doc-hosting.flycricket.io/mvplayer-terms-of-use/896ad7ea-862d-4d31-b29a-7f5fd23f8cf0/terms';
+
+                          launchUrl(Uri.parse(privacyPolicyUrl),
+                              mode: LaunchMode.externalApplication);
+                        },
                         icons: Icons.info_rounded,
-                        title: 'About',
+                        title: 'Terms',
                         titleStyle:
                             GoogleFonts.poppins(fontWeight: FontWeight.w600),
                         titleMaxLine: 1,
                         subtitleMaxLine: 1,
-                        subtitle: "Learn more about Mv player",
+                        subtitle: "MvPlayer Terms of Use",
                         // backgroundColor: Constants.black,
                         // iconColor: Constants.white,
                       ),
