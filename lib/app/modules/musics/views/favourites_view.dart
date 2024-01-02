@@ -56,7 +56,6 @@ class _FavouritesViewState extends State<FavouritesView> {
                   ),
                 );
               } else {
-                // Return an empty container if there are no favorite songs
                 return Container();
               }
             },
