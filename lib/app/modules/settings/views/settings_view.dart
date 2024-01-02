@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/musics/controllers/favourites_controller.dart';
 import 'package:mv_player/app/modules/settings/widgets/reset_comfirmation_dialog_widget.dart';
+import 'package:mv_player/app/modules/splash/views/splash_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../utils/constants/constants.dart';
@@ -50,6 +51,7 @@ class SettingsView extends GetView<SettingsController> {
                               onPressed: () async {
                                 await favouritesController.resetApp();
                                 Get.back();
+                                restartApp();
                               },
                               resetConfirmMessage:
                                   Constants.resetConfirmMessage);
@@ -148,4 +150,8 @@ void launchPrivacyPolicy() async {
     Uri.parse(privacyPolicyUrl),
     mode: LaunchMode.inAppWebView,
   );
+}
+
+void restartApp() {
+  Get.to(SplashView());
 }
