@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mv_player/app/modules/musics/controllers/favourites_controller.dart';
 
 import '../../../utils/constants/constants.dart';
 import '../controllers/settings_controller.dart';
@@ -12,6 +13,7 @@ class SettingsView extends GetView<SettingsController> {
   SettingsView({Key? key}) : super(key: key);
 
   final SettingsController settingsController = Get.find();
+  final FavouritesController favouritesController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,9 @@ class SettingsView extends GetView<SettingsController> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SettingsItemWidget(
-                        onTap: () {},
+                        onTap: () async {
+                          await favouritesController.resetApp();
+                        },
                         icons: CupertinoIcons.restart,
                         title: 'Reset App',
                         titleStyle:
@@ -49,6 +53,7 @@ class SettingsView extends GetView<SettingsController> {
                         subtitleMaxLine: 1,
                         // backgroundColor: Constants.black,
                         // iconColor: Constants.white,
+                        trailing: const Icon(Icons.power_settings_new_outlined),
                       ),
                     ),
                   ),

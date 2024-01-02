@@ -49,7 +49,7 @@ class HomeView extends StatelessWidget {
                       ),
                       height: double.infinity,
                       child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+                        filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
                         child: Align(
                           alignment: Alignment.bottomCenter,
                           child: Padding(

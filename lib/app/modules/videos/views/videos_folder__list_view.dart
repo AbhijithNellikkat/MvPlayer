@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 import 'package:mv_player/app/modules/videos/controllers/videos_controller.dart';
+import 'package:mv_player/app/utils/constants/constants.dart';
 
 class ListViewWidget extends StatefulWidget {
   const ListViewWidget({super.key});
@@ -31,9 +32,12 @@ class _ListViewWidgetState extends State<ListViewWidget> {
           itemBuilder: (context, index) {
             final foldersName = videosController.folders[index].name;
             return ListTile(
-              leading: const Icon(
+              leading: Icon(
                 Icons.folder,
                 size: 40,
+                color: settingsController.isDarkMode.value
+                    ? Constants.white
+                    : Constants.black,
               ),
               title: Text(
                 videosController.folders[index].name,

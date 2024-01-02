@@ -58,6 +58,21 @@ class FavouritesController extends GetxController {
       'favourites',
       favData,
     );
-    update(); 
+    update();
+  }
+
+  Future<void> resetApp() async {
+    await dbFunctions.box.clear();
+
+    // Remove favorites data
+    var defaultData = MusicModel(
+      playlist: {},
+      favourites: [],
+      recentlyPlayed: [],
+    );
+
+    await dbFunctions.box.put('favourites', defaultData);
+    update();
+    log("App reset successful");
   }
 }
