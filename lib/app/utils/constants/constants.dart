@@ -25,7 +25,7 @@ class Constants {
 
   static const emptyBoxAnimation = 'assets/animations/emptyBox.json';
 
-  static const homePageBgImage = 'assets/images/home_view_image.png';
+  // static const homePageBgImage = 'assets/images/home_view_image.png';
 
   static const musicOnbordingImage = 'assets/images/music_onbording.jpg';
   static const videoOnbordingImage = 'assets/images/video_onbording.jpg';
@@ -36,7 +36,7 @@ class Constants {
   static const profileImage = 'assets/images/profile.gif';
   static const splashImage = 'assets/icons/sample logo.jpg';
 
-  static const homeImage = 'assets/images/homescreen-removebg-preview.png';
+  // static const homeImage = 'assets/images/homescreen-removebg-preview.png';
 
   static const nullArtworkWidget =
       'assets/animations/musicplayer_nullArtwork.json';

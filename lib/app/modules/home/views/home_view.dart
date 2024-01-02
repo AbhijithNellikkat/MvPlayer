@@ -1,10 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
+import 'package:mv_player/app/utils/constants/constants.dart';
 
-import '../../../utils/constants/constants.dart';
 import '../controllers/nav_bar_controller_controller.dart';
 import '../widgets/local_songs_suggestions_slider_widget .dart';
 import '../widgets/recently_played_song_slider.dart';
@@ -34,21 +36,54 @@ class HomeView extends StatelessWidget {
                 stretchTriggerOffset: 300.0,
                 expandedHeight: 400.0,
                 flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  title: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      'Welcome to Mv Player 👋',
-                      style: GoogleFonts.yeonSung(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
+                  background: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        image: DecorationImage(
+                            image: NetworkImage(
+                              'https://img.freepik.com/free-vector/abstract-flat-line-with-music-note-motion-shapes-pattern-cover-design-poster-banner-decoration_460848-15092.jpg?w=740&t=st=1704177283~exp=1704177883~hmac=516d5676c52fb8621989346dd67175f9cbee83383865196b07351f3ef0e6415f',
+                            ),
+                            fit: BoxFit.cover),
+                      ),
+                      height: double.infinity,
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Welcome to Mv Player 👋',
+                              style: GoogleFonts.yeonSung(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: settingsController.isDarkMode.value
+                                      ? Constants.white
+                                      : Constants.black),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                  background: Image.asset(
-                    Constants.homePageBgImage,
-                    fit: BoxFit.fitWidth,
-                  ),
+
+                  centerTitle: true,
+                  // title: Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 10),
+                  //   child: Text(
+                  //     'Welcome to Mv Player 👋',
+                  //     style: GoogleFonts.yeonSung(
+                  //       fontSize: 15,
+                  //       fontWeight: FontWeight.w500,
+                  //     ),
+                  //   ),
+                  // ),
+                  // background: Image.asset(
+                  //   Constants.homePageBgImage,
+                  //   fit: BoxFit.fitWidth,
+                  // ),
                 ),
               ),
               SliverList(
