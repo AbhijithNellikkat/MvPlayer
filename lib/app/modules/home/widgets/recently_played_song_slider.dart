@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:marquee/marquee.dart';
+import 'package:mv_player/app/modules/settings/controllers/settings_controller.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../../data/db_functions.dart';
@@ -10,6 +12,8 @@ import '../../../utils/constants/constants.dart';
 
 class RecentlyPlayedSongSliderWidget extends StatelessWidget {
   final DbFunctions dbFunctions = DbFunctions();
+
+  final SettingsController settingsController = Get.find();
 
   RecentlyPlayedSongSliderWidget({super.key});
 
@@ -80,7 +84,9 @@ class RecentlyPlayedSongSliderWidget extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.black,
+                    color: settingsController.isDarkMode.value
+                        ? Constants.black
+                        : Constants.white,
                   ),
                   fadingEdgeStartFraction: 0.9,
                   fadingEdgeEndFraction: 0.9,

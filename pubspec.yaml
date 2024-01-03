@@ -42,6 +42,7 @@ dependencies:
   url_launcher: ^6.2.2
   url_launcher_android: ^6.2.0
   restart_app: ^1.2.1
+  rename: ^3.0.1
  
   
   
@@ -53,7 +54,7 @@ dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icons/sample logo.jpg"
+  image_path: "assets/icons/MvPlayerLogo.jpg"
 
 dev_dependencies:
   build_runner: ^2.4.6
