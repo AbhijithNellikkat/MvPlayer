@@ -22,11 +22,15 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-def keystoreProperties = new Properties()
+   def keystoreProperties = new Properties()
    def keystorePropertiesFile = rootProject.file('key.properties')
    if (keystorePropertiesFile.exists()) {
        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
    }
+
+
+ 
+
 
 android {
     namespace "net.MvPlayer.mv_player"
@@ -48,7 +52,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.flutterdev.mvplayer"
+        applicationId "com.selfStack.mvplayer"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 21
@@ -58,7 +62,8 @@ android {
     }
 
     
-      signingConfigs {
+   
+     signingConfigs {
        release {
            keyAlias keystoreProperties['keyAlias']
            keyPassword keystoreProperties['keyPassword']
@@ -71,6 +76,7 @@ android {
            signingConfig signingConfigs.release
        }
    }
+
 
 }
 

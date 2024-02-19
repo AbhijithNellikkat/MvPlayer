@@ -42,9 +42,7 @@ class HomeView extends StatelessWidget {
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                         image: DecorationImage(
-                            image: NetworkImage(
-                              'https://img.freepik.com/free-vector/abstract-flat-line-with-music-note-motion-shapes-pattern-cover-design-poster-banner-decoration_460848-15092.jpg?w=740&t=st=1704177283~exp=1704177883~hmac=516d5676c52fb8621989346dd67175f9cbee83383865196b07351f3ef0e6415f',
-                            ),
+                            image: AssetImage("assets/images/homeImge.jpg"),
                             fit: BoxFit.cover),
                       ),
                       height: double.infinity,
