@@ -12,6 +12,7 @@ import 'package:mv_player/app/modules/splash/bindings/splash_binding.dart';
 import 'package:mv_player/app/utils/constants/constants.dart';
 import 'package:mv_player/app/utils/themes/app_theme.dart';
 import 'package:path_provider/path_provider.dart';
+
 import 'app/modules/home/controllers/permission_controller.dart';
 import 'app/routes/app_pages.dart';
 
@@ -35,16 +36,13 @@ Future<void> main() async {
 
   await Hive.openBox(Constants.boxName);
 
-    
-  
-
   runApp(
     GetMaterialApp(
       title: "Mv Player",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
-      initialBinding: SplashBinding(),  
+      initialBinding: SplashBinding(),
       theme: AppThemes.lightTheme(),
       darkTheme: AppThemes.darkTheme(),
       themeMode: ThemeMode.system,

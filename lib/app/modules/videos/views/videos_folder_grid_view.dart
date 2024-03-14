@@ -55,7 +55,7 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                   ),
                   Text(
                     // ignore: deprecated_member_use
-                    '${videosController.folders[index].assetCount} videos',
+                    '${videosController.folders[index].darwinSubtype} videos',
                     style: GoogleFonts.poppins(
                         fontSize: 10, fontWeight: FontWeight.w400),
                   ),

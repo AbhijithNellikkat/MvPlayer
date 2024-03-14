@@ -33,7 +33,7 @@ class VideosController extends GetxController {
       {required AssetPathEntity folder, required String foldersName}) async {
     try {
       final List<AssetEntity> videos =
-          await folder.getAssetListRange(start: 0, end: folder.assetCount);
+          await folder.getAssetListRange(start: 0, end:0);
 
       this.videos.assignAll(videos);
       Get.to(() => VideosListInFolderView(
@@ -49,7 +49,7 @@ class VideosController extends GetxController {
       {required AssetPathEntity folder, required String foldersName}) async {
     try {
       final List<AssetEntity> videos =
-          await folder.getAssetListRange(start: 0, end: folder.assetCount);
+          await folder.getAssetListRange(start: 0, end: 0);
 
       this.videos.assignAll(videos);
       Get.to(() => VideosGridInFolderView(

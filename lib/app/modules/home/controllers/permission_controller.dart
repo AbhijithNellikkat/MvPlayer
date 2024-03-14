@@ -15,56 +15,47 @@ class PermissionController extends GetxController {
   }
 
   Future<void> requestStoragePermission() async {
-    Future.delayed(
-      const Duration(seconds: 4),
-      () async {
-        try {
-          final PermissionStatus status = await Permission.storage.request();
-          log('=================================== $status ===================================');
+    try {
+      final PermissionStatus status = await Permission.storage.status;
+      log('=================================== $status ===================================');
 
-          if (status == PermissionStatus.granted) {
-            Get.snackbar(
-              'Granted',
-              'The Permission is Granted',
-              margin: const EdgeInsets.all(12),
-              duration: const Duration(seconds: 2),
-            );
-          }
-          if (status == PermissionStatus.denied) {
-            Get.snackbar(
-              'Required',
-              'The Permission is required !',
-              margin: const EdgeInsets.all(12),
-              duration: const Duration(seconds: 2),
-            );
-            // await Permission.storage.request();
-            Future.delayed(
-              const Duration(seconds: 2),
-              () => openAppSettings().then(
-                (value) => value
-                    ? requestStoragePermission()
-                    : Get.snackbar(
-                        'Granted',
-                        'The Permission is Granted',
-                        margin: const EdgeInsets.all(12),
-                        duration: const Duration(seconds: 2),
-                      ),
-              ),
-            );
-          }
-          if (status == PermissionStatus.permanentlyDenied) {
-            requestStoragePermission();
-            // Get.snackbar(
-            //   'permanentlyDenied',
-            //   'The Permission is required !',
-            //   margin: const EdgeInsets.all(12),
-            //   duration: const Duration(seconds: 2),
-            // );
-          }
-        } on Exception catch (e) {
-          log('------------------------------------- $e -------------------------------------');
+      if (status.isGranted) {
+        Get.snackbar(
+          'Granted',
+          'The Permission is Granted',
+          margin: const EdgeInsets.all(12),
+          duration: const Duration(seconds: 2),
+        );
+      } else if (status.isDenied || status.isPermanentlyDenied) {
+        // If permission is denied or permanently denied, request permission
+        final PermissionStatus updatedStatus =
+            await Permission.storage.request();
+
+        if (updatedStatus.isGranted) {
+          // Permission granted after request
+          Get.snackbar(
+            'Granted',
+            'The Permission is Granted',
+            margin: const EdgeInsets.all(12),
+            duration: const Duration(seconds: 2),
+          );
+        } else {
+          // Permission still denied or permanently denied after request
+          Get.snackbar(
+            'Required',
+            'The Permission is required !',
+            margin: const EdgeInsets.all(12),
+            duration: const Duration(seconds: 2),
+          );
+
+          // Prompt user to go to settings to enable permission
+          Future.delayed(const Duration(seconds: 2), () {
+            openAppSettings();
+          });
         }
-      },
-    );
+      }
+    } catch (e) {
+      log('------------------------------------- $e -------------------------------------');
+    }
   }
 }
