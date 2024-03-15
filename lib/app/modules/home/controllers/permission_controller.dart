@@ -16,7 +16,7 @@ class PermissionController extends GetxController {
 
   Future<void> requestStoragePermission() async {
     try {
-      final PermissionStatus status = await Permission.storage.status;
+      final PermissionStatus status = await Permission.storage.request();
       log('=================================== $status ===================================');
 
       if (status.isGranted) {
@@ -26,36 +26,71 @@ class PermissionController extends GetxController {
           margin: const EdgeInsets.all(12),
           duration: const Duration(seconds: 2),
         );
-      } else if (status.isDenied || status.isPermanentlyDenied) {
-        // If permission is denied or permanently denied, request permission
-        final PermissionStatus updatedStatus =
-            await Permission.storage.request();
+      } else if (status.isDenied) {
+        Get.snackbar(
+          'Required',
+          'The Permission is required !',
+          margin: const EdgeInsets.all(12),
+          duration: const Duration(seconds: 2),
+        );
 
-        if (updatedStatus.isGranted) {
-          // Permission granted after request
-          Get.snackbar(
-            'Granted',
-            'The Permission is Granted',
-            margin: const EdgeInsets.all(12),
-            duration: const Duration(seconds: 2),
-          );
-        } else {
-          // Permission still denied or permanently denied after request
-          Get.snackbar(
-            'Required',
-            'The Permission is required !',
-            margin: const EdgeInsets.all(12),
-            duration: const Duration(seconds: 2),
-          );
-
-          // Prompt user to go to settings to enable permission
-          Future.delayed(const Duration(seconds: 2), () {
-            openAppSettings();
-          });
-        }
+        // Prompt user to go to settings to enable permission
+        Future.delayed(const Duration(seconds: 2), () {
+          openAppSettings();
+        });
+      } else if (status.isPermanentlyDenied) {
+        // Permission is permanently denied   
+        // You may handle this case differently based on your app's requirements
+        // Here, we prompt the user to grant permission again
+        requestStoragePermission();
       }
     } catch (e) {
       log('------------------------------------- $e -------------------------------------');
     }
   }
+
+  // Future<void> requestStoragePermission() async {
+  //   try {
+  //     final PermissionStatus status = await Permission.storage.status;
+  //     log('=================================== $status ===================================');
+
+  //     if (status.isGranted) {
+  //       Get.snackbar(
+  //         'Granted',
+  //         'The Permission is Granted',
+  //         margin: const EdgeInsets.all(12),
+  //         duration: const Duration(seconds: 2),
+  //       );
+  //     } else if (status.isDenied || status.isPermanentlyDenied) {
+  //       // If permission is denied or permanently denied, request permission
+  //       final PermissionStatus updatedStatus =
+  //           await Permission.storage.request();
+
+  //       if (updatedStatus.isGranted) {
+  //         // Permission granted after request
+  //         Get.snackbar(
+  //           'Granted',
+  //           'The Permission is Granted',
+  //           margin: const EdgeInsets.all(12),
+  //           duration: const Duration(seconds: 2),
+  //         );
+  //       } else {
+  //         // Permission still denied or permanently denied after request
+  //         Get.snackbar(
+  //           'Required',
+  //           'The Permission is required !',
+  //           margin: const EdgeInsets.all(12),
+  //           duration: const Duration(seconds: 2),
+  //         );
+
+  //         // Prompt user to go to settings to enable permission
+  //         Future.delayed(const Duration(seconds: 2), () {
+  //           openAppSettings();
+  //         });
+  //       }
+  //     }
+  //   } catch (e) {
+  //     log('------------------------------------- $e -------------------------------------');
+  //   }
+  // }
 }

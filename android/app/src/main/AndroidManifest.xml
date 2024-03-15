@@ -4,6 +4,7 @@
   <!-- Android 12 or below  -->
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.INTERNET" />
 
   <!-- Android 13 or greater  -->
   <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
