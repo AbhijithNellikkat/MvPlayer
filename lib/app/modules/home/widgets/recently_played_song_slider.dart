@@ -85,8 +85,8 @@ class RecentlyPlayedSongSliderWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     color: settingsController.isDarkMode.value
-                        ? Constants.black
-                        : Constants.white,
+                        ? Constants.white
+                        : Constants.black,
                   ),
                   fadingEdgeStartFraction: 0.9,
                   fadingEdgeEndFraction: 0.9,
