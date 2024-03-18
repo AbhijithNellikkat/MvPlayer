@@ -23,6 +23,7 @@
       android:label="MvPlayer"
       android:name="${applicationName}"
       android:icon="@mipmap/launcher_icon"
+      android:enableOnBackInvokedCallback="true"
       android:requestLegacyExternalStorage="true">
       
      

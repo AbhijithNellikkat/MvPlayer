@@ -26,14 +26,7 @@ Future<void> main() async {
 
   permission.justAudioBackgroundInit();
 
-  Future.delayed(
-    const Duration(seconds: 3),
-    () async {
-      await Permission.audio.request();
-      await Permission.videos.request();
-      // await Permission.photos.request();
-    },
-  );
+  permissionRequest();
 
   Directory directory = await getApplicationDocumentsDirectory();
   log('directory path :  ${directory.path}');
@@ -58,5 +51,58 @@ Future<void> main() async {
       darkTheme: AppThemes.darkTheme(),
       themeMode: ThemeMode.system,
     ),
+  );
+}
+
+
+
+
+
+
+
+
+
+void permissionRequest() {
+  Future.delayed(
+    const Duration(seconds: 3),
+    () async {
+      try {
+        final PermissionStatus audioPermissionStatus =
+            await Permission.audio.request();
+        final PermissionStatus videoPermissionStatus =
+            await Permission.videos.request();
+  
+        if (audioPermissionStatus.isGranted &&
+            videoPermissionStatus.isGranted) {
+          Get.snackbar(
+            'Granted',
+            'The Permissions are Granted',
+            margin: const EdgeInsets.all(12),
+            duration: const Duration(seconds: 2),
+          );
+        } else if (audioPermissionStatus.isDenied ||
+            videoPermissionStatus.isDenied) {
+          Get.snackbar(
+            'Required',
+            'The Permission is required !',
+            margin: const EdgeInsets.all(12),
+            duration: const Duration(seconds: 2),
+          );
+  
+         
+          Future.delayed(const Duration(seconds: 0), () {
+            openAppSettings();
+          });
+        } else if (audioPermissionStatus.isPermanentlyDenied ||
+            videoPermissionStatus.isPermanentlyDenied) {
+          await Permission.audio.request();
+          await Permission.videos.request();
+        }
+      } catch (e) {
+        log("$e");
+      }
+      await Permission.audio.request();
+      await Permission.videos.request();
+    },
   );
 }
