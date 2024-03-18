@@ -54,14 +54,6 @@ Future<void> main() async {
   );
 }
 
-
-
-
-
-
-
-
-
 void permissionRequest() {
   Future.delayed(
     const Duration(seconds: 3),
@@ -71,7 +63,7 @@ void permissionRequest() {
             await Permission.audio.request();
         final PermissionStatus videoPermissionStatus =
             await Permission.videos.request();
-  
+
         if (audioPermissionStatus.isGranted &&
             videoPermissionStatus.isGranted) {
           Get.snackbar(
@@ -88,21 +80,16 @@ void permissionRequest() {
             margin: const EdgeInsets.all(12),
             duration: const Duration(seconds: 2),
           );
-  
-         
-          Future.delayed(const Duration(seconds: 0), () {
-            openAppSettings();
-          });
-        } else if (audioPermissionStatus.isPermanentlyDenied ||
-            videoPermissionStatus.isPermanentlyDenied) {
+
           await Permission.audio.request();
           await Permission.videos.request();
+        } else if (audioPermissionStatus.isPermanentlyDenied ||
+            videoPermissionStatus.isPermanentlyDenied) {
+          openAppSettings();
         }
       } catch (e) {
         log("$e");
       }
-      await Permission.audio.request();
-      await Permission.videos.request();
     },
   );
 }

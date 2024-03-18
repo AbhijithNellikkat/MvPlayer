@@ -1,10 +1,8 @@
 import 'package:babstrap_settings_screen/babstrap_settings_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mv_player/app/modules/musics/controllers/favourites_controller.dart';
-import 'package:mv_player/app/modules/settings/widgets/reset_comfirmation_dialog_widget.dart';
 import 'package:mv_player/app/modules/splash/views/splash_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -41,32 +39,32 @@ class SettingsView extends GetView<SettingsController> {
               ),
               Column(
                 children: [
-                  Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SettingsItemWidget(
-                        onTap: () async {
-                          resetComfirmationDialogWidget(
-                              context: context,
-                              onPressed: () async {
-                                await favouritesController.resetApp();
-                                Get.back();
-                                restartApp();
-                              },
-                              resetConfirmMessage:
-                                  Constants.resetConfirmMessage);
-                        },
-                        icons: CupertinoIcons.restart,
-                        title: 'Reset App',
-                        titleStyle:
-                            GoogleFonts.poppins(fontWeight: FontWeight.w600),
-                        titleMaxLine: 1,
-                        subtitleMaxLine: 1,
-                        // backgroundColor: Constants.black,
-                        // iconColor: Constants.white,
-                      ),
-                    ),
-                  ),
+                  // Card(
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.all(8.0),
+                  //     child: SettingsItemWidget(
+                  //       onTap: () async {
+                  //         resetComfirmationDialogWidget(
+                  //             context: context,
+                  //             onPressed: () async {
+                  //               await favouritesController.resetApp();
+                  //               Get.back();
+                  //               restartApp();
+                  //             },
+                  //             resetConfirmMessage:
+                  //                 Constants.resetConfirmMessage);
+                  //       },
+                  //       icons: CupertinoIcons.restart,
+                  //       title: 'Reset App',
+                  //       titleStyle:
+                  //           GoogleFonts.poppins(fontWeight: FontWeight.w600),
+                  //       titleMaxLine: 1,
+                  //       subtitleMaxLine: 1,
+                  //       // backgroundColor: Constants.black,
+                  //       // iconColor: Constants.white,
+                  //     ),
+                  //   ),
+                  // ),
                   Card(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
