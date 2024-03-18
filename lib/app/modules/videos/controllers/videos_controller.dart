@@ -1,6 +1,5 @@
-
-
 import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:mv_player/app/modules/videos/views/videos_grid_in_folder_view.dart';
 import 'package:mv_player/app/modules/videos/views/videos_list_in_folder_view.dart';
@@ -33,7 +32,7 @@ class VideosController extends GetxController {
       {required AssetPathEntity folder, required String foldersName}) async {
     try {
       final List<AssetEntity> videos =
-          await folder.getAssetListRange(start: 0, end:0);
+          await folder.getAssetListRange(start: 0, end: await folder.assetCountAsync);
 
       this.videos.assignAll(videos);
       Get.to(() => VideosListInFolderView(
@@ -49,7 +48,7 @@ class VideosController extends GetxController {
       {required AssetPathEntity folder, required String foldersName}) async {
     try {
       final List<AssetEntity> videos =
-          await folder.getAssetListRange(start: 0, end: 0);
+          await folder.getAssetListRange(start: 0, end: await folder.assetCountAsync);
 
       this.videos.assignAll(videos);
       Get.to(() => VideosGridInFolderView(

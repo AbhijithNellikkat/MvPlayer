@@ -44,11 +44,35 @@ class _ListViewWidgetState extends State<ListViewWidget> {
                 style: GoogleFonts.poppins(
                     fontSize: 16, fontWeight: FontWeight.w400),
               ),
-              subtitle: Text(
-                // ignore: deprecated_member_use
-                '${videosController.folders[index].darwinSubtype} videos',
-                style: GoogleFonts.poppins(
-                    fontSize: 12, fontWeight: FontWeight.w400),
+              subtitle: FutureBuilder<int>(
+                future: videosController.folders[index].assetCountAsync,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text(
+                      'Loading...',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text(
+                      'Error loading count',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    );
+                  } else {
+                    return Text(
+                      '${snapshot.data} videos',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    );
+                  }
+                },
               ),
               onTap: () {
                 videosController.navigateToVideosInFolder(

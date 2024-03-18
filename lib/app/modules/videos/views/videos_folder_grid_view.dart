@@ -53,11 +53,31 @@ class _GridViewWidgetState extends State<GridViewWidget> {
                     style: GoogleFonts.poppins(
                         fontSize: 14, fontWeight: FontWeight.w400),
                   ),
-                  Text(
-                    // ignore: deprecated_member_use
-                    '${videosController.folders[index].darwinSubtype} videos',
-                    style: GoogleFonts.poppins(
-                        fontSize: 10, fontWeight: FontWeight.w400),
+                  FutureBuilder<int>(
+                    future: videosController.folders[index].assetCountAsync,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Text(
+                          'Loading...',
+                          style: GoogleFonts.poppins(
+                              fontSize: 10, fontWeight: FontWeight.w400),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text(
+                          'Error loading count',
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        );
+                      } else {
+                        return Text(
+                          '${snapshot.data} videos',
+                          style: GoogleFonts.poppins(
+                              fontSize: 10, fontWeight: FontWeight.w400),
+                        );
+                      }
+                    },
                   ),
                 ],
               ),
